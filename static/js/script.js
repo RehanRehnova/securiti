@@ -257,11 +257,12 @@ const section = document.querySelector('section');section.addEventListener('mous
 
   // Hamburger
   const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
   let open = false;
 
   menuBtn.onclick = () => {
     open =!open;
-   
+    mobileMenu.style.maxHeight = open? mobileMenu.scrollHeight + 'px' : '0';
     menuIcon.innerHTML = open
      ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M6 18L18 6M6 6l12 12"/>'
       : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 7h16M4 12h16M4 17h16"/>';

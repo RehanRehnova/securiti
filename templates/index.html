@@ -5,14 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rehan Digitals — Engineering-grade Web Apps & AI Agents</title>
     <meta name="description" content="Boutique digital solutions agency building custom web applications, AI chatbots, autonomous agents, and ScholarMS. Security-first, production-grade code, full IP ownership, transparent delivery.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('{{ url_for("static", filename="fonts/Satoshi-Regular.woff2") }}') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('{{ url_for("static", filename="fonts/Satoshi-Medium.woff2") }}') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('{{ url_for("static", filename="fonts/Satoshi-Bold.woff2") }}') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
     <script src="https://cdn.tailwindcss.com"></script>
-  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=5">
 </head>
 <body class="bg-[#F8FAFC] text-slate-800 antialiased">
     
@@ -316,7 +339,7 @@ cards.forEach(c => {  c.style.opacity = '0';  c.style.transform = 'translateY(16
         <!-- Testimonials -->
       
       
-     <section class="testimonials-section border-t border-slate-200">    <div class="max-w-[1200px] mx-auto px-6 py-20 lg:py-28">        <!-- Header -->        <div class="mb-16 lg:mb-20">                    <h2 class="text-[32px] lg:text-[48px] font-semibold text-slate-600 leading-[1.1] tracking-tight">                <span class="text-[#1DA9CE]">Results</span>, Hear from others            </h2>        </div>
+     <section class="testimonials-section border-t border-slate-200">    <div class="max-w-[1200px] mx-auto px-6 py-20 lg:py-28">        <!-- Header -->        <div class="mb-16 lg:mb-20">                    <h2 class="text-[32px] lg:text-[48px] font-semibold text-slate-600 leading-[1.1] tracking-tight">                <span class="text-[#1DA9CE]">Results</span>, Heared from others            </h2>        </div>
         <!-- Main grid -->        <div class="grid lg:grid-cols-[1fr_320px] gap-16 lg:gap-20">            <!-- Testimonial -->            <div>                <div id="testimonial-content" class="border-t border-slate-900 pt-8"></div>
                 <div class="flex items-center justify-between mt-12 pt-6 border-t border-slate-200">                    <div class="flex gap-2" id="testimonial-dots"></div>                    <div class="flex gap-4">                        <button id="prev-btn" class="text-slate-400 hover:text-slate-900 transition-colors" aria-label="Previous testimonial">                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">                                <path d="M12 16L8 12l4-4"/>                            </svg>                        </button>                        <button id="next-btn" class="text-slate-400 hover:text-slate-900 transition-colors" aria-label="Next testimonial">                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">                                <path d="M8 8l4 4-4 4"/>                            </svg>                        </button>                    </div>                </div>            </div>
             <!-- Meta sidebar -->            <div class="space-y-10">                <div class="border-t border-slate-900 pt-6">                    <div class="text-[11px] tracking-[0.2em] text-slate-500 uppercase font-medium mb-3">                        Delivered                    </div>                    <div class="text-[28px] font-semibold text-slate-900">                        47+ Projects                    </div>                </div>
