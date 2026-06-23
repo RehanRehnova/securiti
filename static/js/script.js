@@ -1,4 +1,44 @@
+// Video optimizer 
 
+(() => {
+    const video = document.getElementById('heroBg');
+    if (!video) return;
+
+    // Don't load video on slow connections — show poster instead
+    if ('connection' in navigator) {
+        const conn = navigator.connection;
+        if (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g') {
+            video.removeAttribute('autoplay');
+            video.removeAttribute('preload');
+            video.style.opacity = '1';
+            return;
+        }
+    }
+
+    // Fallback — if video hasn't started in 4 seconds, just show poster
+    const giveUp = setTimeout(() => {
+        if (video.readyState < 3) {
+            video.style.display = 'none';
+            // poster is already visible as background so hero still looks fine
+        }
+    }, 4000);
+
+    // Fade in smoothly once playing
+    video.addEventListener('playing', () => {
+        clearTimeout(giveUp);
+        video.classList.add('ready');
+    }, { once: true });
+
+    // Buffering stall — fade slightly so it doesn't freeze visually
+    video.addEventListener('waiting', () => {
+        video.style.opacity = '0.4';
+    });
+
+    // Resume — fade back in
+    video.addEventListener('playing', () => {
+        video.style.opacity = '1';
+    });
+})();
 
 
  
