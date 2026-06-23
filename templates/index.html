@@ -90,7 +90,25 @@
     <main>
         <!-- Hero -->
        
-      <section style="margin: 8px; border-radius: 10px;" class="relative min-h-[100vh] flex items-center overflow-hidden bg-black">  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">    <source src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1782153584/15293279_3840_2160_50fps_iskci6.mp4" type="video/mp4">  </video>  <div class="absolute inset-0 bg-black/75"></div>  <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%);"></div>
+      <section style="margin: 8px; border-radius: 10px;" class="relative min-h-[100vh] flex items-center overflow-hidden bg-black">  <video 
+    id="heroBg"
+    autoplay 
+    muted 
+    loop 
+    playsinline
+    preload="auto"
+    poster="https://res.cloudinary.com/dhcayqpqr/video/upload/so_2,q_auto,f_auto,w_1280/v1782153584/15293279_3840_2160_50fps_iskci6.jpg"
+    class="absolute inset-0 w-full h-full object-cover"
+>
+    <source 
+        src="https://res.cloudinary.com/dhcayqpqr/video/upload/q_auto,w_1280,vc_vp9/v1782153584/15293279_3840_2160_50fps_iskci6.webm" 
+        type="video/webm"
+    >
+    <source 
+        src="https://res.cloudinary.com/dhcayqpqr/video/upload/q_auto,w_1280,vc_h264/v1782153584/15293279_3840_2160_50fps_iskci6.mp4" 
+        type="video/mp4"
+    >
+</video>o  <div class="absolute inset-0 bg-black/75"></div>  <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%);"></div>
   <div class="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 flex flex-col gap-20 lg:gap-24">
     <!-- TOP PART: Main heading + subheading -->    <div class="text-left lg:text-center">      <h1 class="text-[44px] sm:text-[60px] lg:text-[76px] font-[450] tracking-[-0.02em] text-white leading-[0.95] max-w-4xl lg:mx-auto">        AI-native Web Apps & Agents      </h1>      <p class="mt-6 text-[18px] sm:text-[20px] leading-[1.6] text-white/70 max-w-[720px] lg:mx-auto">        Turn your most time-consuming business processes into seamless, automated workflows.      </p>      <p class="mt-3 text-[16px] sm:text-[17px] leading-[1.6] text-white/60 max-w-[680px] lg:mx-auto">        Unify custom software, autonomous AI, and management systems in one platform — from idea to impact.      </p>    </div>
     <!-- BOTTOM PART: Tiny heading + buttons -->    <div class="text-left lg:text-center">      <div class="mb-6">        <div class="text-[13px] text-white/50 uppercase tracking-wider mb-2">Backed by results and trusted to deliver for</div>        <div class="text-[60px] sm:text-[80px] lg:text-[92px] font-[450] tracking-tight text-white leading-none">$50M+</div>        <div class="text-[15px] text-white/60 mt-2">in client revenue enabled across our partners</div>      </div>
