@@ -26,6 +26,30 @@
         
         .nav-link::after { display: none!important; }
 .nav-link { position: static!important; }
+
+#heroBg {
+
+
+
+    transition: opacity 0.5s ease;
+
+
+    opacity: 0;
+
+
+}
+
+
+
+
+
+#heroBg.ready {
+
+
+    opacity: 1;
+
+
+}
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
