@@ -271,7 +271,7 @@ const section = document.querySelector('section');section.addEventListener('mous
   menuIcon.classList.remove('text-slate-900');
   
 } else {
-  
+  logoImg.style.filter = 'none'
   bar.className = 'border-b border-slate-200/60 bg-white/100 h-[60px] backdrop-blur-xl shadow-sm transition-all duration-500';
   logo.className = 'text- font-[550] tracking-tight text-slate-900 transition-colors duration-300';
   
