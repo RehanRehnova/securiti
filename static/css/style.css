@@ -42,15 +42,6 @@
         button, a { min-height: 0; }
         .tap-target { min-height: 44px; min-width: 44px; }
 
-#heroBg {
-    transition: opacity 0.5s ease;
-    opacity: 0;
-}
-
-#heroBg.ready {
-    opacity: 1;
-}
-
         @keyframes floatY { 0%,100% { transform: translateY(-5px); } 50% { transform: translateY(5px); } }
         .float-gentle { animation: floatY 4s ease-in-out infinite alternate; }
         @keyframes bobY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
