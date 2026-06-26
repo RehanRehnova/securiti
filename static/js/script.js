@@ -225,20 +225,7 @@ window.addEventListener('scroll', () => {    if (!ticking) {        requestAnima
             });
         });
 
-        // Contact form
-        const form = document.getElementById('contactForm');
-        const note = document.getElementById('formNote');
-        form?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = new FormData(form);
-            const subject = encodeURIComponent('New Project Inquiry — ' + (data.get('name') || ''));
-            const body = encodeURIComponent(`Name: ${data.get('name')}\nEmail: ${data.get('email')}\n\nProject:\n${data.get('details')}`);
-            window.location.href = `mailto:info@rehnova.digital?subject=${subject}&body=${body}`;
-            note.classList.remove('hidden');
-            form.reset();
-            setTimeout(() => note.classList.add('hidden'), 5000);
-        });
-        
+       
         
         // Testimonials
         
@@ -316,8 +303,7 @@ const section = document.querySelector('section');section.addEventListener('mous
   const header = document.getElementById('siteHeader');
   const bar = document.getElementById('headerBar');
   const logo = document.getElementById('logo');
-  const cta = document.getElementById('headerCta');
-  const navLinks = document.querySelectorAll('#desktopNav.nav-link');
+  const cta = document.getElementById('headerCta');const navLinks = document.querySelectorAll('#desktopNav.nav-link');
   const menuIcon = document.getElementById('menuIcon');
 
   let lastY = 0;
@@ -339,14 +325,12 @@ const section = document.querySelector('section');section.addEventListener('mous
 
    if (top) {
   logoImg.style.filter = 'brightness(0) invert(1)';
-  bar.className = 'border-b border-transparent bg-transparent transition-all duration-500 h-[72px]';
+  bar.className = 'border-b border-transparent bg-transparent transition-all duration-500 ';
   logo.className = 'text- font-[550] tracking-tight text-white transition-colors duration-300';
-  
   cta.className = 'ml-2 inline-flex h-9 px-4 rounded-lg items-center bg-white text-black text-[13px] font-medium hover:bg-[#1888A8] transition-colors duration-200';
   
   navLinks.forEach(a => {
     a.className = 'text-[14px] text-white/70 hover:text-white transition-colors duration-200';
-    a.style.color='white';
   });
   
   menuIcon.classList.add('text-white');
@@ -393,5 +377,139 @@ const section = document.querySelector('section');section.addEventListener('mous
   update();
 })();
 
-      
+  //Process section fading 
+  
+  (() => {
+  const steps = [
+    { img:'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop', num:'01 — DISCOVERY', title:'Map goals, users, requirements', desc:'2–3 weeks of workshops. You get a clear scope, architecture, and timeline before we design.' },
+    { img:'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2940&auto=format&fit=crop', num:'02 — DESIGN', title:'Flows, wireframes, UI system', desc:'2–4 weeks. We prototype the entire experience in Figma, test it, then lock the UI.' },
+    { img:'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop', num:'03 — BUILD', title:'Agile sprints, weekly demos', desc:'6–12 weeks of build. You see working software every Friday, no surprises.' },
+    { img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop', num:'04 — LAUNCH', title:'Deploy, train, grow', desc:'Security checks, launch, analytics, and ongoing improvements with SLAs.' }
+  ];
+
+  const bg = document.getElementById('pf-bg');
+  const num = document.getElementById('pf-num');
+  const title = document.getElementById('pf-title');
+  const desc = document.getElementById('pf-desc');
+  let cur = 0;
+
+  const go = i => {
+    if(i === cur) return;
+    cur = i;
+    const s = steps[i];
+    bg.style.opacity = 0;
+    setTimeout(() => {
+      bg.style.backgroundImage = `url('${s.img}')`;
+      bg.style.opacity = 1;
+    }, 180);
+    [num, title, desc].forEach(e => {
+      e.style.opacity = 0;
+      e.style.transform = 'translateY(8px)';
+    });
+    setTimeout(() => {
+      num.textContent = s.num;
+      title.textContent = s.title;
+      desc.textContent = s.desc;
+      [num, title, desc].forEach(e => {
+        e.style.opacity = 1;
+        e.style.transform = 'translateY(0)';
+      });
+    }, 220);
+  };
+
+  const options = { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) go(+entry.target.dataset.pf);
+    });
+  }, options);
+
+  document.querySelectorAll('#process-full [data-pf]').forEach(el => observer.observe(el));
+})();
      
+
+// Message section fns
+
+const contactForm = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+const formError = document.getElementById('formError');
+const submitBtn = document.querySelector('button[form="contactForm"]');
+
+contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Clear previous states
+    formError.classList.add('hidden');
+    formNote.classList.add('hidden');
+
+    // Basic validation
+    const messageType = document.getElementById('messageType').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!messageType ||!name ||!email ||!message) {
+        showError('Please fill in all required fields.');
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        showError('Please enter a valid email address.');
+        return;
+    }
+
+    // Disable button + show loading
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    // Collect form data
+    const formData = {
+        messageType: messageType,
+        name: name,
+        email: email,
+        whatsapp: document.getElementById('whatsapp').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        message: message,
+        source: 'index_contact_form'
+    };
+
+    try {
+        // Replace with your actual endpoint
+        const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) throw new Error('Network error');
+
+        // Success
+        formNote.textContent = 'Message sent. Thanks! We’ll reply within 1 business day.';
+        formNote.classList.remove('hidden');
+        contactForm.reset();
+
+    } catch (error) {
+        showError('Something went wrong. Please try again or email us directly.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message';
+    }
+});
+
+function showError(msg) {
+    formError.textContent = msg;
+    formError.classList.remove('hidden');
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// Reset select color on change
+document.getElementById('messageType').addEventListener('change', function() {
+    this.classList.remove('text-slate-400');
+    this.classList.add('text-slate-700');
+});
+    
