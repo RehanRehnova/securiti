@@ -1,1 +1,6 @@
 Flask==3.0.3
+Flask-Cors
+Flask-Mail
+google-auth
+google-auth-oauthlib
+goole-api-python-client
