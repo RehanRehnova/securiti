@@ -3,4 +3,4 @@ Flask-Cors
 Flask-Mail
 google-auth
 google-auth-oauthlib
-goole-api-python-client
+google-api-python-client
