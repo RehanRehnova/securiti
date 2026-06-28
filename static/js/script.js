@@ -121,8 +121,6 @@
 (function () { document.addEventListener("click", function (e) { var a = e.target.closest("[data-product-id]"); if (!a) return; e.preventDefault(); var pid = a.getAttribute("data-product-id"); if (pid) parent.postMessage({ type: "ecto-artifact-link-click", productId: pid }, "*") }) })();
 
 
-
-
 // Mobile Drawer
 const menuBtn = document.getElementById('menuBtn');
 const drawer = document.getElementById('mobileDrawer');
