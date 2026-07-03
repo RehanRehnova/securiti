@@ -323,7 +323,7 @@ pills.forEach(pill => {
     const logo = document.getElementById('logo');
     const cta = document.getElementById('headerCta'); 
     const headerContact = document.getElementById('headerContact');
-    const navLinks = document.querySelectorAll('#desktopNav.nav-link');
+    const navLinks = document.querySelectorAll('desktopNav.nav-link');
     const menuIcon = document.getElementById('menuIcon');
 
     let lastY = 0;

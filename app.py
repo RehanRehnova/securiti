@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from logic import append_to_sheet, build_contact_email, validate_contact_data, get_sheets_service
 
 load_dotenv()
+
     
 app = Flask(__name__)
 CORS(app)
@@ -23,6 +24,9 @@ app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = (os.getenv('MAIL_SENDER_NAME', 'Webpage Lead'), os.getenv('MAIL_USERNAME'))
 
 mail = Mail(app)
+
+# === GSheets Config ===
+
 ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
 SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
 
