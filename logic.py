@@ -7,6 +7,8 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+from dotenv import load_dotenv
+load_dotenv()
 # === Config pulled from env ===
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
@@ -15,27 +17,12 @@ SERVICE_ACCOUNT_INFO = os.getenv('GOOGLE_SERVICE_ACCOUNT_JSON')
 
 def get_sheets_service():
     if SERVICE_ACCOUNT_INFO:
-        # Production: load from env var
-        creds = service_account.Credentials.from_service_account_info(
-            json.loads(SERVICE_ACCOUNT_INFO), scopes=SCOPES
-        )
+        info = json.loads(SERVICE_ACCOUNT_INFO)
+        print("Using env var for:", info.get('client_email'))
+        creds = service_account.Credentials.from_service_account_info(info, scopes=SCOPES)
     else:
-        # Local dev: load from file
-        creds = service_account.Credentials.from_service_account_file(
-            'service-account.json', scopes=SCOPES
-        )
-    return build('sheets', 'v4', credentials=creds)
-
-
-def get_sheets_service():
-    if SERVICE_ACCOUNT_INFO:
-        creds = service_account.Credentials.from_service_account_info(
-            json.loads(SERVICE_ACCOUNT_INFO), scopes=SCOPES
-        )
-    else:
-        creds = service_account.Credentials.from_service_account_file(
-            'service-account.json', scopes=SCOPES
-        )
+        print("Using credentials.json")
+        creds = service_account.Credentials.from_service_account_file('credentials.json', scopes=SCOPES)
     return build('sheets', 'v4', credentials=creds)
 
 def validate_contact_data(data):
@@ -77,6 +64,7 @@ def build_contact_email(data, admin_email):
         <h2>New {reason} Inquiry</h2>
         <p><strong>Name:</strong> {data.get('firstName')} {data.get('lastName')}</p>
         <p><strong>Email:</strong> {data.get('email')}</p>
+        <p><strong>whatsapp:</strong> {data.get('whatsapp')}</p>
         <p><strong>User Type:</strong> {data.get('userType')}</p>
         """
         if data.get('companyName'):
@@ -91,7 +79,7 @@ def build_contact_email(data, admin_email):
         <hr>
         <p><strong>Details:</strong></p>
         <p>{(data.get('details') or '').replace('\n', '<br>')}</p>
-        <p><strong>Source:</strong> {data.get('source', 'website')}</p>
+        <p><strong>Source:</strong> Get started page</p>
         """
         subject = f"New {reason} Inquiry: {data.get('firstName')} {data.get('lastName')}"
     else:

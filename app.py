@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
+from dotenv import load_dotenv
+load_dotenv()
 
+from flask_cors import CORS
 from flask_mail import Mail
+from datetime import datetime
 import os
 import re
 from dotenv import load_dotenv
-
-# Import from logic.py
 from logic import append_to_sheet, build_contact_email, validate_contact_data, get_sheets_service
 
-load_dotenv()
 
     
 app = Flask(__name__)
@@ -22,12 +22,12 @@ app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True') == 'True'
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = (os.getenv('MAIL_SENDER_NAME', 'Webpage Lead'), os.getenv('MAIL_USERNAME'))
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
 
 mail = Mail(app)
 
 # === GSheets Config ===
 
-ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
 SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
 
 # === Routes ===
@@ -51,7 +51,7 @@ def handle_contact():
         
 
         # Send Email
-        msg = build_contact_email(data, ADMIN_EMAIL)
+        msg = build_contact_email(data, RECIPIENT_EMAIL)
         mail.send(msg)
 
         # Append to Sheet - don't block if it fails
@@ -106,7 +106,7 @@ def test_sheets():
         body = {'values': [test_row]}
         result = service.spreadsheets().values().append(
             spreadsheetId=SPREADSHEET_ID,
-            range='Sheet1!A:H',
+            range='Inquiries!A:K',
             valueInputOption='RAW',
             body=body
         ).execute()

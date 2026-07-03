@@ -191,7 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // WhatsApp validation
   function isValidWhatsApp(number) {
-    // Accepts +92XXXXXXXXXX, 03XXXXXXXXX, or international format
     const cleaned = number.replace(/[\s-()]/g, '');
     const pattern = /^(\+?\d{10,15})$/;
     return pattern.test(cleaned);
