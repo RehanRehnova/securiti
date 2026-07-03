@@ -10,10 +10,6 @@ from dotenv import load_dotenv
 from logic import append_to_sheet, build_contact_email, validate_contact_data, get_sheets_service
 
 load_dotenv()
-ADMIN_EMAIL=os.getenv('ADMIN_EMAIL')
-if not ADMIN_EMAIL or not SPREADSHEET_ID:
-    print("ERROR: ADMIN_EMAIL or SPREADSHEET_ID missing in .env")
-    
     
 app = Flask(__name__)
 CORS(app)
