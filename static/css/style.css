@@ -361,7 +361,7 @@ a {
     background: #1CA9DE;
     color: white;
     border-color: #1CA9DE;
-    box-shadow: 0 4px 14px rgba(28, 169, 222, 0.25);
+    
 }
 
 .category-pill:not(.active):hover {
@@ -389,11 +389,6 @@ a {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* FIXED: Add space between :hover and .service-img */
-.service-card:hover .service-img {
-    transform: scale(1.05);
-}
-
 .service-details {
     opacity: 0;
     max-height: 0;
@@ -401,7 +396,7 @@ a {
     overflow: hidden;
 }
 
-/* FIXED: Add space between :hover and .service-details */
+
 .service-card:hover .service-details {
     opacity: 1;
     max-height: 200px;
