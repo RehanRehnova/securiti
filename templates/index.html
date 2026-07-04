@@ -102,91 +102,64 @@
   <main>
     <!-- Hero -->
 
-<section class="relative min-h-[100vh] bg-black overflow-hidden">
-  <!-- Background decorative elements if needed, but kept simple -->
+<section style="margin: 8px; border-radius: 10px;" class="relative min-h-[100vh] bg-black">
   <div class="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-[100vh] flex flex-col justify-between">
     
-    <!-- TOP AREA: Desktop flex, Mobile stack -->
-    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-16 pt-8 sm:pt-12">
+    <!-- TOP AREA -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12 pt-8 sm:pt-12">
       
-      <!-- CONTENT: Left on desktop, centered-ish on mobile but text-left -->
-      <div class="w-full lg:w-1/2 text-left lg:pr-8">
-        <div class="max-w-[520px]">
-          <!-- Logo (matching screenshot) -->
-          <div class="flex items-center gap-3 mb-8">
-            <img src="https://rehnova.digital/logo.svg" alt="REHNOVA" class="h-8 w-auto"> <!-- Replace with actual logo path if available -->
-            <span class="text-white font-medium tracking-wider">REHNOVA Digitals</span>
-          </div>
+      <!-- CONTENT -->
+      <div class="w-full lg:w-[52%] mx-4 sm:mx-6 lg:mx-0 text-left">
+        <h1 style="font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em;" 
+            class="!text-[50px] lg:!text-[76px] font-[800] text-left text-white leading-[0.95] tracking-[-0.02em]">
+          Your AI-Native Operations Platform
+        </h1>
+        
+        <p class="mt-6 text-[18px] sm:text-[20px] leading-[1.6] text-white/70 max-w-[520px]">
+          Intelligent web apps, autonomous agents, and unified systems that turn complexity into seamless performance.
+        </p>
 
-          <h1 class="text-[42px] sm:text-[52px] lg:text-[68px] font-bold text-white leading-[0.95] tracking-[-0.03em] mb-6">
-            Your AI-Native<br>Operations<br>Platform
-          </h1>
-          
-          <p class="text-[18px] sm:text-[20px] leading-relaxed text-white/70 max-w-md">
-            Intelligent web apps, autonomous agents, and unified systems that turn complexity into seamless performance.
-          </p>
-
-          <div class="mt-10">
-            <a href="/get-started" 
-               class="inline-flex items-center justify-center h-12 px-8 bg-[#1DA9CE] hover:bg-[#1899B8] text-white font-medium text-lg rounded-xl transition-all duration-200 shadow-lg shadow-[#1DA9CE]/30">
-              Book a Demo
-            </a>
-          </div>
+        <div class="mt-8 flex">
+          <a href="/get-started" 
+             class="w-1/2 sm:w-auto inline-flex items-center justify-center h-12 px-5 bg-[#1DA9CE] text-white font-medium text-[18px] hover:bg-[#1888A8] transition-colors duration-200 rounded-lg">
+            Book a Demo
+          </a>
         </div>
       </div>
 
-      <!-- VISUAL / VIDEO CONTAINER with cutout effect -->
-      <div class="w-full lg:w-1/2 mt-12 lg:mt-0 relative">
-        <div class="relative mx-auto lg:ml-auto lg:mr-0 max-w-[420px] lg:max-w-none">
-          <!-- Cutout container - mimicking the screenshot's rounded white area with overflow -->
-          <div class="relative rounded-[3rem] lg:rounded-[4rem] overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl aspect-[4/3] lg:aspect-auto lg:h-[520px]">
-            
-            <!-- The visual content -->
-            <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
-              <!-- Use video or image - keeping video as in original code -->
-              <video autoplay muted loop playsinline class="w-full h-full object-cover scale-110">
-                <source src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1782666407/original-c57b681754e7d29bb59792de101d6bd2_engnpk.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              
-              <!-- Optional overlay glow for orb effect if using static image instead -->
-              <!-- 
-              <img src="/path-to-orb-image.jpg" alt="AI Orb" class="w-3/4 h-auto drop-shadow-2xl">
-              -->
-            </div>
-            
-            <!-- Strong cutout edges - especially right side for "floating" effect -->
-            <!-- This creates the cutout by clipping and using border-radius on specific sides -->
-          </div>
-          
-          <!-- Additional subtle ring glows for orb effect (like screenshot) -->
-          <div class="absolute -inset-6 border border-[#1DA9CE]/30 rounded-[4rem] pointer-events-none"></div>
-          <div class="absolute -inset-12 border border-[#1DA9CE]/10 rounded-[5rem] pointer-events-none"></div>
+      <!-- VIDEO with better cutout -->
+      <div class="w-[92%] lg:w-[52%] mt-10 lg:mt-0 mx-auto lg:ml-auto lg:mr-0">
+        <div class="w-full rounded-l-3xl lg:rounded-l-none lg:rounded-r-3xl overflow-hidden shadow-2xl relative">
+          <video autoplay muted loop playsinline class="w-full h-auto object-cover">
+            <source src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1782666407/original-c57b681754e7d29bb59792de101d6bd2_engnpk.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
 
-    <!-- BOTTOM CONTENT -->
-    <div class="mt-20 lg:mt-auto text-center">
-      <div class="max-w-md mx-auto mb-8">
-        <p class="text-[17px] leading-tight text-white/80 tracking-wide">
+    <!-- BOTTOM CONTENT (unchanged) -->
+    <div class="text-left lg:text-center mx-4 lg:mx-10 pb-4 sm:pb-8 mt-16 lg:mt-100">
+      <div class="mb-6">
+        <p style="letter-spacing: 0.03em;" class="text-[17px] sm:text-[18px] leading-tight text-white/80 max-w-md text-center lg:mx-auto">
           → Unified systems. Autonomous agents. One digital suite to run it all.
         </p>
       </div>
 
-      <div>
-        <p class="text-white/60 text-xs uppercase tracking-[2px] mb-6">Trusted Integrations &amp; Technologies</p>
-        
+      <div class="pt-6 border-t border-white/10">
+        <p class="text-white/60 text-sm uppercase tracking-widest mb-6 text-center">
+          Trusted Integrations & Technologies
+        </p>
+
         <div class="logo-slider relative overflow-hidden py-4">
           <div class="logo-track flex items-center gap-12 sm:gap-16 animate-marquee whitespace-nowrap">
-            <!-- Integrations -->
+            <!-- Your existing logos... -->
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/salesforce.svg" alt="Salesforce" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/slack.svg" alt="Slack" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/hubspot.svg" alt="HubSpot" class="h-6 sm:h-7 w-auto opacity-60">
 
-            <!-- Technologies -->
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/django.svg" alt="Django" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/fastapi.svg" alt="FastAPI" class="h-6 sm:h-7 w-auto opacity-60">
@@ -199,9 +172,10 @@
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/vercel.svg" alt="Vercel" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nextdotjs.svg" alt="Next.js" class="h-6 sm:h-7 w-auto opacity-60">
 
-            <!-- Duplicates for seamless loop -->
+            <!-- Duplicates -->
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify" class="h-6 sm:h-7 w-auto opacity-60">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python" class="h-6 sm:h-7 w-auto opacity-60">
           </div>
         </div>
       </div>
