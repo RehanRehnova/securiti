@@ -247,15 +247,15 @@ pills.forEach(pill => {
 
         pills.forEach(p => {
             p.classList.remove('active');
-            p.querySelector('div.text-left > div:first-child').classList.add('text-slate-600');
+            p.querySelector('div.text-left > div:first-child').classList.add('text-slate-700');
             p.querySelector('div.text-left > div:last-child').classList.add('text-500');
-            p.querySelector('div.text-left > div:last-child').classList.remove('opacity-80');
+            p.querySelector('div.text-left > div:last-child').classList.remove('opacity-100');
         });
 
         pill.classList.add('active');
-        pill.querySelector('div.text-left > div:first-child').classList.remove('text-slate-600');
+        pill.querySelector('div.text-left > div:first-child').classList.remove('text-slate-700');
         pill.querySelector('div.text-left > div:last-child').classList.remove('text-500');
-        pill.querySelector('div.text-left > div:last-child').classList.add('opacity-80');
+        pill.querySelector('div.text-left > div:last-child').classList.add('opacity-100');
 
         const currentGrid = document.querySelector('.service-grid:not(.hidden)');
         const nextGrid = document.querySelector(`[data-grid="${category}"]`);
@@ -275,44 +275,113 @@ pills.forEach(pill => {
 
 // Features section 
 
-  document.addEventListener('DOMContentLoaded', () => {    const features = [
+document.addEventListener('DOMContentLoaded', () => {
+const features = [
   {
-    word: 'Dedicated architecture',
+    word: 'Dedicated Architecture',
     desc: 'Senior engineers design your system for 10x scale from day one. No refactoring bills six months later.',
     img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/serverless.svg',
     alt: 'Architecture'
   },
   {
-    word: 'Enterprise security',
+    word: 'Enterprise Security',
     desc: 'SOC 2 Type II controls, encryption at rest and in transit, and zero-trust policies baked in from commit one.',
     img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/bitwarden.svg',
     alt: 'Security'
   },
   {
-    word: 'Complete documentation',
+    word: 'Complete Documentation',
     desc: 'Runbooks, API docs, and architecture diagrams your team can actually use. No tribal knowledge dependencies.',
     img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/readthedocs.svg',
     alt: 'Documentation'
   },
   {
-    word: '24/7 monitoring',
+    word: '24/7 Monitoring',
     desc: 'Auto-scaling, alerting, and incident response built into your stack. Sleep well knowing we watch the graphs.',
     img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/grafana.svg',
     alt: 'Monitoring'
   }
 ];
-    const section = document.getElementById('featureHighlighter');    const wordEl = document.getElementById('rotatingWord');    const descEl = document.getElementById('rotatingDesc');    const imgEl = document.getElementById('featureImage');    const dots = document.querySelectorAll('.indicator-dot');
-    let currentIndex = 0;    let intervalId = null;    let hasStarted = false;
-    function updateFeature(index) {      wordEl.classList.add('fade-out');      descEl.classList.add('fade-out');      imgEl.classList.add('fade-out');
-      setTimeout(() => {        wordEl.textContent = features[index].word;        descEl.textContent = features[index].desc;        imgEl.src = features[index].img;        imgEl.alt = features[index].alt;
-        dots.forEach((dot, i) => {          if (i === index) {            dot.classList.remove('w-1.5', 'bg-slate-300');            dot.classList.add('w-10', 'bg-slate-900');          } else {            dot.classList.remove('w-10', 'bg-slate-900');            dot.classList.add('w-1.5', 'bg-slate-300');          }        });
-        requestAnimationFrame(() => {          wordEl.classList.remove('fade-out');          descEl.classList.remove('fade-out');          imgEl.classList.remove('fade-out');        });      }, 250);    }
-    function startRotation() {      if (hasStarted) return;      hasStarted = true;
-         intervalId = setInterval(() => {        currentIndex = (currentIndex + 1) % features.length;        updateFeature(currentIndex);      }, 3500);    }
-     const observer = new IntersectionObserver((entries) => {      entries.forEach(entry => {        if (entry.isIntersecting &&!hasStarted) {          startRotation();        }      });    }, { threshold: 0.3 });
-    observer.observe(section);
-     dots.forEach((dot, index) => {      dot.addEventListener('click', () => {        currentIndex = index;        updateFeature(currentIndex);        });    });
-     });
+
+  const wordEl = document.getElementById('rotatingWord');
+  const descEl = document.getElementById('rotatingDesc');
+  const imgEl = document.getElementById('featureImage');
+  let currentIndex = 0;
+  let intervalId = null;
+
+  function createIndicators() {
+    const container = document.getElementById('indicators');
+    container.innerHTML = '';
+    features.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `indicator-dot h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'w-10 bg-slate-900' : 'w-1.5 bg-slate-300'}`;
+      dot.setAttribute('data-index', index);
+      dot.addEventListener('click', () => {
+        clearInterval(intervalId);
+        currentIndex = index;
+        updateFeature(currentIndex);
+        startRotation();
+      });
+      container.appendChild(dot);
+    });
+  }
+
+  function updateFeature(index) {
+    // Fade out
+    wordEl.style.opacity = '0';
+    descEl.style.opacity = '0';
+    imgEl.style.opacity = '0';
+    imgEl.style.transform = 'scale(0.92)';
+
+    setTimeout(() => {
+      wordEl.textContent = features[index].word;
+      descEl.textContent = features[index].desc;
+      imgEl.src = features[index].img;
+      imgEl.alt = features[index].alt;
+
+      // Fade in
+      wordEl.style.opacity = '1';
+      descEl.style.opacity = '1';
+      imgEl.style.opacity = '1';
+      imgEl.style.transform = 'scale(1)';
+
+      // Update dots
+      document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('w-10', 'bg-slate-900');
+          dot.classList.remove('w-1.5', 'bg-slate-300');
+        } else {
+          dot.classList.remove('w-10', 'bg-slate-900');
+          dot.classList.add('w-1.5', 'bg-slate-300');
+        }
+      });
+    }, 300);
+  }
+
+  function startRotation() {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % features.length;
+      updateFeature(currentIndex);
+    }, 4200);
+  }
+
+  // Initialize
+  createIndicators();
+  updateFeature(0);
+
+  // Start rotation when section is visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startRotation();
+        observer.disconnect(); // Run only once
+      }
+    });
+  }, { threshold: 0.4 });
+
+  observer.observe(document.getElementById('featureHighlighter'));
+});
 
 // Hamburger fns
 
@@ -403,13 +472,32 @@ pills.forEach(pill => {
 //Process section fading 
 
 (() => {
-    const steps = [
-        { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop', num: '01 — DISCOVERY', title: 'Map goals, users, requirements', desc: '2–3 weeks of workshops. You get a clear scope, architecture, and timeline before we design.' },
-        { img: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2940&auto=format&fit=crop', num: '02 — DESIGN', title: 'Flows, wireframes, UI system', desc: '2–4 weeks. We prototype the entire experience in Figma, test it, then lock the UI.' },
-        { img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop', num: '03 — BUILD', title: 'Agile sprints, weekly demos', desc: '6–12 weeks of build. You see working software every Friday, no surprises.' },
-        { img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop', num: '04 — LAUNCH', title: 'Deploy, train, grow', desc: 'Security checks, launch, analytics, and ongoing improvements with SLAs.' }
-    ];
-
+   const steps = [
+  {
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop',
+    num: '01 — DISCOVERY',
+    title: 'Goals & Requirements',
+    desc: '2–3 weeks of workshops to deeply understand your business objectives, workflows, users, and technical needs. You receive a clear scope, recommended architecture, and realistic timeline.'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2940&auto=format&fit=crop',
+    num: '02 — ARCHITECTURE & DESIGN',
+    title: 'System & Solution Design',
+    desc: 'We design the complete technical architecture, data flows, AI agent logic (if needed), and user experience. Everything is reviewed and approved before development begins.'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop',
+    num: '03 — DEVELOPMENT',
+    title: 'Agile Development',
+    desc: '6–12 weeks of iterative development with weekly demos. You see working features regularly — whether it’s web applications, AI agents, CRM systems, or custom dashboards.'
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop',
+    num: '04 — LAUNCH & SCALE',
+    title: 'Deployment & Ongoing Support',
+    desc: 'Security audits, performance testing, deployment, team training, and full handover. We provide post-launch monitoring, SLAs, and continuous improvements as your business grows.'
+  }
+];
     const bg = document.getElementById('pf-bg');
     const num = document.getElementById('pf-num');
     const title = document.getElementById('pf-title');
