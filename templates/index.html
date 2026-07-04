@@ -102,64 +102,61 @@
   <main>
     <!-- Hero -->
 
-<section style="margin: 6px; border-radius: 10px;" class="relative min-h-[100vh] bg-black">
-  <div class="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 min-h-[100vh] flex flex-col justify-between">
+<section class="relative min-h-screen bg-black overflow-hidden m-1.5 rounded-[10px]">
+  <div class="relative z-10 w-full max-w-[1200px] mx-auto px-0 sm:px-0 lg:px-0 py-12 sm:py-16 lg:py-20 min-h-screen flex flex-col justify-between">
     
     <!-- TOP AREA -->
-    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-12 pt-8 sm:pt-12">
+    <div class="relative flex flex-col lg:flex-row lg:items-center lg:gap-12 pt-8 sm:pt-12">
       
-      <!-- CONTENT -->
-      <div class="w-full lg:w-[52%] mx-4 sm:mx-4 lg:mx-0 text-left">
-        <h1 style="font-family: 'Cormorant Garamond', serif; letter-spacing: -0.01em;" 
-            class="!text-[50px] lg:!text-[76px] font-[800] text-left text-white leading-[0.95] tracking-[-0.02em]">
-          Your AI-Native Operations Platform
+      <!-- Content -->
+      <div class="w-full lg:w-[52%] mx-4 sm:mx-4 lg:mx-0 text-left lg:pr-8">
+        <h1 class="font-['Cormorant_Garamond',_serif] !text-[50px] lg:!text-[76px] font-[800] text-left text-white leading-[0.95] tracking-[-0.02em]">
+          Your AI-Native <br> Operations Platform
         </h1>
         
         <p class="mt-6 text-[18px] sm:text-[20px] leading-[1.6] text-white/70 max-w-[520px]">
           Intelligent web apps, autonomous agents, and unified systems that turn complexity into seamless performance.
         </p>
-
+        
         <div class="mt-8 flex">
-          <a href="/get-started" 
-             class="w-1/2 sm:w-auto inline-flex items-center justify-center h-12 px-5 bg-[#1DA9CE] text-white font-medium text-[18px] hover:bg-[#1888A8] transition-colors duration-200 rounded-lg">
+          <a href="/get-started" class="w-1/2 sm:w-auto inline-flex items-center justify-center h-12 px-5 bg-[#1DA9CE] text-white font-medium text-[18px] hover:bg-[#1888A8] transition-colors duration-200 rounded-lg">
             Book a Demo
           </a>
         </div>
       </div>
-
-      <!-- VIDEO with better cutout -->
-      <div class="w-[92%] lg:w-[52%] mt-10 lg:mt-0 -mr-4 lg:ml-auto lg:mr-0">
-        <div class="w-full rounded-l-3xl lg:rounded-l-none lg:rounded-r-3xl overflow-hidden shadow-2xl relative">
+      
+      <!-- Video with Right-Side Cutout -->
+      <div class="w-full lg:w-[48%] mt-10 lg:mt-10 -mr-20 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2">
+        <div class="w-[85%] lg:w-[calc(100%+32px)]  ml-auto rounded-l-3xl lg:rounded-l-3xl lg:rounded-r-none overflow-hidden shadow-2xl relative">
           <video autoplay muted loop playsinline class="w-full h-auto object-cover">
-            <source src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1782666407/original-c57b681754e7d29bb59792de101d6bd2_engnpk.mp4" type="video/mp4">
+            <source src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1783177483/IMG_20260704_195807_343_ua5eqi.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
       </div>
     </div>
-
-    <!-- BOTTOM CONTENT (unchanged) -->
-    <div class="text-left lg:text-center mx-3 lg:mx-10 pb-4 sm:pb-8 mt-16 lg:mt-100">
+    
+    <!-- BOTTOM CONTENT -->
+    <div class="text-left lg:text-center mx-3 lg:mx-10 pb-4 sm:pb-8 mt-10 lg:mt-24">
       <div class="mb-6">
-        <p style="letter-spacing: 0.03em;" class="text-[17px] sm:text-[18px] leading-tight text-white/80 max-w-md text-center lg:mx-auto">
+        <p class="text-[17px] sm:text-[18px] leading-tight text-white/80 max-w-md text-center lg:mx-auto tracking-[0.03em]">
           → Unified systems. Autonomous agents. One digital suite to run it all.
         </p>
       </div>
-
+      
       <div class="pt-6 border-t border-white/10">
         <p class="text-white/60 text-sm uppercase tracking-widest mb-6 text-center">
           Trusted Integrations & Technologies
         </p>
-
+        
+        <!-- Logo Slider -->
         <div class="logo-slider relative overflow-hidden py-4">
           <div class="logo-track flex items-center gap-12 sm:gap-16 animate-marquee whitespace-nowrap">
-            <!-- Your existing logos... -->
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/salesforce.svg" alt="Salesforce" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/slack.svg" alt="Slack" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/hubspot.svg" alt="HubSpot" class="h-6 sm:h-7 w-auto opacity-60">
-
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/django.svg" alt="Django" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/fastapi.svg" alt="FastAPI" class="h-6 sm:h-7 w-auto opacity-60">
@@ -171,8 +168,7 @@
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/microsoftazure.svg" alt="Azure" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/vercel.svg" alt="Vercel" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nextdotjs.svg" alt="Next.js" class="h-6 sm:h-7 w-auto opacity-60">
-
-            <!-- Duplicates -->
+            <!-- Duplicates for Marquee Effect -->
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify" class="h-6 sm:h-7 w-auto opacity-60">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python" class="h-6 sm:h-7 w-auto opacity-60">
@@ -180,8 +176,10 @@
         </div>
       </div>
     </div>
+    
   </div>
 </section>
+
 <style>  /* White filter for logos */.logo-track img {    filter: brightness(0) invert(1);    transition: opacity 0.2s ease;  }
   /* Infinite scroll animation */.logo-slider {    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);  }
 .logo-track {    animation: scroll 70s linear infinite;    width: max-content;  }
@@ -439,7 +437,7 @@
           <div class="service-grid  grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5" data-grid="ai">
             <div class="service-card bg-white rounded-2xl border border-slate-200">
               <div class="service-img-wrap aspect-[16/10]"> <img
-                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2940&auto=format&fit=crop"
+                  src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783108345/Image-Govern-Data-Access-1536x985_yuvnzc.webp"
                   alt="Custom Chatbots" class="service-img w-full h-full object-cover"> </div>
               <div class="p-6">
                 <div
@@ -470,7 +468,7 @@
             </div>
             <div class="service-card bg-white rounded-2xl border border-slate-200">
               <div class="service-img-wrap aspect-[16/10]"> <img
-                  src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop"
+                  src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783108340/Manage-Compliance-Projects-Latest-1536x1152_letvhp.jpg"
                   alt="AI Agents" class="service-img w-full h-full object-cover"> </div>
               <div class="p-6">
                 <div
@@ -504,7 +502,7 @@
             </div>
             <div class="service-card bg-white rounded-2xl border border-slate-200">
               <div class="service-img-wrap aspect-[16/10]"> <img
-                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2940&auto=format&fit=crop"
+                  src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783108345/Image-Govern-Data-Access-1536x985_yuvnzc.webp"
                   alt="RAG Pipelines" class="service-img w-full h-full object-cover"> </div>
               <div class="p-6">
                 <div
@@ -835,7 +833,7 @@
         <div class="max-w-[720px]">
           <h2
             class="mt-4 text-[32px] sm:text-[40px] lg:text-[44px] font-[450] tracking-tight text-slate-700 leading-[1.1]">
-            <span style="color:#1CA9DE">Enterprise standards</span>, delivered quietly
+            <span style="color:#1CA9DE">Enterprise Standards</span>, Delivered Quietly
           </h2>
           <p class="mt-4 text-[17px] leading-relaxed text-slate-600">No drama. Just the six things serious buyers vet
             for — built in by default.</p>
@@ -970,7 +968,7 @@
 
    
     <!-- TECH STACK — SEAMLESS -->
-  <section class="relative py-12 bg-white border-b border-slate-100 overflow-hidden">  <div class="max-w- mx-auto px-4 sm:px-6 lg:px-8">    <div class="flex items-end justify-between mb-8">      <div>        <h2 class="text-[28px] sm:text-[34px] font-[450] tracking-tight text-slate-600 leading-[1.15]">          Built with what actually <span style="color: #1CA9DE">ships</span>        </h2>        <p class="mt-2 text-[14px] text-slate-600">No fluff. Just the tools we use daily for performance, security, and scale.</p>      </div>    </div>
+  <section class="relative py-12 bg-white border-b border-slate-100 overflow-hidden">  <div class="max-w- mx-auto px-4 sm:px-6 lg:px-8">    <div class="flex items-end justify-between mb-8">      <div>        <h2 class="text-[28px] sm:text-[34px] font-[450] tracking-tight text-slate-700 leading-[1.15]">          Built with what actually <span style="color: #1CA9DE">ships</span>        </h2>        <p class="mt-2 text-[14px] text-slate-600">No fluff. Just the tools we use daily for performance, security, and scale.</p>      </div>    </div>
     <div class="relative">      <!-- fades -->      <div class="pointer-events-none absolute z-10 left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent"></div>      <div class="pointer-events-none absolute z-10 right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent"></div>
       <!-- Row 1: Frontend + Core -->      <div class="overflow-hidden">        <div class="flex w-max animate-marquee">
           <!-- GROUP 1 -->          <div class="flex items-center gap-4 pr-4">            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="h-7" alt="React">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="h-6" alt="Next">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="h-6" alt="TS">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="h-6" alt="Tailwind">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="h-7" alt="Node">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="h-7" alt="Python">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" class="h-6" alt="GraphQL">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" class="h-6" alt="Prisma">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="h-6" alt="Postgres">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" class="h-6" alt="Redis">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="h-7" alt="Docker">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.simpleicons.org/vercel/000000" class="h-5" alt="Vercel">            </div>          </div>
@@ -988,7 +986,7 @@
     <section class="testimonials-section border-t border-slate-200">
       <div class="max-w-[1200px] mx-auto px-6 py-20 lg:py-28"> <!-- Header -->
         <div class="mb-16 lg:mb-20">
-          <h2 class="text-[32px] lg:text-[48px] font-semibold text-slate-600 leading-[1.1] tracking-tight"> <span
+          <h2 class="text-[32px] lg:text-[48px] font-semibold text-slate-700 leading-[1.1] tracking-tight"> <span
               class="text-[#1DA9CE]">Results</span>, Heared from others </h2>
         </div>
         <div class="grid lg:grid-cols-[1fr_320px] gap-16 lg:gap-20"> <!-- Testimonial -->
@@ -1034,7 +1032,7 @@
 
     <!----CTA----->
 
-  <section class="py-16 sm:py-20 lg:py-24 bg-white">  <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 text-center">    <!-- Bold Line -->    <h2 class="font-body text-[28px] sm:text-[36px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-slate-600 mb-6 sm:mb-8">      Ready to build what’s next?    </h2>
+  <section class="py-16 sm:py-20 lg:py-24 bg-white">  <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 text-center">    <!-- Bold Line -->    <h2 class="font-body text-[28px] sm:text-[36px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-slate-700 mb-6 sm:mb-8">      Ready to build what’s next?    </h2>
     <!-- Button Group - Always in row -->    <div class="flex flex-row items-center justify-center gap-3 sm:gap-4">      <!-- Get Started - Filled -->      <a href="/get-started"        class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#1DA9CE] hover:bg-[#1888A8] text-white font-body text-[14px] sm:text-[16px] font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap">        Get started      </a>
       <!-- Contact Us - Greyed Outline -->      <a href="/get-in-touch"        class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-400 text-slate-600 hover:border-slate-500 hover:bg-slate-50 font-body text-[14px] sm:text-[16px] font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap">        Contact us      </a>    </div>  </div></section>
 
