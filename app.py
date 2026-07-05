@@ -79,9 +79,9 @@ def thank_you():
 def get_in_touch():
     return render_template('get-in-touch.html')
 
-@app.route('/submission-error')
-def submission_error():
-    return render_template('error.html')
+@app.route('/about-us')
+def about_us():
+    return render_template('about-us.html')
 
 @app.route('/test-sheets')
 def test_sheets():
