@@ -90,45 +90,45 @@
   </header>
 
   <!-- Mobile Drawer -->
-  <div id="drawerBackdrop"    class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-[99] opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden">  </div>  <div id="mobileDrawer"    class="mobile-drawer fixed top-0 right-0 h-[100dvh] w-[100%] max-w-[320px] bg-white z-[100] shadow-2xl lg:hidden flex flex-col translate-x-full"    style="transition: transform 350ms cubic-bezier(0.4,0,0.2,1);">
-    <!-- Header -->    <div class="flex items-center justify-between h-[80px] px-6 border-b border-slate-100 shrink-0">      <a href="/" class="flex items-center gap-2.5">        <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1782233604/20260623_215246_0000_gnucut.png"          alt="Rehnova Digitals" class="w-auto h-auto transition-all duration-500"          style="width: clamp(130px, 14vw, 150px); height: auto;">      </a>      <button id="drawerClose"        class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-100 active:scale-95 transition"        aria-label="Close menu">        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />        </svg>      </button>    </div>
-    <!-- CTAs row -->    <div class="flex items-center gap-3 px-6 pt-5 pb-2 shrink-0">      <a href="/get-started"        class="drawer-link flex items-center justify-center h-11 rounded-sm bg-[#1DA9CE] text-white text-[14px] font-semibold w-1/2"        style="min-height:44px">Get started</a>      <a href="/get-in-touch"        class="drawer-link flex items-center justify-center h-11 rounded-sm bg-white border border-slate-300 text-slate-800 text-[14px] font-semibold w-1/2"        style="min-height:44px">Contact us</a>    </div>
-    <!-- Nav -->    <nav class="flex-1 overflow-y-auto px-3 py-4" x-data="{ openProducts: false, openCompany: false }">      <div class="space-y-1">
-        <!-- Products Section with Dropdown - Arrow near text -->        <div>          <button            @click="openProducts =!openProducts"            class="w-full flex items-center h-12 px-4 rounded-xl text-[15px] font-medium text-slate-800 hover:bg-slate-50 transition-colors">            <span class="flex-1 text-left">Products</span>            <svg class="w-4 h-4 transition-transform duration-300 ease-out" :class="{ 'rotate-180': openProducts }" fill="none" stroke="currentColor" viewBox="0 0 24 24">              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>            </svg>          </button>          <div            x-ref="productsDropdown"            x-bind:style="openProducts? 'max-height: ' + $refs.productsDropdown.scrollHeight + 'px' : 'max-height: 0px'"            class="overflow-hidden transition-all duration-300 ease-out">            <div class="pt-1 space-y-1">              <a href="#web-apps" class="drawer-link flex items-center gap-3 h-12 px-4 ml-4 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50">                <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0">                  <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />                  </svg>                </div>                <span>Web Apps</span>              </a>              <a href="https://scholarms.rehnova.digital" class="drawer-link flex items-center gap-3 h-12 px-4 ml-4 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50">                <div class="w-8 h-8 rounded-lg bg-purple-50 border border-purple-100 flex items-center justify-center flex-shrink-0">                  <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />                  </svg>                </div>                <span>ScholarMS</span>              </a>            </div>          </div>        </div>
-        <!-- Main Links -->        <a href="#solutions" class="drawer-link flex items-center h-12 px-4 rounded-xl text-[15px] font-medium text-slate-800 hover:bg-slate-50">          Solutions        </a>        <a href="#testimonials" class="drawer-link flex items-center h-12 px-4 rounded-xl text-[15px] font-medium text-slate-800 hover:bg-slate-50">          Testimonials        </a>
-        <!-- Company Section with Dropdown - Arrow near text -->        <div class="mt-2">          <button            @click="openCompany =!openCompany"            class="w-full flex items-center h-12 px-4 rounded-xl text-[15px] font-medium text-slate-800 hover:bg-slate-50 transition-colors">            <span class="flex-1 text-left">Company</span>            <svg class="w-4 h-4 transition-transform duration-300 ease-out" :class="{ 'rotate-180': openCompany }" fill="none" stroke="currentColor" viewBox="0 0 24 24">              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>            </svg>          </button>          <div            x-ref="companyDropdown"            x-bind:style="openCompany? 'max-height: ' + $refs.companyDropdown.scrollHeight + 'px' : 'max-height: 0px'"            class="overflow-hidden transition-all duration-300 ease-out">            <div class="pt-1 space-y-1">              <a href="/about-us" class="drawer-link flex items-center h-11 px-4 ml-4 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50">                About Us              </a>              <a href="/careers" class="drawer-link flex items-center h-11 px-4 ml-4 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50">                Careers              </a>              <a href="/get-in-touch" class="drawer-link flex items-center h-11 px-4 ml-4 rounded-xl text-[15px] font-medium text-slate-700 hover:bg-slate-50">                Contact              </a>             </div>          </div>        </div>      </div>    </nav>
-    <!-- Footer -->    <div class="p-6 border-t border-slate-100">      <div class="text-center">        <a href="mailto:info@rehnova.digital"          class="text-[13px] text-slate-600 hover:text-slate-900">info@rehnova.digital</a>      </div>    </div>  </div>
-
+  <div id="drawerBackdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-[99] opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+<div id="mobileDrawer" class="mobile-drawer fixed top-0 right-0 h-[100dvh] w-full bg-white z-[100] shadow-2xl lg:hidden flex flex-col translate-x-full" style="transition: transform 350ms cubic-bezier(0.4,0,0.2,1);">
+  <!-- Header -->  <div class="flex items-center justify-between h-[72px] sm:h-[80px] px-5 sm:px-6 border-b border-slate-100 shrink-0">    <a href="/" class="flex items-center gap-2.5">      <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1782233604/20260623_215246_0000_gnucut.png" alt="Rehnova Digitals" class="w-auto h-auto transition-all duration-500" style="width: clamp(130px, 14vw, 150px); height: auto;">    </a>    <button id="drawerClose" class="w-11 h-11 flex items-center justify-center rounded-xl hover:bg-slate-100 active:scale-95 transition" aria-label="Close menu">      <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />      </svg>    </button>  </div>
+  <!-- CTAs row -->  <div class="flex items-center gap-3 px-5 sm:px-6 pt-5 pb-3 shrink-0">    <a href="/get-started" class="drawer-link flex items-center justify-center h-12 sm:h-11 rounded-lg bg-[#1DA9CE] text-white text-[15px] sm:text-[14px] font-semibold flex-1" style="min-height:44px">Get started</a>    <a href="/get-in-touch" class="drawer-link flex items-center justify-center h-12 sm:h-11 rounded-lg bg-white border border-slate-300 text-slate-800 text-[15px] sm:text-[14px] font-semibold flex-1" style="min-height:44px">Contact us</a>  </div>
+  <!-- Nav -->  <nav class="flex-1 overflow-y-auto px-4 sm:px-5 py-4" x-data="{ openProducts: false, openCompany: false }">    <div class="space-y-1.5">
+      <!-- Products Section with Dropdown -->      <div>        <button @click="openProducts =!openProducts" class="w-full flex items-center h-14 sm:h-12 px-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-800 hover:bg-slate-50 active:bg-slate-100 transition-colors">          <span class="flex-1 text-left">Products</span>          <svg class="w-4 h-4 transition-transform duration-300 ease-out" :class="{ 'rotate-180': openProducts }" fill="none" stroke="currentColor" viewBox="0 0 24 24">            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>          </svg>        </button>        <div x-ref="productsDropdown" x-bind:style="openProducts? 'max-height: ' + $refs.productsDropdown.scrollHeight + 'px' : 'max-height: 0px'" class="overflow-hidden transition-all duration-300 ease-out">          <div class="pt-1 space-y-1">            <a href="#web-apps" class="drawer-link flex items-center gap-3 h-14 sm:h-12 px-4 ml-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100">              <div class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0">                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />                </svg>              </div>              <span>Web Apps</span>            </a>            <a href="https://scholarms.rehnova.digital" class="drawer-link flex items-center gap-3 h-14 sm:h-12 px-4 ml-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100">              <div class="w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-purple-50 border border-purple-100 flex items-center justify-center flex-shrink-0">                <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />                </svg>              </div>              <span>ScholarMS</span>            </a>          </div>        </div>      </div>
+      <!-- Main Links -->      <a href="#solutions" class="drawer-link flex items-center h-14 sm:h-12 px-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-800 hover:bg-slate-50 active:bg-slate-100">        Solutions      </a>      <a href="#testimonials" class="drawer-link flex items-center h-14 sm:h-12 px-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-800 hover:bg-slate-50 active:bg-slate-100">        Testimonials      </a>
+      <!-- Company Section with Dropdown -->      <div class="mt-2">        <button @click="openCompany =!openCompany" class="w-full flex items-center h-14 sm:h-12 px-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-800 hover:bg-slate-50 active:bg-slate-100 transition-colors">          <span class="flex-1 text-left">Company</span>          <svg class="w-4 h-4 transition-transform duration-300 ease-out" :class="{ 'rotate-180': openCompany }" fill="none" stroke="currentColor" viewBox="0 0 24 24">            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>          </svg>        </button>        <div x-ref="companyDropdown" x-bind:style="openCompany? 'max-height: ' + $refs.companyDropdown.scrollHeight + 'px' : 'max-height: 0px'" class="overflow-hidden transition-all duration-300 ease-out">          <div class="pt-1 space-y-1">            <a href="/about-us" class="drawer-link flex items-center h-12 sm:h-11 px-4 ml-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100">              About Us            </a>            <a href="/careers" class="drawer-link flex items-center h-12 sm:h-11 px-4 ml-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100">              Careers            </a>            <a href="/get-in-touch" class="drawer-link flex items-center h-12 sm:h-11 px-4 ml-4 rounded-xl text-[16px] sm:text-[15px] font-medium text-slate-700 hover:bg-slate-50 active:bg-slate-100">              Contact            </a>          </div>        </div>      </div>    </div>  </nav>
+  <!-- Footer -->  <div class="p-5 sm:p-6 border-t border-slate-100 safe-area-inset-bottom">    <div class="text-center">      <a href="mailto:info@rehnova.digital" class="text-[14px] sm:text-[13px] text-slate-600 hover:text-slate-900">info@rehnova.digital</a>    </div>  </div></div>
   <main>
     <!-- Hero -->
 
-<section class="relative min-h-screen bg-black overflow-hidden m-1.5 rounded-[10px]">
+<section class="relative isolate min-h-screen bg-black overflow-hidden m-1.5 rounded-[10px]">
   <div class="relative z-10 w-full max-w-[1200px] mx-auto px-0 sm:px-0 lg:px-0 py-12 sm:py-16 lg:py-20 min-h-screen flex flex-col justify-between">
     
     <!-- TOP AREA -->
     <div class="relative flex flex-col lg:flex-row lg:items-center lg:gap-12 pt-8 sm:pt-12">
       
       <!-- Content -->
-      <div class="w-full lg:w-[52%] mx-4 sm:mx-4 lg:mx-0 text-left lg:pr-8">
-        <h1 class="font-['Cormorant_Garamond',_serif] !text-[50px] lg:!text-[76px] font-[800] text-left text-white leading-[0.95] tracking-[-0.02em]">
+      <div class="w-full lg:w-[52%] mx-4 sm:mx-4 z-50 lg:mx-0 text-left lg:pr-8">
+        <h1 class="lg:mt-10 mt-3  !text-[50px] lg:!text-[76px] font-[800] text-left text-white leading-[0.95] tracking-[-0.02em]">
           Your AI-Native <br> Operations Platform
         </h1>
         
-        <p class="mt-6 pr-2 text-[18px] sm:text-[20px] leading-[1.6] text-white/70 max-w-[520px]">
+        <p class="mt-6 pr-10 lg:pr-5 text-[15px] lg:text-[20px] leading-[1.6] text-white/70 max-w-[520px]">
           Intelligent web apps, autonomous agents, and unified systems that turn complexity into seamless performance.
         </p>
         
         <div class="mt-8 flex">
-          <a href="/get-started" class="w-1/2 sm:w-auto inline-flex items-center justify-center h-12 px-5 bg-[#1DA9CE] text-white font-medium text-[18px] hover:bg-[#1888A8] transition-colors duration-200 rounded-lg">
+          <a href="/get-started" class="w-1/2 sm:w-auto inline-flex items-center justify-center h-12 px-5 bg-[#1DA9CE] text-white font-medium text-[18px] hover:bg-[#1888A8] transition-colors duration-200 rounded-[6px]">
             Book a Demo
           </a>
         </div>
       </div>
       
       <!-- Video with Right-Side Cutout -->
-      <div class="w-full lg:w-[48%] mt-10 lg:mt-10 -mr-20 lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2">
-        <div class="w-[85%] lg:w-[calc(100%+32px)]  ml-auto rounded-l-3xl lg:rounded-l-3xl lg:rounded-r-none overflow-hidden shadow-2xl relative">
-          <video autoplay muted loop playsinline class="w-full h-auto object-cover">
+      <div class="w-full lg:w-[68%] mt-10 lg:mt-8 lg:absolute lg:right-0  lg:top-1/2 lg:-translate-y-1/2">
+        <div class="w-full scale-125 origin-right lg:scale-110 lg:w-[calc(100%+32px)] -z-10 ml-auto rounded-l-3xl lg:rounded-l-3xl lg:rounded-r-none overflow-hidden shadow-2xl relative">
+          <video autoplay muted loop playsinline class="w-full -z-10 h-auto object-cover">
             <source src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1783227699/11387073-hd_1920_1080_24fps_rir3aq.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -137,9 +137,9 @@
     </div>
     
     <!-- BOTTOM CONTENT -->
-    <div class="text-left lg:text-center mx-3 lg:mx-10 pb-4 sm:pb-8 mt-10 lg:mt-24">
+    <div class="text-left lg:text-center mx-3 lg:mx-10 pb-4 sm:pb-8 mt-[80px] lg:mt-[100px]">
       <div class="mb-6">
-        <p class="text-[17px] sm:text-[18px] leading-tight text-white/80 max-w-md text-center lg:mx-auto tracking-[0.03em]">
+        <p class="text-[13px] lg:text-[18px] leading-tight text-white/80 max-w-md text-center lg:mx-auto tracking-[0.03em]">
           → Unified systems. Autonomous agents. One digital suite to run it all.
         </p>
       </div>
@@ -773,8 +773,7 @@
 
 
     <!-- Process -->
-
-    <section id="process-full" class="relative bg-black text-white">
+<section id="process-full" style="border:none" class="relative  bg-black text-white rounded-b-[10px]">
       <div class="relative">
         <div class="sticky top-0 h-screen w-full overflow-hidden">
           <div id="pf-bg" class="absolute inset-0 bg-cover bg-center transition-opacity duration-700"
@@ -827,148 +826,35 @@
 
     <!-- Why Us -->
 
-    <section id="why" class="relative py-20 sm:py-28 bg-slate-50/80 border-y border-slate-200/60">
-      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- header -->
-        <div class="max-w-[720px]">
-          <h2
-            class="mt-4 text-[32px] sm:text-[40px] lg:text-[44px] font-[450] tracking-tight text-slate-700 leading-[1.1]">
-            <span style="color:#1CA9DE">Enterprise Standards</span>, Delivered Quietly
-          </h2>
-          <p class="mt-4 text-[17px] leading-relaxed text-slate-600">No drama. Just the six things serious buyers vet
-            for — built in by default.</p>
-        </div>
-        <!-- grid -->
-        <div class="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          <!-- 1 -->
-          <article
-            class="group relative bg-white border border-slate-200/80 rounded-[24px] overflow-hidden hover:border-slate-300 transition-all duration-500 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.15)] hover:-translate-y-1">
-            <div class="relative h-[220px] overflow-hidden"> <img
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop"
-                alt="Code review"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-60"></div>
-              <span
-                class="absolute top-4 left-4 text-[11px] font-medium tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-slate-600">01</span>
-            </div>
-            <div class="p-7">
-              <h3 class="text-[18px] font-medium text-slate-900 tracking-tight">Production-Grade Code</h3>
-              <p class="mt-2.5 text-[14.5px] leading-[1.6] text-slate-600">PRs, reviews, tests, and docs. Clean
-                architecture from day one.</p>
-            </div>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out">
-            </div>
-          </article>
-          <!-- 2 -->
-          <article
-            class="group relative bg-white border border-slate-200/80 rounded-[24px] overflow-hidden hover:border-slate-300 transition-all duration-500 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.15)] hover:-translate-y-1">
-            <div class="relative h-[220px] overflow-hidden"> <img
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2940&auto=format&fit=crop"
-                alt="Security"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-60"></div>
-              <span
-                class="absolute top-4 left-4 text-[11px] font-medium tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-slate-600">02</span>
-            </div>
-            <div class="p-7">
-              <h3 class="text-[18px] font-medium text-slate-900 tracking-tight">Security First</h3>
-              <p class="mt-2.5 text-[14.5px] leading-[1.6] text-slate-600">OWASP practices, encryption, least-privilege
-                access.</p>
-            </div>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out">
-            </div>
-          </article>
-          <!-- 3 -->
-          <article
-            class="group relative bg-white border border-slate-200/80 rounded-[24px] overflow-hidden hover:border-slate-300 transition-all duration-500 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.15)] hover:-translate-y-1">
-            <div class="relative h-[220px] overflow-hidden"> <img
-                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2938&auto=format&fit=crop"
-                alt="Ownership"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-60"></div>
-              <span
-                class="absolute top-4 left-4 text-[11px] font-medium tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-slate-600">03</span>
-            </div>
-            <div class="p-7">
-              <h3 class="text-[18px] font-medium text-slate-900 tracking-tight">You Own Everything</h3>
-              <p class="mt-2.5 text-[14.5px] leading-[1.6] text-slate-600">NDA first. Full IP and repo transfer on final
-                payment.</p>
-            </div>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out">
-            </div>
-          </article>
-          <!-- 4 -->
-          <article
-            class="group relative bg-white border border-slate-200/80 rounded-[24px] overflow-hidden hover:border-slate-300 transition-all duration-500 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.15)] hover:-translate-y-1">
-            <div class="relative h-[220px] overflow-hidden"> <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop"
-                alt="Transparency"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-60"></div>
-              <span
-                class="absolute top-4 left-4 text-[11px] font-medium tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-slate-600">04</span>
-            </div>
-            <div class="p-7">
-              <h3 class="text-[18px] font-medium text-slate-900 tracking-tight">Transparent Delivery</h3>
-              <p class="mt-2.5 text-[14.5px] leading-[1.6] text-slate-600">Weekly demos, shared board, direct Slack
-                access.</p>
-            </div>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out">
-            </div>
-          </article>
-          <!-- 5 -->
-          <article
-            class="group relative bg-white border border-slate-200/80 rounded-[24px] overflow-hidden hover:border-slate-300 transition-all duration-500 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.15)] hover:-translate-y-1">
-            <div class="relative h-[220px] overflow-hidden"> <img
-                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2940&auto=format&fit=crop"
-                alt="Performance"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-60"></div>
-              <span
-                class="absolute top-4 left-4 text-[11px] font-medium tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-slate-600">05</span>
-            </div>
-            <div class="p-7">
-              <h3 class="text-[18px] font-medium text-slate-900 tracking-tight">Performance by Design</h3>
-              <p class="mt-2.5 text-[14.5px] leading-[1.6] text-slate-600">Core Web Vitals, &lt;2s loads, edge-ready.
-              </p>
-            </div>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out">
-            </div>
-          </article>
-          <!-- 6 -->
-          <article
-            class="group relative bg-white border border-slate-200/80 rounded-[24px] overflow-hidden hover:border-slate-300 transition-all duration-500 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.15)] hover:-translate-y-1">
-            <div class="relative h-[220px] overflow-hidden"> <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop"
-                alt="Support"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]">
-              <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent opacity-60"></div>
-              <span
-                class="absolute top-4 left-4 text-[11px] font-medium tracking-widest px-2.5 py-1 rounded-full bg-white/90 backdrop-blur border border-slate-200 text-slate-600">06</span>
-            </div>
-            <div class="p-7">
-              <h3 class="text-[18px] font-medium text-slate-900 tracking-tight">Post-Launch Partnership</h3>
-              <p class="mt-2.5 text-[14.5px] leading-[1.6] text-slate-600">Monitoring, SLAs, and monthly improvements.
-              </p>
-            </div>
-            <div
-              class="absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-600 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out">
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-    <script>const cards = document.querySelectorAll('#why article'); const io = new IntersectionObserver((entries) => { entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }, i * 80); io.unobserve(entry.target); } }); }, { threshold: 0.1 });
-      cards.forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(16px)'; c.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out'; io.observe(c); });</script>
+ <section id="why" class="relative py-20 sm:py-28 bg-gradient-to-b from-[#1CA9DE]/5 to-white border-y border-slate-200/60">  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">    <!-- 2-column layout -->    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">            <!-- Left: Content -->      <div class="max-w-[600px]">        <h2 class="text-[32px] sm:text-[40px] lg:text-[44px] font-[600] tracking-tight text-slate-700 leading-[1.1]">          <span style="color:#1CA9DE">Enterprise Standards</span>, Delivered Quietly        </h2>                <p class="mt-4 text-[17px] leading-relaxed text-slate-600 font-medium">          No drama. Just the six things serious buyers vet for — built in by default.        </p>
+        <!-- Feature list -->        <ul class="mt-8 space-y-4">          <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600">            <span class="text-slate-400 mt-1">—</span>            <span><strong class="text-slate-900 font-medium">Production-Grade Code:</strong> PRs, reviews, tests, and docs. Clean architecture from day one.</span>          </li>          <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600">            <span class="text-slate-400 mt-1">—</span>            <span><strong class="text-slate-900 font-medium">Security First:</strong> OWASP practices, encryption, least-privilege access.</span>          </li>          <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600">            <span class="text-slate-400 mt-1">—</span>            <span><strong class="text-slate-900 font-medium">You Own Everything:</strong> NDA first. Full IP and repo transfer on final payment.</span>          </li>          <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600">            <span class="text-slate-400 mt-1">—</span>            <span><strong class="text-slate-900 font-medium">Transparent Delivery:</strong> Weekly demos, shared board, direct Slack access.</span>          </li>          <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600">            <span class="text-slate-400 mt-1">—</span>            <span><strong class="text-slate-900 font-medium">Performance by Design:</strong> Core Web Vitals, &lt;2s loads, edge-ready.</span>          </li>          <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600">            <span class="text-slate-400 mt-1">—</span>            <span><strong class="text-slate-900 font-medium">Post-Launch Partnership:</strong> Monitoring, SLAs, and monthly improvements.</span>          </li>        </ul>
+        <!-- Callout box -->        <div class="mt-8 pl-4 border-l-2 border-[#1DA9CE]">          <p class="text-[14.5px] leading-[1.6] text-slate-600">            A client ships to 2M+ users with zero downtime, cutting infra cost 40% while maintaining 99.99% SLA.          </p>        </div>      </div>
+      <!-- Right: Image placeholder -->   <div class="relative">
+  <!-- Image with top-only radius -->
+  <div class="relative -mt-5 rounded-t- overflow-hidden">
+    <img
+      src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783236680/REHNOVA_DIGITALS_OPS_20260705_123045_0000_ronixp.png"
+      alt="Enterprise Standards Infographic"
+      class="w-full h-auto object-cover"
+    />
+  </div>
 
+  <!-- Caption badge - responsive -->
+  <div class="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 bg-white border border-slate-200 rounded-full px-3 sm:px-5 py-1.5 sm:py-2.5 shadow-lg max-w-[calc(100%-2rem)]">
+  <p class="text-[11px] lg:text-[13px] pr-3 font-medium text-slate-700 flex items-center gap-1 sm:gap-2">
+    <img 
+      src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783108340/Icon-privacy-center-v1_axsrx1.svg" 
+      alt="" 
+      class="w-4 h-4 sm:w-6 sm:h-6 " 
+    />
+    <span class="whitespace-nowrap">Trusted by CTOs & VPs of Engineering</span>
+  </p>
+</div>
+</div>
+    </div>  </div></section>
    
     <!-- TECH STACK — SEAMLESS -->
-  <section class="relative py-12 bg-white border-b border-slate-100 overflow-hidden">  <div class="max-w- mx-auto px-4 sm:px-6 lg:px-8">    <div class="flex items-end justify-between mb-8">      <div>        <h2 class="text-[28px] sm:text-[34px] font-[450] tracking-tight text-slate-700 leading-[1.15]">          Built with what actually <span style="color: #1CA9DE">ships</span>        </h2>        <p class="mt-2 text-[14px] text-slate-600">No fluff. Just the tools we use daily for performance, security, and scale.</p>      </div>    </div>
+  <section class="relative py-12 bg-white border-b rounded-lg border-slate-100 overflow-hidden">  <div class="max-w- mx-auto px-4 sm:px-6 lg:px-8">    <div class="flex items-end justify-between mb-8">      <div>        <h2 class="text-[28px] sm:text-[34px] font-[450] tracking-tight text-slate-700 leading-[1.15]">          Built with what actually <span style="color: #1CA9DE">ships</span>        </h2>        <p class="mt-2 text-[14px] text-slate-600">No fluff. Just the tools we use daily for performance, security, and scale.</p>      </div>    </div>
     <div class="relative">      <!-- fades -->      <div class="pointer-events-none absolute z-10 left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent"></div>      <div class="pointer-events-none absolute z-10 right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent"></div>
       <!-- Row 1: Frontend + Core -->      <div class="overflow-hidden">        <div class="flex w-max animate-marquee">
           <!-- GROUP 1 -->          <div class="flex items-center gap-4 pr-4">            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="h-7" alt="React">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="h-6" alt="Next">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="h-6" alt="TS">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="h-6" alt="Tailwind">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="h-7" alt="Node">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="h-7" alt="Python">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" class="h-6" alt="GraphQL">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" class="h-6" alt="Prisma">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="h-6" alt="Postgres">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" class="h-6" alt="Redis">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="h-7" alt="Docker">            </div>            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">              <img src="https://cdn.simpleicons.org/vercel/000000" class="h-5" alt="Vercel">            </div>          </div>
@@ -1017,9 +903,8 @@
               </div>
             </div>
             <div class="border-t border-slate-900 pt-6">
-              <div class="text-[11px] tracking-[0.2em] text-slate-500 uppercase font-medium mb-3"> Availability </div>
-              <div class="text-[18px] font-medium text-slate-900 mb-4"> 2 slots left for Q1 2026 </div> <a
-                href="#contact"
+              <div class="text-[11px] tracking-[0.2em] text-slate-500 uppercase font-medium mb-3"> Availability </div> <a
+                href="/get-started"
                 class="inline-flex items-center text-[14px] font-medium text-[#1CA9DE] hover:text-[#1888A8] transition-colors">
                 Book a call <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M5 3l5 5-5 5" />
@@ -1034,7 +919,7 @@
 
   <section class="py-16 sm:py-20 lg:py-24 bg-white">  <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 text-center">    <!-- Bold Line -->    <h2 class="font-body text-[28px] sm:text-[36px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-slate-700 mb-6 sm:mb-8">      Ready to build what’s next?    </h2>
     <!-- Button Group - Always in row -->    <div class="flex flex-row items-center justify-center gap-3 sm:gap-4">      <!-- Get Started - Filled -->      <a href="/get-started"        class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-[#1DA9CE] hover:bg-[#1888A8] text-white font-body text-[14px] sm:text-[16px] font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap">        Get started      </a>
-      <!-- Contact Us - Greyed Outline -->      <a href="/get-in-touch"        class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-400 text-slate-600 hover:border-slate-500 hover:bg-slate-50 font-body text-[14px] sm:text-[16px] font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap">        Contact us      </a>    </div>  </div></section>
+      <!-- Contact Us - Greyed Outline -->      <a href="/get-in-touch"        class="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-slate-100 text-slate-600 hover:border-slate-500 hover:bg-slate-50 font-body text-[14px] sm:text-[16px] font-semibold rounded-lg transition-colors duration-200 whitespace-nowrap">        Contact us      </a>    </div>  </div></section>
 
 
 
