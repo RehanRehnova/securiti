@@ -83,6 +83,10 @@ def get_in_touch():
 def about_us():
     return render_template('index.html')
 
+@app.route('/about-test')
+def about_test():
+    return render_template('about-us.html')
+
 @app.route('/test-sheets')
 def test_sheets():
     """Test Google Sheets connection"""
