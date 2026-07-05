@@ -81,7 +81,7 @@ def get_in_touch():
 
 @app.route('/about-us')
 def about_us():
-    return render_template('about-us.html')
+    return render_template('index.html')
 
 @app.route('/test-sheets')
 def test_sheets():
