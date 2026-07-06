@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, abort  # <-- added abort
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -7,11 +7,9 @@ from flask_mail import Mail
 from datetime import datetime
 import os
 import re
-from dotenv import load_dotenv
 from logic import append_to_sheet, build_contact_email, validate_contact_data, get_sheets_service
+from data.articles import ARTICLES, get_all_categories, get_related
 
-
-    
 app = Flask(__name__)
 CORS(app)
 
@@ -87,6 +85,35 @@ def about_us():
 def about_test():
     return render_template('about-us.html')
 
+
+
+
+# THIS ONE handles /blog - the listing page
+@app.route('/blog')
+def blog_index():
+    articles_list = list(ARTICLES.values())
+    categories = get_all_categories()
+    return render_template('blog_index.html',
+                           articles_list=articles_list,
+                           categories=categories)
+
+# THIS ONE handles /blog/real-estate/real-estate-ads-failing - single article
+@app.route('/blog/<category>/<slug>')
+def blog_article(category, slug):
+    article = ARTICLES.get(slug)
+    if not article or article['category'] != category:
+        abort(404)
+    return render_template('blog_template.html',
+                           article=article,
+                           related_articles=get_related(slug, 3))
+@app.route('/debug-articles')
+def debug_articles():
+    return jsonify({
+        'articles': list(ARTICLES.keys()),
+        'count': len(ARTICLES)
+    })
+    
+    
 @app.route('/test-sheets')
 def test_sheets():
     """Test Google Sheets connection"""
