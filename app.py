@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, abort  # <-- added abort
+from flask import Flask, render_template, request, jsonify, abort 
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -85,16 +85,17 @@ def about_us():
 @app.route('/about-test')
 def about_test():
     return render_template('about-us.html')
-
+    
+    
 @app.route('/blog')
 def blog_index():
-    articles = get_all_articles()
-    categories = get_categories()
+    articles = get_all_articles()  # Now reads .md files
+    categories = get_categories()  # Now reads from .md frontmatter
     return render_template('blog_index.html', articles=articles, categories=categories)
 
 @app.route('/blog/<slug>')
 def blog_article(slug):
-    article = get_article_by_slug(slug)
+    article = get_article_by_slug(slug)  # Now reads .md file
     if not article:
         abort(404)
     related_articles = get_related_articles(slug)

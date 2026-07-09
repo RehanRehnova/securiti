@@ -7,3 +7,4 @@ google-api-python-client
 python-dotenv
 python-frontmatter==1.0.0
 markdown==3.5.1
+Pygments==2.17.2
