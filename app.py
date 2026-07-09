@@ -8,7 +8,8 @@ from datetime import datetime
 import os
 import re
 from logic import append_to_sheet, build_contact_email, validate_contact_data, get_sheets_service
-from data.articles import ARTICLES, get_all_categories, get_related
+from data.articles import get_all_articles, get_article_by_slug, get_categories, get_related_articles
+
 
 app = Flask(__name__)
 CORS(app)
@@ -85,34 +86,19 @@ def about_us():
 def about_test():
     return render_template('about-us.html')
 
-
-
-
-# THIS ONE handles /blog - the listing page
 @app.route('/blog')
 def blog_index():
-    articles_list = list(ARTICLES.values())
-    categories = get_all_categories()
-    return render_template('blog_index.html',
-                           articles_list=articles_list,
-                           categories=categories)
+    articles = get_all_articles()
+    categories = get_categories()
+    return render_template('blog_index.html', articles=articles, categories=categories)
 
-# THIS ONE handles /blog/real-estate/real-estate-ads-failing - single article
-@app.route('/blog/<category>/<slug>')
-def blog_article(category, slug):
-    article = ARTICLES.get(slug)
-    if not article or article['category'] != category:
+@app.route('/blog/<slug>')
+def blog_article(slug):
+    article = get_article_by_slug(slug)
+    if not article:
         abort(404)
-    return render_template('blog_template.html',
-                           article=article,
-                           related_articles=get_related(slug, 3))
-@app.route('/debug-articles')
-def debug_articles():
-    return jsonify({
-        'articles': list(ARTICLES.keys()),
-        'count': len(ARTICLES)
-    })
-    
+    related_articles = get_related_articles(slug)
+    return render_template('blog_template.html', article=article, related_articles=related_articles)
     
 @app.route('/test-sheets')
 def test_sheets():
