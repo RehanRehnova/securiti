@@ -7,11 +7,13 @@
 <meta property="og:description" content="{{ article.excerpt }}">
 <meta property="og:image" content="{{ article.thumbnail }}">
 <meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.url }}">
+<meta name="twitter:card" content="summary_large_image">
 {% endblock %}
 
 {% block content %}
 
-<!-- Reading progress bar - fixed height -->
+<!-- Reading progress bar -->
 <div id="reading-progress" class="fixed top-0 left-0 h-1 bg-[#1DA9CE] z-50 transition-all duration-150" style="width:0%"></div>
 
 <main class="pt-28 lg:pt-36">
@@ -32,7 +34,7 @@
                     <p class="text-xs font-semibold uppercase tracking-wider text-[#1DA9CE] mb-4">{{ article.category }}</p>
 
                     <!-- Title -->
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-[1.1] tracking-tight">{{ article.title }}</h1>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-[1.15] tracking-tight">{{ article.title }}</h1>
 
                     <!-- Meta -->
                     <div class="flex flex-wrap items-center gap-3 mb-8">
@@ -68,24 +70,25 @@
 
                     <!-- Content -->
                     <div id="article-content" class="prose prose-slate max-w-none
-                                prose-headings:font-body prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-slate-900 prose-headings:scroll-mt-32
-                                prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:leading-tight
-                                prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
-                                prose-p:text-base prose-p:leading-[1.8] prose-p:text-slate-700 prose-p:mb-6
+                                prose-headings:font-body prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-slate-900 prose-headings:scroll-mt-32
+                                prose-h2:text-xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:leading-snug prose-h2:border-l-2 prose-h2:border-[#1DA9CE] prose-h2:pl-4
+                                prose-h3:text-lg prose-h3:mt-12 prose-h3:mb-5 prose-h3:text-slate-800
+                                prose-p:text-base prose-p:leading-[1.9] prose-p:text-slate-700 prose-p:mb-7
                                 prose-a:text-[#1DA9CE] prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-a:underline-offset-2
                                 prose-strong:text-slate-900 prose-strong:font-semibold
-                                prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6 prose-ul:space-y-2
-                                prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-6 prose-ol:space-y-2
-                                prose-li:text-base prose-li:leading-[1.8] prose-li:text-slate-700 prose-li:pl-2
-                                prose-blockquote:border-l-4 prose-blockquote:border-[#1DA9CE] prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-slate-600 prose-blockquote:my-10 prose-blockquote:text-lg
+                                prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-7 prose-ul:space-y-3
+                                prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-7 prose-ol:space-y-3
+                                prose-li:text-base prose-li:leading-[1.9] prose-li:text-slate-700 prose-li:pl-2
+                                prose-blockquote:border-l-4 prose-blockquote:border-[#1DA9CE] prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-slate-600 prose-blockquote:my-12 prose-blockquote:text-lg prose-blockquote:bg-slate-50 prose-blockquote:py-4 prose-blockquote:pr-6 prose-blockquote:rounded-r-lg
                                 prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:text-slate-800 prose-code:font-medium
-                                prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:p-6 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-8">
+                                prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:p-6 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-10
+                                prose-hr:my-12 prose-hr:border-slate-200">
                         {{ article.content | safe }}
                     </div>
 
                     <!-- Tags -->
                     {% if article.tags %}
-                    <div class="flex flex-wrap gap-2 mt-10">
+                    <div class="flex flex-wrap gap-2 mt-12">
                         {% for tag in article.tags %}
                         <a href="/blog?tag={{ tag }}" class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-[#1DA9CE] hover:text-white rounded-full transition-colors">#{{ tag }}</a>
                         {% endfor %}
@@ -93,13 +96,19 @@
                     {% endif %}
 
                     <!-- Share -->
-                    <div class="mt-14 pt-8 border-t border-slate-200 flex items-center justify-between flex-wrap gap-4">
+                    <div class="mt-16 pt-8 border-t border-slate-200 flex items-center justify-between flex-wrap gap-4">
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Share this article</p>
                         <div class="flex items-center gap-5">
-                            <a href="https://twitter.com/intent/tweet?url={{ request.url }}&text={{ article.title }}" target="_blank" rel="noopener" aria-label="Share on X" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
+                            <a href="https://wa.me/?text={{ article.title | urlencode }}%20{{ request.url | urlencode }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="text-slate-500 hover:text-[#25D366] transition-colors">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url | urlencode }}" target="_blank" rel="noopener" aria-label="Share on Facebook" class="text-slate-500 hover:text-[#1877F2] transition-colors">
+                                <i class="fa-brands fa-facebook text-lg"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.url }}&text={{ article.title }}" target="_blank" rel="noopener" aria-label="Share on X" class="text-slate-500 hover:text-slate-900 transition-colors">
                                 <i class="fa-brands fa-x-twitter text-base"></i>
                             </a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="text-slate-500 hover:text-[#0A66C2] transition-colors">
                                 <i class="fa-brands fa-linkedin text-base"></i>
                             </a>
                             <button onclick="copyArticleLink(this)" aria-label="Copy link" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
@@ -109,7 +118,7 @@
                     </div>
 
                     <!-- Author bio -->
-                    <div class="mt-14 p-8 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-6 sm:items-start">
+                    <div class="mt-16 p-8 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row gap-6 sm:items-start">
                         <img src="{{ article.author_avatar }}" alt="{{ article.author }}" class="w-16 h-16 rounded-full object-cover shrink-0">
                         <div>
                             <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Written by</p>
@@ -130,10 +139,9 @@
                         </div>
                     </div>
 
-                  
                     <!-- Prev / Next -->
                     {% if prev_article or next_article %}
-                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {% if prev_article %}
                         <a href="/blog/{{ prev_article.slug }}" class="group p-6 border border-slate-200 rounded-lg hover:border-[#1DA9CE] hover:shadow-md transition-all">
                             <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1.5">
@@ -170,10 +178,16 @@
                             <button onclick="toggleBookmark(this)" data-bookmark-btn aria-label="Save article" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
                                 <i class="fa-regular fa-bookmark text-base"></i>
                             </button>
-                            <a href="https://twitter.com/intent/tweet?url={{ request.url }}&text={{ article.title }}" target="_blank" rel="noopener" aria-label="Share on X" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
+                            <a href="https://wa.me/?text={{ article.title | urlencode }}%20{{ request.url | urlencode }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="text-slate-500 hover:text-[#25D366] transition-colors">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.url | urlencode }}" target="_blank" rel="noopener" aria-label="Share on Facebook" class="text-slate-500 hover:text-[#1877F2] transition-colors">
+                                <i class="fa-brands fa-facebook text-base"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url={{ request.url }}&text={{ article.title }}" target="_blank" rel="noopener" aria-label="Share on X" class="text-slate-500 hover:text-slate-900 transition-colors">
                                 <i class="fa-brands fa-x-twitter text-base"></i>
                             </a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.url }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="text-slate-500 hover:text-[#0A66C2] transition-colors">
                                 <i class="fa-brands fa-linkedin text-base"></i>
                             </a>
                             <button onclick="copyArticleLink(this)" aria-label="Copy link" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
@@ -216,7 +230,7 @@
 
 <!-- Back to top -->
 <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"
-    class="fixed bottom-8 right-8 w-11 h-11 rounded-full bg-slate-400 text-white  flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all duration-300 z-40 hover:bg-[#1DA9CE]">
+    class="fixed bottom-8 right-8 w-11 h-11 rounded-full bg-slate-400 text-white flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all duration-300 z-40 hover:bg-[#1DA9CE]">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
 </button>
 
