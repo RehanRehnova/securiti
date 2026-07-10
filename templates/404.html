@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Page Not Found — Rehnova Digitals</title>
+<meta name="description" content="The page you are looking for does not exist. Go back to Rehnova Digitals homepage or explore our articles on automation, web apps, and chatbots.">
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block content %}
+<main class="pt-24 lg:pt-32">
+    <div class="max-w-2xl mx-auto px-6 lg:px-8 py-16 lg:py-24 text-center">
+        
+        <!-- Image Placeholder - Replace src with your SVG or image -->
+        <div class="mb-8 flex justify-center">
+            <img 
+                src="/static/images/404-illustration.svg" 
+                alt="Page not found" 
+                class="w-64 h-64 sm:w-80 sm:h-80 object-contain"
+            >
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 tracking-tight">
+            Page not found
+        </h1>
+
+        <!-- Description -->
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-8 max-w-md mx-auto">
+            The link might be broken or the page was moved. Let’s get you back on track.
+        </p>
+
+        <!-- CTA Buttons - Always in row, never full width -->
+        <div class="flex flex-row items-center justify-center gap-3 mb-12">
+            <a href="/" class="px-5 py-2.5 bg-[#1DA9CE] hover:bg-[#1790B0] text-white text-sm font-semibold rounded-lg transition-colors whitespace-nowrap">
+                Homepage
+            </a>
+            <a href="/blog" class="px-5 py-2.5 border border-slate-300 hover:border-[#1DA9CE] text-slate-700 hover:text-[#1DA9CE] text-sm font-semibold rounded-lg transition-colors whitespace-nowrap">
+                Articles
+            </a>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-slate-200 pt-10">
+            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-5">
+                Popular topics
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-2">
+                <a href="/blog?tag=Automation" class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-[#1DA9CE] hover:text-white rounded-full transition-colors">#Automation</a>
+                <a href="/blog?tag=Web+Apps" class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-[#1DA9CE] hover:text-white rounded-full transition-colors">#Web Apps</a>
+                <a href="/blog?tag=Chatbots" class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-[#1DA9CE] hover:text-white rounded-full transition-colors">#Chatbots</a>
+                <a href="/blog?tag=Case+Studies" class="px-3 py-1.5 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-[#1DA9CE] hover:text-white rounded-full transition-colors">#Case Studies</a>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

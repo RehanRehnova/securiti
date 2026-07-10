@@ -80,12 +80,8 @@ def get_in_touch():
 
 @app.route('/about-us')
 def about_us():
-    return render_template('index.html')
-
-@app.route('/about-test')
-def about_test():
     return render_template('about-us.html')
-    
+
     
 @app.route('/blog')
 def blog_index():
@@ -144,6 +140,10 @@ def test_sheets():
             'error': str(e),
             'error_type': type(e).__name__
         }), 500
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
