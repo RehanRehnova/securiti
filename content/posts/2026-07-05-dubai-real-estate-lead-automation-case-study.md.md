@@ -13,7 +13,7 @@ featured: false
 read_time: 8 min read
 ---
 
-## The Client
+## **The Client**
 
 > Note: Client name is withheld due to NDA. All metrics shared with permission.
 
@@ -23,7 +23,7 @@ Leads come from Property Finder, Bayut, Facebook Ads, and Instagram.
 
 300 to 400 leads per month.
 
-## The Problem
+## **The Problem**
 
 Every lead was dying in WhatsApp groups.
 
@@ -53,7 +53,7 @@ Every lead was dying in WhatsApp groups.
 
 One deal worth 1.2M AED was lost because two agents contacted the same client and gave different prices. Client walked away.
 
-## What We Built
+## **What We Built**
 
 We built one system to kill WhatsApp chaos.
 
@@ -87,7 +87,7 @@ We built one system to kill WhatsApp chaos.
 
 Agents no longer use WhatsApp groups. They login to portal. One screen shows all their leads, reminders, documents.
 
-## Results After 90 Days
+## **Results After 90 Days**
 
 **Before:**
 
@@ -119,7 +119,7 @@ Cost to run: 45 dollars per month hosting plus WhatsApp API costs.
 
 Previous chaos cost: Lost deals worth millions per year.
 
-## The Impact
+## **The Impact**
 
 This was three things working together.
 

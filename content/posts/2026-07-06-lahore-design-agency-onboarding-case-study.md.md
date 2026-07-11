@@ -15,7 +15,7 @@ featured: false
 read_time: 7 min read
 ---
 
-## The Client
+## **The Client**
 
 > Note: Client name is withheld due to NDA. All metrics shared with permission.
 
@@ -23,7 +23,7 @@ A design agency based in Lahore. 18 person team. 95 percent clients from US and 
 
 20 to 25 new clients per month.
 
-## The Problem
+## **The Problem**
 
 Their client onboarding was killing time.
 
@@ -57,7 +57,7 @@ Founder told us, "Our clients think we are unprofessional before we even start d
 
 Two US clients cancelled projects because onboarding was slow and confusing.
 
-## What We Built
+## **What We Built**
 
 We replaced 6 tools with one system.
 
@@ -93,7 +93,7 @@ No Notion. No Typeform. No manual email. No copy paste.
 
 We also built an internal dashboard for the agency. They see every client status: Paid, Form Pending, Call Booked, Design Started.
 
-## Results After 60 Days
+## **Results After 60 Days**
 
 **Before:**
 
@@ -123,7 +123,7 @@ Cost to run: 30 dollars per month hosting on Hetzner.
 
 Previous tools: 240 dollars per month for Typeform pro, Calendly teams, extra Notion seats, Zapier.
 
-## The Impact
+## **The Impact**
 
 This was not just about saving time.
 

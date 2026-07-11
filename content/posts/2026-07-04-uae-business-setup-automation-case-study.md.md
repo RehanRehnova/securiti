@@ -13,7 +13,7 @@ featured: false
 read_time: 8 min read
 ---
 
-## The Client
+## **The Client**
 
 > Note: Client name is withheld due to NDA. All metrics shared with permission.
 
@@ -23,7 +23,7 @@ They help entrepreneurs register companies, process visas, open bank accounts.
 
 80 to 100 new clients per month.
 
-## The Problem
+## **The Problem**
 
 Their entire operation was running on Gmail and WhatsApp.
 
@@ -59,7 +59,7 @@ Their entire operation was running on Gmail and WhatsApp.
 
 Two clients cancelled because they felt the process was unprofessional and unsafe.
 
-## What We Built
+## **What We Built**
 
 We built a secure client portal plus automation.
 
@@ -97,7 +97,7 @@ No documents on WhatsApp. No email attachments. No "update?" messages.
 
 We also built an internal dashboard. Manager sees every client pipeline stage. Knows which staff is delaying which step.
 
-## Results After 120 Days
+## **Results After 120 Days**
 
 **Before:**
 
@@ -129,7 +129,7 @@ Cost to run: 60 dollars per month for hosting and S3.
 
 Previous cost: 5 staff × time wasted = thousands per month.
 
-## The Impact
+## **The Impact**
 
 This solved three bottlenecks every service business faces.
 

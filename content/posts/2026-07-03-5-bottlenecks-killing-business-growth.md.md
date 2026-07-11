@@ -13,7 +13,7 @@ featured: true
 read_time: 9 min read
 ---
 
-## If You Are Reading This, You Have One of These 5 Problems
+## **If You Are Reading This, You Have One of These 5 Problems**
 
 I talk to 10 business owners every week. Agencies, e-commerce brands, real estate firms, SaaS startups.
 
@@ -23,7 +23,7 @@ You can add more staff. You can buy more tools. But the bottleneck stays.
 
 Here are the 5 bottlenecks killing your growth and how to fix each one.
 
-## 1. Lead Leakage — Leads Come In, Then Vanish
+## **1. Lead Leakage — Leads Come In, Then Vanish**
 
 **The pain:** 
 You run ads. Leads come from Facebook, website forms, WhatsApp. But your team replies late, or never. You estimate you lose 30 to 50 percent leads.
@@ -38,7 +38,7 @@ Webhook captures lead instantly from any source. System assigns to one person us
 
 **Tools needed:** n8n or Make plus a simple web app for lead tracking.
 
-## 2. Slow Follow-Ups — You Forget, Client Goes to Competitor
+## **2. Slow Follow-Ups — You Forget, Client Goes to Competitor**
 
 **The pain:** 
 You had a good call with a client. You said "I will send proposal tomorrow." You forget. 3 days pass. Client signs with someone else.
@@ -53,7 +53,7 @@ After every call, add client to pipeline in your web app. System auto sends foll
 
 **Tools needed:** Custom web app with pipeline plus n8n for email and WhatsApp automation.
 
-## 3. Manual Data Entry — Your Team Is Copy Pasting All Day
+## **3. Manual Data Entry — Your Team Is Copy Pasting All Day**
 
 **The pain:** 
 Order comes on Shopify. Team copies to Excel. Then copies to courier sheet. Then copies to accounting sheet. 3 people, 2 hours per day on copy paste.
@@ -68,7 +68,7 @@ Build a data pipeline. Order from Shopify hits webhook. System auto creates row 
 
 **Tools needed:** n8n or Airbyte plus Postgres plus simple admin web app.
 
-## 4. No Single Source of Truth — 5 Tools, 5 Different Answers
+## **4. No Single Source of Truth — 5 Tools, 5 Different Answers**
 
 **The pain:** 
 Client asks "Where is my project?" You check Notion. Then Slack. Then Figma. Then Gmail. You give wrong answer. Client loses trust.
@@ -83,7 +83,7 @@ Build one portal. Client logs in. Sees project status, files, invoices, messages
 
 **Tools needed:** Next.js web app plus Postgres. Replace 5 tools.
 
-## 5. Founder Doing Admin Work — You Are the Bottleneck
+## **5. Founder Doing Admin Work — You Are the Bottleneck**
 
 **The pain:** 
 You are closing sales, doing marketing, AND sending invoices, AND updating sheets, AND replying "what is status" messages. You work 14 hours. Business cannot grow because you are the system.
@@ -98,9 +98,9 @@ Anything done twice should be automated. Invoice sending, status updates, meetin
 
 **Tools needed:** n8n for automation, custom web app for client portal, chatbot for FAQs.
 
-## The Pattern
+## **The Pattern**
 
-Look at all 5. The fix is always the same:
+Look at all 4. The fix is always the same:
 
 1. **Automation** — Remove human delay
 
@@ -112,7 +112,7 @@ Look at all 5. The fix is always the same:
 
 You do not need 10 tools. You need one system.
 
-## What We Do at Rehnova
+## **What We Do at Rehnova**
 
 We combine all 4. Custom web app as the face. Automation as the engine. Chatbot as the receptionist. Data pipeline as the roads connecting everything.
 

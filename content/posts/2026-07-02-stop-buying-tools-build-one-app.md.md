@@ -13,7 +13,7 @@ featured: true
 read_time: 8 min read
 ---
 
-## The Tool Trap Every Founder Falls Into
+## **The Tool Trap Every Founder Falls Into**
 
 Month 1: You start with Gmail. Free.
 
@@ -33,7 +33,7 @@ And you still copy paste between tools.
 
 This is the tool trap. More tools equal more problems.
 
-## The Real Cost of 5 Tools
+## **The Real Cost of 5 Tools**
 
 Let us do real math for a 10-person team.
 
@@ -55,7 +55,7 @@ Let us do real math for a 10-person team.
 
 **Total real cost: $6,000 plus wasted time plus risk.**
 
-## What One Custom Web App Gives You
+## **What One Custom Web App Gives You**
 
 We replace all 6 tools with one system.
 
@@ -91,7 +91,7 @@ Hosting on Hetzner or Vercel: $25 to $60 per month. Total.
 
 You save $5,328 per year. And you get speed and trust.
 
-## When To Use Tools vs When To Build
+## **When To Use Tools vs When To Build**
 
 **Use tools when:**
 - You are testing an idea. Month 0 to 3. Use Notion, Airtable, Zapier. Fast and cheap.
@@ -106,7 +106,7 @@ You save $5,328 per year. And you get speed and trust.
 
 At this stage, tools become expensive and slow. Custom becomes cheaper and faster.
 
-## The Rehnova Framework
+## **The Rehnova Framework**
 
 This is what we build for medium businesses:
 
@@ -120,4 +120,4 @@ This is what we build for medium businesses:
 
 One system. Your brand. Your data. Your speed.
 
-## Stop Stack
+## **Stop Stack**

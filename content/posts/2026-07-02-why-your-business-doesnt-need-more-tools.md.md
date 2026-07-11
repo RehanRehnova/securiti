@@ -13,7 +13,7 @@ featured: true
 read_time: 10 min read
 ---
 
-## The $600 Per Month Lie
+## **The $600 Per Month Lie**
 
 Let me show you a real founder stack I saw last week.
 
@@ -31,7 +31,7 @@ Clients still confused. Data lives in 5 places. Zapier breaks twice a month. Air
 
 You do not have a tool problem. You have a system problem.
 
-## Why 5 Tools = 5 New Problems
+## **Why 5 Tools = 5 New Problems**
 
 **1. Cost scales with success**
 
@@ -65,7 +65,7 @@ Client thinks: "Is this a real company or a freelancer with tools?"
 
 One branded portal with your logo, your domain, your login — client thinks you are a $10M company.
 
-## What One Custom Web App Replaces
+## **What One Custom Web App Replaces**
 
 **Instead of this stack:**
 1. Zapier for automation → Build logic directly in your app
@@ -82,7 +82,7 @@ One Next.js web app + Postgres + n8n for background jobs + WhatsApp API for noti
 **Ownership:** 100 percent yours.
 **Brand:** Fully custom.
 
-## When To Keep Tools vs When To Build Custom
+## **When To Keep Tools vs When To Build Custom**
 
 **Keep tools if:**
 - You are validating an idea. 0 to 10 clients. Speed matters more than cost.
@@ -96,7 +96,7 @@ One Next.js web app + Postgres + n8n for background jobs + WhatsApp API for noti
 
 Rule of thumb: If you pay more than 300 dollars per month for tools, a custom app pays for itself in 3 months.
 
-## The Chatbot Advantage
+## **The Chatbot Advantage**
 
 Intercom costs 99 dollars per month. It answers generic FAQs.
 
@@ -106,7 +106,7 @@ Example: Client asks chatbot "Where is my order?" Intercom cannot answer. Your c
 
 That is not possible with tools. Only with custom.
 
-## The Data Pipeline Advantage
+## **The Data Pipeline Advantage**
 
 Airtable to Shopify to Courier needs Zapier. 3 hops. Slow. Expensive.
 
@@ -114,7 +114,7 @@ Custom web app: Shopify webhook → Postgres → Courier API. 1 hop. Instant. Fr
 
 Your data flows like water. No Zapier tax.
 
-## What We Do at Rehnova
+## **What We Do at Rehnova**
 
 We stopped selling tools. We build systems.
 
@@ -129,7 +129,7 @@ Cost to run: 30 to 80 dollars per month.
 Time to build: 3 to 6 weeks.
 Payback: 2 to 4 months vs tool stack.
 
-## Stop Renting. Start Owning.
+## **Stop Renting. Start Owning.**
 
 Tools are for testing. Web apps are for scaling.
 
