@@ -1,24 +1,19 @@
 ---
 title: Scholar MS — Google Sheets Powered School Management, Without The Google Sheets Chaos
 slug: scholar-ms-google-sheets-powered-school-management
-date: 2026-06-04
+date: 2026-07-11
 category: EdTech
 excerpt: Scholar MS uses Google Sheets as its engine but no one touches the Sheet. Teachers, parents, and admin use secure portals to mark attendance, run exams, track fees, and communicate. Here’s why global schools are switching.
-thumbnail: https://res.cloudinary.com/dhcayqpqr/image/upload/v1783758158/Rehnova_Digitals_20260711_132133_0000_am3hwp.png
+thumbnail: https://media.securiti.ai/wp-content/uploads/2026/02/23231516/Agent-Commander-Featured-Blog-1100x370.jpg
 author: Rehan Bhatti
 author_role: Founder and CEO, Rehnova Digitals
 author_avatar: https://res.cloudinary.com/dhcayqpqr/image/upload/v1783611674/IMG_20260708_185742_599_gkzqwf.png
-tags:
-  - EdTech
-  - SaaS
-  - Automation
-  - Schools
-  - Google Workspace
+tags: [EdTech, SaaS, Automation, Schools, Google Workspace]
 featured: true
 read_time: 10 min read
 ---
 
-## The Google Sheets Problem Every School Knows
+## **The Google Sheets Problem Every School Knows**
 
 Your school already uses Google Sheets. 
 
@@ -37,7 +32,7 @@ It’s flexible. It’s free. Staff knows it.
 
 That’s why we built Scholar MS.
 
-## What Scholar MS Actually Is
+## **What Scholar MS Actually Is**
 
 Scholar MS is a complete School Management System that uses Google Sheets as its backend database and calculation engine.
 
@@ -50,11 +45,13 @@ Parents check fees. Data pulls from the Sheet — through a secure portal.
 You get Google Sheets’ reliability + formulas + scale. 
 You remove Google Sheets’ chaos + permission errors + broken formulas.
 
-Live at: [scholarms.rehnova.digital](https://scholarms.rehnova.digital)
+<span class="text-[#1DA9CE] font-semibold">Access the product directly at: [ScholarMS.rehnova.digital](https://scholarms.rehnova.digital)</span>
 
-## How It Works — Google Sheets Power, Portal Security
+Main site: [rehnova.digital](https://rehnova.digital)
 
-### 1. Attendance Management: From Phone To Sheet, Instantly
+## **How It Works — Google Sheets Power, Portal Security**
+
+### **1. Attendance Management: From Phone To Sheet, Instantly**
 
 **Old way:** Teacher opens Google Sheet on phone. Pinch-zoom. Tries to tap cell D47. Misclicks. Saves wrong data. Sheet lags with 2000 rows.
 
@@ -66,7 +63,7 @@ Live at: [scholarms.rehnova.digital](https://scholarms.rehnova.digital)
 
 Teacher never sees the Sheet. Sheet never breaks. But all data lives in Google Sheets you own.
 
-### 2. Parent Communication: WhatsApp + Email, Auto-Triggered From Sheets
+### **2. Parent Communication: WhatsApp + Email, Auto-Triggered From Sheets**
 
 **The problem:** 
 School keeps parent numbers in a Sheet. Admin exports to WhatsApp, sends notices manually. Fee due? Clerk checks Sheet, calls parents one by one.
@@ -79,7 +76,7 @@ School keeps parent numbers in a Sheet. Admin exports to WhatsApp, sends notices
 
 No exporting CSVs. No manual messaging. Google Sheet triggers it, Scholar MS delivers it.
 
-### 3. Efficient Fee Management: Sheet As Ledger, Portal As Interface
+### **3. Efficient Fee Management: Sheet As Ledger, Portal As Interface**
 
 **The problem:** 
 Clerk opens Fee Sheet. Sorts, filters, adds row. Forgets to update formula for total. Balance wrong. Parent disputes.
@@ -92,7 +89,7 @@ Clerk opens Fee Sheet. Sorts, filters, adds row. Forgets to update formula for t
 
 Clerk cannot break formulas. Cannot delete rows. Cannot “forget” to update total. Sheet stays clean because only Scholar MS writes to it.
 
-### 4. Teacher Management: Roles, Workload, Payroll — All From Sheets
+### **4. Teacher Management: Roles, Workload, Payroll — All From Sheets**
 
 Teacher details, subjects, classes, salaries live in your Google Sheet “Staff” tab.
 
@@ -105,7 +102,7 @@ Scholar MS reads it and gives you:
 
 You control the Sheet structure. Scholar MS enforces who can write what.
 
-### 5. Exam Generation + Marking: The Big One
+### **5. Exam Generation + Marking: The Big One**
 
 This is where schools lose weeks.
 
@@ -123,9 +120,9 @@ Admin makes exam date sheet in Google Sheets. Shares with 20 teachers. Each teac
 
 Google Sheets does the heavy math. Scholar MS makes it foolproof.
 
-## Why Global Schools Choose This Model
+## **Why Global Schools Choose This Model**
 
-### 1. You Own Your Data — It’s Just Google Sheets
+### **1. You Own Your Data — It’s Just Google Sheets**
 
 No vendor lock-in. All student records, fees, grades sit in *your* Google Drive, in Sheets you control. 
 
@@ -133,7 +130,7 @@ Export anytime. Switch systems anytime. <span class="text-[#1DA9CE] font-semibol
 
 IT teams love this. No “mystery cloud” compliance issues.
 
-### 2. Security Schools Need, Flexibility Schools Want
+### **2. Security Schools Need, Flexibility Schools Want**
 
 Google Sheets shared to 30 staff = data breach waiting to happen.
 
@@ -145,7 +142,7 @@ Scholar MS:
 
 You get enterprise-grade permissions on top of Google Sheets.
 
-### 3. No Training Curve — Staff Already Knows The Logic
+### **3. No Training Curve — Staff Already Knows The Logic**
 
 If you migrate to new software, staff learns new UI + new logic. Takes months.
 
@@ -153,7 +150,7 @@ With Scholar MS, the logic *is* your existing Google Sheets logic. Same columns.
 
 <span class="text-[#1DA9CE] font-semibold">Only difference: Staff uses a clean mobile portal instead of pinch-zooming a Sheet.</span> Training takes 1 hour.
 
-### 4. Works For Any Curriculum, Any Country
+### **4. Works For Any Curriculum, Any Country**
 
 IB, IGCSE, CBSE, American, British, National curricula — doesn’t matter.
 
@@ -163,7 +160,7 @@ Scholar MS just provides the secure portals to read/write that Sheet.
 
 We have schools in UAE using Arabic grade books. Academies in UK using BTEC modules. Colleges in Canada using GPA. Same system.
 
-### 5. Extend It Without Coding
+### **5. Extend It Without Coding**
 
 Need transport tracking? Add a “Buses” tab to your Sheet. Scholar MS reads it and gives parents a bus tracker.
 
@@ -173,7 +170,7 @@ Need custom government report? Build the template in Sheets once. Scholar MS fil
 
 <span class="text-[#1DA9CE] font-semibold">If you can build it in Google Sheets, Scholar MS can turn it into a secure app.</span>
 
-## Who This Is For
+## **Who This Is For**
 
 1. **K-12 Schools** with 100 to 5,000 students tired of broken Sheet permissions
 2. **International Schools** needing multi-campus data but wanting Google Workspace compliance
@@ -183,7 +180,7 @@ Need custom government report? Build the template in Sheets once. Scholar MS fil
 
 If your “database” is currently a folder of Google Sheets, Scholar MS is built for you.
 
-## What We Do At Rehnova
+## **What We Do At Rehnova**
 
 1. **Audit** — We look at your current Google Sheets. Map every tab, formula, workflow.
 2. **Build** — Connect Scholar MS to your Sheets. Create portals for teachers, parents, admin. Keep your formulas intact.
@@ -193,7 +190,7 @@ If your “database” is currently a folder of Google Sheets, Scholar MS is bui
 
 <span class="text-[#1DA9CE] font-semibold">Go-live in 5 to 10 days.</span> Because we’re not rebuilding your system. We’re wrapping your Google Sheets in security and simplicity.
 
-## Stop Choosing Between Power And Safety
+## **Stop Choosing Between Power And Safety**
 
 Google Sheets is powerful. But it’s dangerous with 30 editors.
 
@@ -203,8 +200,10 @@ Custom software is safe. But it’s expensive and you lose your data.
 
 Your data stays in Google Workspace. Your staff stops breaking things. Your principal gets live dashboards.
 
-Visit [scholarms.rehnova.digital](https://scholarms.rehnova.digital) to see the demo.
+<span class="text-[#1DA9CE] font-semibold">Access Scholar MS directly: [ScholarMS.rehnova.digital](https://scholarms.rehnova.digital)</span>
 
-Or book a call. Show us your messiest Google Sheet. We’ll show you how it looks in Scholar MS in 10 minutes.
+Or visit [rehnova.digital](https://rehnova.digital) to see all our products.
+
+Book a call. Show us your messiest Google Sheet. We’ll show you how it looks in Scholar MS in 10 minutes.
 
 Run your school, not your spreadsheets.
