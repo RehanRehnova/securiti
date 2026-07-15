@@ -41,11 +41,6 @@
 
 
     }
-
-
-
-
-
     // Fallback — if video hasn't started in 4 seconds, just show poster
 
 
