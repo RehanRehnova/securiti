@@ -4,7 +4,7 @@ slug: 31-percent-payroll-leak-data
 date: 2026-07-17
 category: Data & Automation
 excerpt: We tracked 400 hours of a 10-person team's week. 31% was spent on copy-paste work. 29% was wasted searching for files. Only 22% was actual growth work. Here is the data, the charts, and how to fix it.
-thumbnail: https://cdn.fbsbx.com/v/t65.102178-21/749878317_895555066962670_7981510387851161678_n.jpg/chart1_time_breakdown.png?_nc_ht=cdn.fbsbx.com&_nc_ohc=nw6tBMIL2IwQ7kNvwHpGYDg&sdl=0&ccb=14-4&oh=00_AQDHbX35nM0oeQv6sWAf-3yKF3GyLR-s_vsUerd6Dw-PKw&oe=6A5B9BC0&_nc_sid=4ee932
+thumbnail: https://res.cloudinary.com/dhcayqpqr/image/upload/v1784269996/Dynamically-Manage-Data-Access-Governance-1536x1152_uhiuhm.webp
 author: Rehan Bhatti
 author_role: Founder and CEO, Rehnova Digitals
 author_avatar: https://res.cloudinary.com/dhcayqpqr/image/upload/v1783611674/IMG_20260708_185742_599_gkzqwf.png
@@ -21,7 +21,7 @@ Not tasks. Not feelings. Hours, with a timer.
 
 Here is where it went:
 
-![Where time goes - Pie chart](https://cdn.fbsbx.com/v/t65.102178-21/749878317_895555066962670_7981510387851161678_n.jpg/chart1_time_breakdown.png?_nc_ht=cdn.fbsbx.com&_nc_ohc=nw6tBMIL2IwQ7kNvwHpGYDg&sdl=0&ccb=14-4&oh=00_AQDHbX35nM0oeQv6sWAf-3yKF3GyLR-s_vsUerd6Dw-PKw&oe=6A5B9BC0&_nc_sid=4ee932)
+![Where time goes - Pie chart](https://res.cloudinary.com/dhcayqpqr/image/upload/v1784269996/20260717_113221_0000_jl5fjp.png)
 
 **Read that again:**
 * 31% = 124 hours/week on repeatable copy-paste: lead entry, reminders, reports.
@@ -40,7 +40,7 @@ They should obsess over reply speed.
 
 MIT data + our client data:
 
-![Speed to lead bar chart](https://cdn.fbsbx.com/v/t65.102178-21/750843616_1578635807276485_1375381634971365379_n.jpg/chart2_response_time.png?_nc_ht=cdn.fbsbx.com&_nc_ohc=hulF5JeVC8YQ7kNvwEeArw4&sdl=0&ccb=14-4&oh=00_AQDNys9B7l6_RgP8WZZ48gXyzNQavvP-XFxTjv6y5VHzgw&oe=6A5B9F80&_nc_sid=4ee932)
+![Speed to lead bar chart](https://res.cloudinary.com/dhcayqpqr/image/upload/v1784269997/20260717_113015_0000_vcqgxc.png)
 
 * Reply in <1 min: 78% chance to close.
 * Reply in 5 mins: 62% chance.
@@ -62,7 +62,7 @@ Let’s do 12-month math.
 2 VAs = $800/month = $9,600/year
 Tools to replace their copy-paste = $75/month = $900/year
 
-![ROI Line chart](https://cdn.fbsbx.com/v/t65.102178-21/750755066_1936674410364637_3997131130430455301_n.jpg/chart3_roi.png?_nc_ht=cdn.fbsbx.com&_nc_ohc=-i5sftget-8Q7kNvwF-LbmU&sdl=0&ccb=14-4&oh=00_AQCLFyNidAc5ZilHvJlfZsKA92Oo-zdGXrd7DGJ5sfuSvA&oe=6A5B92E3&_nc_sid=4ee932)
+![ROI Line chart](https://res.cloudinary.com/dhcayqpqr/image/upload/v1784269997/Untitled_design_20260717_113104_0000_addmuv.png)
 
 **Net saving Year 1: $8,700.**
 
