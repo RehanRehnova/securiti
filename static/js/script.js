@@ -2,68 +2,27 @@
 // Video optimizer 
 
 (() => {
-
-
     const video = document.getElementById('heroBg');
-
-
     if (!video) return;
-
-
-
-
-
     // Don't load video on slow connections — show poster instead
-
-
     if ('connection' in navigator) {
 
-
         const conn = navigator.connection;
-
-
         if (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g') {
-
-
             video.removeAttribute('autoplay');
-
-
             video.removeAttribute('preload');
-
-
             video.style.opacity = '1';
-
-
             return;
-
-
         }
-
-
     }
     // Fallback — if video hasn't started in 4 seconds, just show poster
 
-
     const giveUp = setTimeout(() => {
 
-
         if (video.readyState < 3) {
-
-
             video.style.display = 'none';
-
-
-            // poster is already visible as background so hero still looks fine
-
-
         }
-
-
     }, 4000);
-
-
-
-
 
     // Fade in smoothly once playing
 
@@ -271,121 +230,119 @@ pills.forEach(pill => {
 // Features section 
 
 document.addEventListener('DOMContentLoaded', () => {
-const features = [
-  {
-    word: 'Dedicated Architecture',
-    desc: 'Senior engineers design your system for 10x scale from day one. No refactoring bills six months later.',
-    img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/serverless.svg',
-    alt: 'Architecture'
-  },
-  {
-    word: 'Enterprise Security',
-    desc: 'SOC 2 Type II controls, encryption at rest and in transit, and zero-trust policies baked in from commit one.',
-    img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/bitwarden.svg',
-    alt: 'Security'
-  },
-  {
-    word: 'Complete Documentation',
-    desc: 'Runbooks, API docs, and architecture diagrams your team can actually use. No tribal knowledge dependencies.',
-    img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/readthedocs.svg',
-    alt: 'Documentation'
-  },
-  {
-    word: '24/7 Monitoring',
-    desc: 'Auto-scaling, alerting, and incident response built into your stack. Sleep well knowing we watch the graphs.',
-    img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/grafana.svg',
-    alt: 'Monitoring'
-  }
-];
-
-  const wordEl = document.getElementById('rotatingWord');
-  const descEl = document.getElementById('rotatingDesc');
-  const imgEl = document.getElementById('featureImage');
-  let currentIndex = 0;
-  let intervalId = null;
-
-  function createIndicators() {
-    const container = document.getElementById('indicators');
-    container.innerHTML = '';
-    features.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.className = `indicator-dot h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'w-10 bg-slate-900' : 'w-1.5 bg-slate-300'}`;
-      dot.setAttribute('data-index', index);
-      dot.addEventListener('click', () => {
-        clearInterval(intervalId);
-        currentIndex = index;
-        updateFeature(currentIndex);
-        startRotation();
-      });
-      container.appendChild(dot);
-    });
-  }
-
-  function updateFeature(index) {
-    // Fade out
-    wordEl.style.opacity = '0';
-    descEl.style.opacity = '0';
-    imgEl.style.opacity = '0';
-    imgEl.style.transform = 'scale(0.92)';
-
-    setTimeout(() => {
-      wordEl.textContent = features[index].word;
-      descEl.textContent = features[index].desc;
-      imgEl.src = features[index].img;
-      imgEl.alt = features[index].alt;
-
-      // Fade in
-      wordEl.style.opacity = '1';
-      descEl.style.opacity = '1';
-      imgEl.style.opacity = '1';
-      imgEl.style.transform = 'scale(1)';
-
-      // Update dots
-      document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
-        if (i === index) {
-          dot.classList.add('w-10', 'bg-slate-900');
-          dot.classList.remove('w-1.5', 'bg-slate-300');
-        } else {
-          dot.classList.remove('w-10', 'bg-slate-900');
-          dot.classList.add('w-1.5', 'bg-slate-300');
+    const features = [
+        {
+            word: 'Dedicated Architecture',
+            desc: 'Senior engineers design your system for 10x scale from day one. No refactoring bills six months later.',
+            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/serverless.svg',
+            alt: 'Architecture'
+        },
+        {
+            word: 'Enterprise Security',
+            desc: 'SOC 2 Type II controls, encryption at rest and in transit, and zero-trust policies baked in from commit one.',
+            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/bitwarden.svg',
+            alt: 'Security'
+        },
+        {
+            word: 'Complete Documentation',
+            desc: 'Runbooks, API docs, and architecture diagrams your team can actually use. No tribal knowledge dependencies.',
+            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/readthedocs.svg',
+            alt: 'Documentation'
+        },
+        {
+            word: '24/7 Monitoring',
+            desc: 'Auto-scaling, alerting, and incident response built into your stack. Sleep well knowing we watch the graphs.',
+            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/grafana.svg',
+            alt: 'Monitoring'
         }
-      });
-    }, 300);
-  }
+    ];
 
-  function startRotation() {
-    if (intervalId) clearInterval(intervalId);
-    intervalId = setInterval(() => {
-      currentIndex = (currentIndex + 1) % features.length;
-      updateFeature(currentIndex);
-    }, 4200);
-  }
+    const wordEl = document.getElementById('rotatingWord');
+    const descEl = document.getElementById('rotatingDesc');
+    const imgEl = document.getElementById('featureImage');
+    let currentIndex = 0;
+    let intervalId = null;
 
-  // Initialize
-  createIndicators();
-  updateFeature(0);
+    function createIndicators() {
+        const container = document.getElementById('indicators');
+        container.innerHTML = '';
+        features.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = `indicator-dot h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'w-10 bg-slate-900' : 'w-1.5 bg-slate-300'}`;
+            dot.setAttribute('data-index', index);
+            dot.addEventListener('click', () => {
+                clearInterval(intervalId);
+                currentIndex = index;
+                updateFeature(currentIndex);
+                startRotation();
+            });
+            container.appendChild(dot);
+        });
+    }
 
-  // Start rotation when section is visible
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        startRotation();
-        observer.disconnect(); // Run only once
-      }
-    });
-  }, { threshold: 0.4 });
+    function updateFeature(index) {
+        // Fade out
+        wordEl.style.opacity = '0';
+        descEl.style.opacity = '0';
+        imgEl.style.opacity = '0';
+        imgEl.style.transform = 'scale(0.92)';
 
-  observer.observe(document.getElementById('featureHighlighter'));
+        setTimeout(() => {
+            wordEl.textContent = features[index].word;
+            descEl.textContent = features[index].desc;
+            imgEl.src = features[index].img;
+            imgEl.alt = features[index].alt;
+
+            // Fade in
+            wordEl.style.opacity = '1';
+            descEl.style.opacity = '1';
+            imgEl.style.opacity = '1';
+            imgEl.style.transform = 'scale(1)';
+
+            // Update dots
+            document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('w-10', 'bg-slate-900');
+                    dot.classList.remove('w-1.5', 'bg-slate-300');
+                } else {
+                    dot.classList.remove('w-10', 'bg-slate-900');
+                    dot.classList.add('w-1.5', 'bg-slate-300');
+                }
+            });
+        }, 300);
+    }
+
+    function startRotation() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(() => {
+            currentIndex = (currentIndex + 1) % features.length;
+            updateFeature(currentIndex);
+        }, 4200);
+    }
+
+    // Initialize
+    createIndicators();
+    updateFeature(0);
+
+    // Start rotation when section is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startRotation();
+                observer.disconnect(); // Run only once
+            }
+        });
+    }, { threshold: 0.4 });
+
+    observer.observe(document.getElementById('featureHighlighter'));
 });
 
 // Hamburger fns
-
-
 (() => {
     const header = document.getElementById('siteHeader');
     const bar = document.getElementById('headerBar');
     const logo = document.getElementById('logo');
-    const cta = document.getElementById('headerCta'); 
+    const cta = document.getElementById('headerCta');
     const headerContact = document.getElementById('headerContact');
     const navLinks = document.querySelectorAll('desktopNav.nav-link');
     const menuIcon = document.getElementById('menuIcon');
@@ -423,7 +380,7 @@ const features = [
 
         } else {
             logoImg.style.filter = 'none';
-            bar.className = 'border-b border-slate-200/60 bg-white/100 h-[60px] backdrop-blur-xl shadow-sm transition-all duration-500';
+           bar.className = 'm-2 rounded-md border border-slate-200 bg-white/10 sm:h-[60px] lg:h-[65px] backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-500';
             logo.className = 'text- font-[550] tracking-tight text-slate-900 transition-colors duration-300';
 
             cta.className = 'ml-2 inline-flex h-9 px-4 items-center rounded-lg bg-[#1DA9CE] text-white text-[13px] font-medium hover:bg-[#1888A8] transition-colors duration-200';
@@ -467,32 +424,32 @@ const features = [
 //Process section fading 
 
 (() => {
-   const steps = [
-  {
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop',
-    num: '01 — DISCOVERY',
-    title: 'Goals & Requirements',
-    desc: '2–3 weeks of workshops to deeply understand your business objectives, workflows, users, and technical needs. You receive a clear scope, recommended architecture, and realistic timeline.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2940&auto=format&fit=crop',
-    num: '02 — ARCHITECTURE & DESIGN',
-    title: 'System & Solution Design',
-    desc: 'We design the complete technical architecture, data flows, AI agent logic (if needed), and user experience. Everything is reviewed and approved before development begins.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop',
-    num: '03 — DEVELOPMENT',
-    title: 'Agile Development',
-    desc: '6–12 weeks of iterative development with weekly demos. You see working features regularly — whether it’s web applications, AI agents, CRM systems, or custom dashboards.'
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop',
-    num: '04 — LAUNCH & SCALE',
-    title: 'Deployment & Ongoing Support',
-    desc: 'Security audits, performance testing, deployment, team training, and full handover. We provide post-launch monitoring, SLAs, and continuous improvements as your business grows.'
-  }
-];
+    const steps = [
+        {
+            img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop',
+            num: '01 — DISCOVERY',
+            title: 'Goals & Requirements',
+            desc: '2–3 weeks of workshops to deeply understand your business objectives, workflows, users, and technical needs. You receive a clear scope, recommended architecture, and realistic timeline.'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2940&auto=format&fit=crop',
+            num: '02 — ARCHITECTURE & DESIGN',
+            title: 'System & Solution Design',
+            desc: 'We design the complete technical architecture, data flows, AI agent logic (if needed), and user experience. Everything is reviewed and approved before development begins.'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2940&auto=format&fit=crop',
+            num: '03 — DEVELOPMENT',
+            title: 'Agile Development',
+            desc: '6–12 weeks of iterative development with weekly demos. You see working features regularly — whether it’s web applications, AI agents, CRM systems, or custom dashboards.'
+        },
+        {
+            img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop',
+            num: '04 — LAUNCH & SCALE',
+            title: 'Deployment & Ongoing Support',
+            desc: 'Security audits, performance testing, deployment, team training, and full handover. We provide post-launch monitoring, SLAs, and continuous improvements as your business grows.'
+        }
+    ];
     const bg = document.getElementById('pf-bg');
     const num = document.getElementById('pf-num');
     const title = document.getElementById('pf-title');
