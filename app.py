@@ -7,7 +7,14 @@ from flask_mail import Mail
 from datetime import datetime
 import os
 import re
-from logic import append_to_sheet, build_contact_email, validate_contact_data, get_sheets_service
+from logic import (
+    append_to_sheet,
+    append_newsletter_to_sheet,
+    build_contact_email,
+    validate_contact_data,
+    validate_newsletter_data,
+    get_sheets_service,
+)
 from data.articles import get_all_articles, get_article_by_slug, get_categories, get_related_articles
 
 
@@ -82,7 +89,48 @@ def get_in_touch():
 def about_us():
     return render_template('about-us.html')
 
-    
+
+@app.route('/careers')
+def careers():
+    return render_template('careers.html')
+
+
+@app.route('/api/newsletter', methods=['POST'])
+def handle_newsletter():
+    try:
+        data = request.get_json() or {}
+        is_valid, error = validate_newsletter_data(data)
+        if not is_valid:
+            return jsonify({'success': False, 'error': error}), 400
+
+        email = data.get('email', '').strip()
+        source = (data.get('source') or 'footer').strip() or 'footer'
+
+        try:
+            sheet_success = append_newsletter_to_sheet(email, source=source)
+            if not sheet_success:
+                print("Warning: Failed to write newsletter email to Google Sheet")
+                return jsonify({
+                    'success': False,
+                    'error': 'Could not save subscription. Please try again later.'
+                }), 500
+        except Exception as sheet_error:
+            print(f"Newsletter sheets error: {sheet_error}")
+            return jsonify({
+                'success': False,
+                'error': 'Could not save subscription. Please try again later.'
+            }), 500
+
+        return jsonify({'success': True}), 200
+
+    except Exception as e:
+        print(f"Error in /api/newsletter: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Server error. Please try again later.'
+        }), 500
+
+
 @app.route('/blog')
 def blog_index():
     articles = get_all_articles()  # Now reads .md files

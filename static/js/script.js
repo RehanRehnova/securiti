@@ -234,25 +234,25 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             word: 'Dedicated Architecture',
             desc: 'Senior engineers design your system for 10x scale from day one. No refactoring bills six months later.',
-            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/serverless.svg',
+            img: '/static/images/features/architecture.svg',
             alt: 'Architecture'
         },
         {
             word: 'Enterprise Security',
             desc: 'SOC 2 Type II controls, encryption at rest and in transit, and zero-trust policies baked in from commit one.',
-            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/bitwarden.svg',
+            img: '/static/images/features/security.svg',
             alt: 'Security'
         },
         {
             word: 'Complete Documentation',
             desc: 'Runbooks, API docs, and architecture diagrams your team can actually use. No tribal knowledge dependencies.',
-            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/readthedocs.svg',
+            img: '/static/images/features/docs.svg',
             alt: 'Documentation'
         },
         {
             word: '24/7 Monitoring',
             desc: 'Auto-scaling, alerting, and incident response built into your stack. Sleep well knowing we watch the graphs.',
-            img: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@develop/icons/grafana.svg',
+            img: '/static/images/features/monitoring.svg',
             alt: 'Monitoring'
         }
     ];
@@ -260,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wordEl = document.getElementById('rotatingWord');
     const descEl = document.getElementById('rotatingDesc');
     const imgEl = document.getElementById('featureImage');
+    if (!wordEl || !descEl || !imgEl) return;
     let currentIndex = 0;
     let intervalId = null;
 
@@ -281,11 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateFeature(index) {
-        // Fade out
+        if (!wordEl || !descEl || !imgEl) return;
+
         wordEl.style.opacity = '0';
         descEl.style.opacity = '0';
-        imgEl.style.opacity = '0';
-        imgEl.style.transform = 'scale(0.92)';
+        imgEl.classList.remove('is-in');
+        imgEl.classList.add('is-out');
 
         setTimeout(() => {
             wordEl.textContent = features[index].word;
@@ -293,13 +295,12 @@ document.addEventListener('DOMContentLoaded', () => {
             imgEl.src = features[index].img;
             imgEl.alt = features[index].alt;
 
-            // Fade in
             wordEl.style.opacity = '1';
             descEl.style.opacity = '1';
-            imgEl.style.opacity = '1';
-            imgEl.style.transform = 'scale(1)';
+            imgEl.classList.remove('is-out');
+            void imgEl.offsetWidth;
+            imgEl.classList.add('is-in');
 
-            // Update dots
             document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.add('w-10', 'bg-slate-900');
@@ -309,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     dot.classList.add('w-1.5', 'bg-slate-300');
                 }
             });
-        }, 300);
+        }, 280);
     }
 
     function startRotation() {

@@ -1,216 +1,623 @@
 {% extends "base.html" %}
 
+{% block meta %}
+  <title>About Us — Rehnova Digitals</title>
+  <meta name="description" content="Rehnova Digitals builds AI-native operations platforms, custom web apps, and autonomous agents. Minimal noise. Production systems. Founded by Rehan Bhatti.">
+{% endblock %}
+
+{% block head_extra %}
+<style>
+  /* ── About scroll experience ── */
+  .about-scroll {
+    --about-accent: #1DA9CE;
+    --about-ink: #0f172a;
+    --about-muted: #64748b;
+    --about-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .about-scroll .font-body {
+    font-family: 'Satoshi', system-ui, sans-serif;
+  }
+
+  /* Pin stage */
+  #about-pin {
+    position: relative;
+    height: 320vh;
+  }
+
+  @media (min-width: 1024px) {
+    #about-pin {
+      height: 360vh;
+    }
+  }
+
+  #about-stage {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  /* Soft vignette */
+  #about-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, transparent 40%, rgba(248, 250, 252, 0.55) 100%);
+  }
+
+  .about-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(1.06);
+    will-change: opacity, transform;
+    transition:
+      opacity 0.9s var(--about-ease),
+      transform 1.05s var(--about-ease);
+    z-index: 1;
+  }
+
+  .about-slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+  }
+
+  .about-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  @media (max-width: 1023px) {
+    .about-slide img {
+      max-width: 92%;
+      max-height: 58vh;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-slide img {
+      max-width: min(920px, 88%);
+      max-height: 78vh;
+      transform: scale(1.08);
+    }
+  }
+
+  /* Caption dock */
+  .about-caption-dock {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 0 1.25rem 1.75rem;
+    pointer-events: none;
+  }
+
+  @media (min-width: 640px) {
+    .about-caption-dock {
+      padding: 0 2rem 2.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-caption-dock {
+      padding: 0 2.5rem 2.75rem;
+    }
+  }
+
+  .about-caption-inner {
+    max-width: 42rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.55s var(--about-ease),
+      transform 0.55s var(--about-ease);
+    pointer-events: none;
+  }
+
+  .about-caption.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+  }
+
+  /* Progress */
+  .about-progress {
+    position: absolute;
+    top: max(5.5rem, env(safe-area-inset-top, 0px) + 4.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .about-progress-track {
+    width: min(140px, 28vw);
+    height: 2px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .about-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--about-accent);
+    border-radius: 999px;
+    transition: width 0.15s linear;
+  }
+
+  .about-progress-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #cbd5e1;
+    transition: background 0.35s var(--about-ease), transform 0.35s var(--about-ease);
+  }
+
+  .about-progress-dot.is-on {
+    background: var(--about-accent);
+    transform: scale(1.25);
+  }
+
+  .about-scroll-hint {
+    position: absolute;
+    bottom: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    opacity: 1;
+    transition: opacity 0.5s var(--about-ease);
+    pointer-events: none;
+  }
+
+  .about-scroll-hint.is-hidden {
+    opacity: 0;
+  }
+
+  .about-scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-weight: 600;
+  }
+
+  .about-scroll-hint i {
+    color: #94a3b8;
+    font-size: 12px;
+    animation: about-bounce 1.6s ease-in-out infinite;
+  }
+
+  @keyframes about-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(5px); opacity: 1; }
+  }
+
+  /* Reduced motion: show all as simple stack, no pin */
+  @media (prefers-reduced-motion: reduce) {
+    #about-pin {
+      height: auto !important;
+    }
+    #about-stage {
+      position: relative;
+      height: auto;
+      min-height: auto;
+      padding: 2rem 0 3rem;
+    }
+    .about-slide {
+      position: relative;
+      opacity: 1 !important;
+      transform: none !important;
+      margin-bottom: 2rem;
+    }
+    .about-slide:not(.is-active) {
+      display: none;
+    }
+    .about-scroll-hint {
+      display: none;
+    }
+  }
+
+  /* Minimal section fades */
+  .about-fade {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s var(--about-ease), transform 0.7s var(--about-ease);
+  }
+
+  .about-fade.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+{% endblock %}
+
 {% block content %}
-   <section id="about-intro" class="relative py-12 sm:py-16 lg:py-20 xl:py-24 bg-white">
-    <div class="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#1DA9CE]/5 to-transparent pointer-events-none"></div>
-    <svg class="absolute top-0 left-0 w-full h-auto text-[#1DA9CE]/[0.03]" viewBox="0 0 1440 320" fill="currentColor" preserveAspectRatio="none">
-        <path d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-    </svg>
-    
-    <div style="margin-top: 80px" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- About Us Centered Block -->
-        <div class="text-center mb-14 sm:mb-16 lg:mb-20">
-    <h1 class="font-body text-[28px] xs:text-[30px] sm:text-[36px] lg:text-[44px] xl:text-[52px] font-bold text-slate-800 leading-[1.15] tracking-[-0.02em] mb-6 sm:mb-8 max-w-3xl mx-auto px-1 lg:block hidden">
-        About <span class="text-[#1DA9CE]">Us</span>
-    </h1>
+<div class="about-scroll bg-white">
 
-    <!-- Pinned Image Sequence -->
-    <div class="relative">
-        <div class="h-[380vh] lg:h-[290vh]" id="pinned-wrapper">
-            
-            <div id="image-sequence" 
-                 class="sticky top-0 h-screen w-full max-w-5xl mx-auto flex items-center justify-center overflow-hidden bg-transparent">
-                
-                <!-- Image 1 Desktop -->
-                <div id="img-1-d" class="image-slide mt-56 absolute inset-0 hidden lg:flex items-center justify-center">
-                    <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783270323/About_us_20260705_215136_0000_ag6eri.png"
-                         alt="Rehnova Digitals team"
-                         class="w-full scale-125 h-auto max-h-[100vh] object-contain">
-                </div>
-
-                <!-- Image 1 Mobile -->
-                <div id="img-1-m" class="image-slide absolute inset-0 -mt-48 lg:hidden flex items-center justify-center">
-                    <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783273121/2_20260705_223815_0001_drwlqu.png"
-                         alt="Rehnova Digitals"
-                         class="w-full   max-w-[90%] h-auto max-h-[100vh] object-contain">
-                </div>
-
-                <!-- Image 2 -->
-                <div id="img-2" class="image-slide absolute inset-0 flex items-center justify-center opacity-0">
-                    <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783270913/4_20260705_220119_0004_j9euze.png" 
-                         alt="Rehnova Digitals team 2"
-                         class="w-full max-w-[95%] lg:scale-125 origin-center lg:mt-36 h-auto max-h-[100vh] object-contain">
-                </div>
-
-                <!-- Image 3 -->
-                <div id="img-3" class="image-slide absolute lg:mt-36 inset-0 flex items-center justify-center opacity-0">
-                    <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783272479/2_20260705_222737_0001_gtr1pg.png" 
-                         alt="Rehnova Digitals team 3"
-                         class="w-full max-w-[95%] sm:-mt-20  h-auto max-h-[100vh] object-contain">
-                </div>
-
-            </div>
-        </div>
+  <!-- ═══ Minimal intro ═══ -->
+  <section class="relative pt-28 sm:pt-32 pb-6 sm:pb-8 px-4 sm:px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="font-body text-[11px] sm:text-[12px] uppercase tracking-[0.22em] text-[#1DA9CE] font-semibold mb-4">
+        About
+      </p>
+      <h1 class="font-body text-[28px] sm:text-[36px] lg:text-[42px] font-bold text-slate-900 leading-[1.12] tracking-[-0.03em]">
+        Systems that run the business.<br class="hidden sm:block">
+        <span class="text-[#1DA9CE]">Not more noise.</span>
+      </h1>
     </div>
+  </section>
 
-    <p class="font-body text-[15px] sm:text-[16px] lg:text-[17px] lg:mt-10 -mt-28 text-slate-600 leading-relaxed max-w-2xl mx-auto px-1">
-        We build production-ready web applications, autonomous AI agents, and unified operations platforms that deliver security, scalability, and performance from day one.
-    </p>
+  <!-- ═══ Scroll-pinned story ═══ -->
+  <div id="about-pin" aria-label="About story">
+    <div id="about-stage">
+
+      <!-- Progress -->
+      <div class="about-progress" aria-hidden="true">
+        <span class="about-progress-dot is-on" data-dot="0"></span>
+        <span class="about-progress-dot" data-dot="1"></span>
+        <span class="about-progress-dot" data-dot="2"></span>
+        <div class="about-progress-track" aria-hidden="true">
+          <div class="about-progress-fill" id="about-progress-fill"></div>
+        </div>
+      </div>
+
+      <!-- Slides -->
+      <div class="about-slide is-active" data-slide="0">
+        <!-- Desktop frame 1 -->
+        <img
+          class="hidden lg:block"
+          src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783270323/About_us_20260705_215136_0000_ag6eri.png"
+          alt="Rehnova Digitals craft"
+          draggable="false"
+        >
+        <!-- Mobile frame 1 -->
+        <img
+          class="lg:hidden"
+          src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783273121/2_20260705_223815_0001_drwlqu.png"
+          alt="Rehnova Digitals craft"
+          draggable="false"
+        >
+      </div>
+
+      <div class="about-slide" data-slide="1">
+        <img
+          src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783270913/4_20260705_220119_0004_j9euze.png"
+          alt="Building production systems"
+          draggable="false"
+        >
+      </div>
+
+      <div class="about-slide" data-slide="2">
+        <img
+          src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783272479/2_20260705_222737_0001_gtr1pg.png"
+          alt="Engineering for operators"
+          draggable="false"
+        >
+      </div>
+
+      <!-- Scroll hint (first beat only) -->
+      <div class="about-scroll-hint" id="about-scroll-hint">
+        <span>Scroll</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+
+      <!-- Captions -->
+      <div class="about-caption-dock">
+        <div class="about-caption-inner relative min-h-[5.5rem] sm:min-h-[5rem]">
+          <div class="about-caption is-active" data-caption="0">
+            <p class="font-body text-[11px] uppercase tracking-[0.18em] text-slate-400 font-semibold mb-2">01 — Studio</p>
+            <p class="font-body text-[15px] sm:text-[17px] lg:text-[18px] text-slate-700 leading-relaxed font-medium max-w-lg mx-auto">
+              An engineering studio for AI-native ops, web platforms, and agents.
+            </p>
+          </div>
+          <div class="about-caption" data-caption="1">
+            <p class="font-body text-[11px] uppercase tracking-[0.18em] text-slate-400 font-semibold mb-2">02 — Standard</p>
+            <p class="font-body text-[15px] sm:text-[17px] lg:text-[18px] text-slate-700 leading-relaxed font-medium max-w-lg mx-auto">
+              Production-grade builds. Full IP ownership. Architecture that scales.
+            </p>
+          </div>
+          <div class="about-caption" data-caption="2">
+            <p class="font-body text-[11px] uppercase tracking-[0.18em] text-slate-400 font-semibold mb-2">03 — Promise</p>
+            <p class="font-body text-[15px] sm:text-[17px] lg:text-[18px] text-slate-700 leading-relaxed font-medium max-w-lg mx-auto">
+              Cut the noise. Ship what operators actually need — and stand behind it.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ Minimal founder ═══ -->
+  <section class="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 border-t border-slate-100">
+    <div class="max-w-4xl mx-auto about-fade" data-fade>
+      <div class="grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 items-center">
+        <div class="mx-auto md:mx-0 w-40 sm:w-48 md:w-full">
+          <div class="relative">
+            <div class="absolute -inset-1.5 border border-[#1DA9CE]/20 rounded-2xl"></div>
+            <img
+              src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783922772/Untitled_design_20260624_111701_0000_ptjwqb.png"
+              alt="Rehan Bhatti"
+              class="relative w-full aspect-[4/5] object-cover object-top rounded-2xl bg-slate-100"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="text-center md:text-left">
+          <p class="font-body text-[11px] uppercase tracking-[0.2em] text-slate-400 font-semibold mb-3">Founder</p>
+          <h2 class="font-body text-[22px] sm:text-[26px] font-bold text-slate-900 tracking-[-0.02em] mb-3">
+            Rehan Bhatti
+          </h2>
+          <p class="font-body text-[14px] text-[#1DA9CE] font-semibold mb-4">
+            Founder &amp; CEO · First line of support
+          </p>
+          <p class="font-body text-[15px] sm:text-[16px] text-slate-600 leading-[1.75] max-w-xl mx-auto md:mx-0">
+            Most AI shops started with a pitch. We started with a problem worth solving.
+            No wrappers. No noise. Infrastructure that holds — and a founder who still ships code.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Operating standard (after founder) ═══ -->
+  <section class="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-white">
+    <div class="max-w-5xl mx-auto about-fade" data-fade>
+      <div class="text-center mb-10 sm:mb-12">
+        <p class="font-body text-[11px] uppercase tracking-[0.2em] text-slate-400 font-semibold mb-3">
+          Operating standard
+        </p>
+        <h2 class="font-body text-[22px] sm:text-[28px] lg:text-[32px] font-bold text-slate-900 tracking-[-0.02em] leading-snug">
+          Three commitments. <span class="text-[#1DA9CE]">No footnotes.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+        <!-- 01 -->
+        <article class="relative group rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-7 hover:border-[#1DA9CE]/35 hover:bg-white hover:shadow-[0_12px_40px_-16px_rgba(15,23,42,0.18)] transition-all duration-300">
+          <div class="flex items-start justify-between mb-5">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#1DA9CE]/10 text-[#1DA9CE] text-[13px] font-bold font-body">01</span>
+            <svg class="w-5 h-5 text-slate-300 group-hover:text-[#1DA9CE] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-body text-[16px] sm:text-[17px] font-bold text-slate-900 mb-2 tracking-tight">
+            Production, not theatre
+          </h3>
+          <p class="font-body text-[14px] text-slate-600 leading-relaxed">
+            Auth, data models, monitoring, handoff. We ship systems operators can trust at 3am — not demo reels that die after the call.
+          </p>
+          <div class="mt-5 pt-4 border-t border-slate-200/80">
+            <p class="font-body text-[12px] text-slate-400 tracking-wide">Architecture · Testing · Go-live</p>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="relative group rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-7 hover:border-[#1DA9CE]/35 hover:bg-white hover:shadow-[0_12px_40px_-16px_rgba(15,23,42,0.18)] transition-all duration-300">
+          <div class="flex items-start justify-between mb-5">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#1DA9CE]/10 text-[#1DA9CE] text-[13px] font-bold font-body">02</span>
+            <svg class="w-5 h-5 text-slate-300 group-hover:text-[#1DA9CE] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+          </div>
+          <h3 class="font-body text-[16px] sm:text-[17px] font-bold text-slate-900 mb-2 tracking-tight">
+            Your IP. Your repo.
+          </h3>
+          <p class="font-body text-[14px] text-slate-600 leading-relaxed">
+            NDA first. Full code and product ownership on final payment. No hostage hosting, no locked vendor cages, no “ask us for the keys.”
+          </p>
+          <div class="mt-5 pt-4 border-t border-slate-200/80">
+            <p class="font-body text-[12px] text-slate-400 tracking-wide">NDA · Repo transfer · Docs</p>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="relative group rounded-2xl border border-slate-200 bg-slate-50/80 p-6 sm:p-7 hover:border-[#1DA9CE]/35 hover:bg-white hover:shadow-[0_12px_40px_-16px_rgba(15,23,42,0.18)] transition-all duration-300">
+          <div class="flex items-start justify-between mb-5">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#1DA9CE]/10 text-[#1DA9CE] text-[13px] font-bold font-body">03</span>
+            <svg class="w-5 h-5 text-slate-300 group-hover:text-[#1DA9CE] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+            </svg>
+          </div>
+          <h3 class="font-body text-[16px] sm:text-[17px] font-bold text-slate-900 mb-2 tracking-tight">
+            Transparent by default
+          </h3>
+          <p class="font-body text-[14px] text-slate-600 leading-relaxed">
+            Weekly demos, shared board, direct access. You always know what shipped, what’s next, and what changed — no black-box agencies.
+          </p>
+          <div class="mt-5 pt-4 border-t border-slate-200/80">
+            <p class="font-body text-[12px] text-slate-400 tracking-wide">Demos · Board · Async + calls</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ World map / global presence ═══ -->
+  <section id="global-presence" class="relative py-14 sm:py-18 lg:py-22 px-4 sm:px-6 bg-slate-50 border-t border-slate-100 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none opacity-[0.35]"
+         style="background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(29,169,206,0.08), transparent 70%);"></div>
+
+    <div class="relative max-w-6xl mx-auto about-fade" data-fade>
+      <div class="text-center">
+        <p class="font-body text-[11px] uppercase tracking-[0.2em] text-slate-400 font-semibold mb-3">
+          Presence
+        </p>
+        <h2 class="font-body text-[26px] sm:text-[32px] lg:text-[36px] font-bold text-slate-900 leading-[1.15] tracking-[-0.02em] mb-6 sm:mb-8 max-w-3xl mx-auto">
+          Serving clients <span class="text-[#1DA9CE]">worldwide</span>
+        </h2>
+
+        <div class="max-w-3xl lg:max-w-4xl mx-auto mb-2 sm:mb-4">
+          <img
+            src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783108340/1783108150785_tvchir.png"
+            alt="Global network map showing worldwide client reach"
+            class="w-full max-w-2xl mx-auto h-auto select-none"
+            loading="lazy"
+            draggable="false"
+          >
+        </div>
+
+        <p class="font-body text-[15px] sm:text-[16px] text-slate-600 leading-[1.75] max-w-2xl mx-auto -mt-2 sm:-mt-4">
+          Rooted in Pakistan — delivered across local markets, the Gulf, and remote-first teams worldwide.
+          Secure web applications, ops platforms, and autonomous agents with engineering support that follows the work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Final CTA ═══ -->
+  <section class="relative py-14 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto text-center about-fade" data-fade>
+      <h2 class="font-body text-[24px] sm:text-[28px] lg:text-[32px] font-bold text-slate-900 leading-snug tracking-[-0.02em] mb-3">
+        Want to build with us?
+      </h2>
+      <p class="font-body text-[15px] sm:text-[16px] text-slate-600 mb-8 max-w-xl mx-auto">
+        Whether you’re a client with an ops problem or a builder who wants in on future roles —
+        we’re selective, direct, and serious about the work.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+        <a href="/get-started"
+           class="inline-flex items-center justify-center w-full sm:w-auto h-11 sm:h-12 px-8 bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[14px] sm:text-[15px] font-semibold rounded-lg transition-colors font-body">
+          Book a demo
+        </a>
+        <a href="/careers"
+           class="inline-flex items-center justify-center w-full sm:w-auto h-11 sm:h-12 px-8 bg-white border border-slate-300 hover:border-slate-400 text-slate-700 text-[14px] sm:text-[15px] font-semibold rounded-lg transition-colors font-body">
+          Join the talent pool
+        </a>
+        <a href="/get-in-touch"
+           class="inline-flex items-center justify-center w-full sm:w-auto h-11 sm:h-12 px-8 text-[#1DA9CE] hover:text-[#1888A8] text-[14px] sm:text-[15px] font-semibold transition-colors font-body">
+          Contact →
+        </a>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script>
-    function initFinalSequence() {
-        const wrapper = document.getElementById('pinned-wrapper');
-        
-        const img1d = document.getElementById('img-1-d');
-        const img1m = document.getElementById('img-1-m');
-        const img2 = document.getElementById('img-2');
-        const img3 = document.getElementById('img-3');
+(function () {
+  var pin = document.getElementById('about-pin');
+  var stage = document.getElementById('about-stage');
+  if (!pin || !stage) return;
 
-        const firstSlide = window.innerWidth < 1024 ? img1m : img1d;
-        const slides = [firstSlide, img2, img3].filter(Boolean);
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var slides = Array.prototype.slice.call(stage.querySelectorAll('.about-slide'));
+  var captions = Array.prototype.slice.call(stage.querySelectorAll('.about-caption'));
+  var dots = Array.prototype.slice.call(stage.querySelectorAll('.about-progress-dot'));
+  var fill = document.getElementById('about-progress-fill');
+  var hint = document.getElementById('about-scroll-hint');
+  var total = slides.length;
+  var current = 0;
+  var ticking = false;
 
-        if (!wrapper || slides.length < 2) return;
+  function setActive(index) {
+    if (index === current) return;
+    current = index;
+    slides.forEach(function (el, i) {
+      el.classList.toggle('is-active', i === index);
+    });
+    captions.forEach(function (el, i) {
+      el.classList.toggle('is-active', i === index);
+    });
+    dots.forEach(function (el, i) {
+      el.classList.toggle('is-on', i === index);
+    });
+  }
 
-        let currentIndex = 0;
+  function onScroll() {
+    if (reduce) return;
 
-        function updateImages(progress) {
-            const targetIndex = Math.min(Math.floor(progress * 3), 2);
+    var rect = pin.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var scrollable = Math.max(pin.offsetHeight - vh, 1);
+    var progress = 0;
 
-            if (targetIndex === currentIndex) return;
-
-            const current = slides[currentIndex];
-            const next = slides[targetIndex];
-
-            if (!current || !next) return;
-
-            current.style.transition = 'all 1050ms cubic-bezier(0.4, 0, 0.2, 1)';
-            current.style.opacity = '0';
-            current.style.transform = 'scale(1.13)';
-
-            next.style.transition = 'all 1050ms cubic-bezier(0.4, 0, 0.2, 1)';
-            next.style.opacity = '1';
-            next.style.transform = 'scale(1)';
-
-            currentIndex = targetIndex;
-        }
-
-        function handleScroll() {
-            const rect = wrapper.getBoundingClientRect();
-            const vh = window.innerHeight;
-
-            let progress = 0;
-            if (rect.top <= 0) {
-                progress = Math.abs(rect.top) / (rect.height - vh * 0.65);
-                progress = Math.max(0, Math.min(1, progress));
-            }
-
-            updateImages(progress);
-        }
-
-        slides.forEach((slide, i) => {
-            if (slide) {
-                slide.style.opacity = i === 0 ? '1' : '0';
-                slide.style.transform = i === 0 ? 'scale(1)' : 'scale(1.05)';
-            }
-        });
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        setTimeout(handleScroll, 100);
+    if (rect.top <= 0) {
+      progress = Math.min(1, Math.max(0, -rect.top / scrollable));
     }
 
-    document.addEventListener('DOMContentLoaded', initFinalSequence);
+    if (fill) {
+      fill.style.width = (progress * 100).toFixed(1) + '%';
+    }
+
+    if (hint) {
+      hint.classList.toggle('is-hidden', progress > 0.06);
+    }
+
+    // Map progress into slide index (hold each beat evenly)
+    var idx = Math.min(total - 1, Math.floor(progress * total));
+    // Soften last frame: stay on last slide for final portion
+    if (progress >= 0.92) idx = total - 1;
+    setActive(idx);
+  }
+
+  function requestTick() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      onScroll();
+      ticking = false;
+    });
+  }
+
+  if (!reduce) {
+    window.addEventListener('scroll', requestTick, { passive: true });
+    window.addEventListener('resize', requestTick, { passive: true });
+    // Init
+    setActive(0);
+    requestTick();
+  }
+
+  // Fade-in blocks below the pin
+  var fades = document.querySelectorAll('[data-fade]');
+  if ('IntersectionObserver' in window && fades.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    fades.forEach(function (el) { io.observe(el); });
+  } else {
+    fades.forEach(function (el) { el.classList.add('is-in'); });
+  }
+})();
 </script>
-
-<style>
-    .image-slide {
-        will-change: opacity, transform;
-    }
-
-    #image-sequence {
-        background: transparent;
-    }
-</style>
-
-        <!-- Leadership Team Subsection -->
- <div class="text-center lg:text-left">
-    <p class="font-body text- sm:text- uppercase tracking-widest text-slate-400 font-semibold mb-2 sm:mb-3">Unified Digital Suite </p>
-    <h2 class="font-body text- sm:text- lg:text- font-bold text-slate-800 leading-[1.2] tracking-[-0.02em] mb-10 sm:mb-12 px-1">
-        Optimism & Zero compromise on <span class="text-[#1DA9CE]">Enterprise AI</span>
-    </h2>
-
-    <div class="relative bg-slate-50 border rounded-md border-slate-200 overflow-hidden">
-        <!-- Accent bar -->
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#1DA9CE] to-slate-300"></div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-0 items-center">
-            <!-- Image side -->
-            <div class="lg:col-span-2 p-8 sm:p-10">
-                <div class="relative">
-                    <div class="absolute -top-2 -left-2 w-full h-full border-2 border-[#1DA9CE]/20"></div>
-                    <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783922772/Untitled_design_20260624_111701_0000_ptjwqb.png" alt="Founder" class="relative w-full h-auto aspect-[4/5] object-cover bg-white">
-                </div>
-            </div>
-
-            <!-- Copy side -->
-            <div class="lg:col-span-3 p-8 sm:p-10 lg:pl-4">
-    <div class="font-body text-sm sm:text-base text-slate-700 leading-relaxed space-y-4 mb-8">
-        <p class="text-lg sm:text-xl font-semibold text-slate-800">
-            Most "AI companies" started with funding. We started with a problem worth solving.
-        </p>
-        <p>
-            Enterprise teams don't need another chatbot wrapper. They need infrastructure that doesn't break at 3am, models that don't hallucinate revenue data.
-        </p>
-        <p>
-            No noise. No distractions. No chasing trends to stay relevant. We build what we know you actually need — because we've sat on your side of the table.
-        </p>
-        <p class="font-semibold text-slate-800">
-            Our vision is simple: cut the noise, focus on what truly matters. Every great milestone has been built by those with the courage to try.
-        </p>
-    </div>
-</div>
-
-                <div class="border-l-2 border-[#1DA9CE] pl-4">
-                    <h3 class="font-body text- sm:text- font-semibold text-slate-800 mb-0.5">Rehan Bhatti</h3>
-                    <p class="font-body text- sm:text- text-[#1DA9CE]">Founder & CEO. First Line of Support</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    </div>
-</section>
-
-<!-- Section 2: Global Presence -->
-<section id="global-presence" class="relative py-12 sm:py-16 lg:py-20 xl:py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h2 class="font-body text-[26px] sm:text-[30px] lg:text-[36px] xl:text-[40px] font-bold text-slate-800 leading-[1.15] tracking-[-0.02em] mb-5 sm:mb-6 max-w-3xl mx-auto">
-                Serving Clients <span class="text-[#1DA9CE]">Worldwide</span>
-            </h2>
-            
-            <div class="max-w-3xl lg:max-w-4xl mx-auto mb-8 sm:mb-10 lg:mb-12">
-                <img src="https://res.cloudinary.com/dhcayqpqr/image/upload/v1783108340/1783108150785_tvchir.png" 
-                     alt="Global network map showing worldwide client locations" 
-                     class="w-full max-w-2xl mx-auto h-auto">
-            </div>
-            
-            <p class="font-body text-[15px] sm:text-[16px] text-slate-600 leading-[1.7] mb-10 sm:mb-12 -mt-10 lg:mb-14 max-w-2xl mx-auto">
-                From Pakistan to North America, Europe, and beyond — we deliver secure, scalable web applications and autonomous AI agents to enterprises across 30+ countries with 24/7 engineering support.
-            </p>
-            
-            <div class="border-t border-slate-200 pt-10 sm:pt-12 lg:pt-14">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-6 lg:gap-8">
-                    <p class="font-body text-[17px] sm:text-[18px] lg:text-[20px] text-slate-800 font-medium">
-                        Come join our mission
-                    </p>
-                    <a href="/careers" class="inline-flex items-center justify-center w-[60%] sm:w-auto h-11 sm:h-12 px-8 sm:px-10 bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[14px] sm:text-[15px] font-semibold transition-colors duration-200 font-body">
-                        View Open Positions
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-   
-  {% endblock%}
+{% endblock %}

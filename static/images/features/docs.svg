@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- docs stack — transparent bg -->
+  <rect x="70" y="52" width="100" height="128" rx="10" fill="#1CA9DE" fill-opacity="0.15" stroke="#0f172a" stroke-width="3"/>
+  <rect x="58" y="64" width="100" height="128" rx="10" fill="#1CA9DE" fill-opacity="0.28" stroke="#0f172a" stroke-width="3"/>
+  <rect x="46" y="76" width="100" height="128" rx="10" fill="#fff" stroke="#0f172a" stroke-width="3"/>
+  <path d="M68 108 H124 M68 128 H124 M68 148 H108" stroke="#1CA9DE" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="156" cy="88" r="22" fill="#1CA9DE"/>
+  <path d="M148 88 H164 M156 80 V96" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</svg>

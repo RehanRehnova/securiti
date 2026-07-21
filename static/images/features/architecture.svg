@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- layered architecture cubes — transparent bg -->
+  <g stroke="#0f172a" stroke-width="3" stroke-linejoin="round">
+    <path d="M48 150 L120 110 L192 150 L120 190 Z" fill="#1CA9DE" fill-opacity="0.2"/>
+    <path d="M48 120 L120 80 L192 120 L120 160 Z" fill="#1CA9DE" fill-opacity="0.35"/>
+    <path d="M48 90 L120 50 L192 90 L120 130 Z" fill="#1CA9DE" fill-opacity="0.55"/>
+    <path d="M120 50 V130 M48 90 L120 130 L192 90" stroke="#0f172a"/>
+  </g>
+  <circle cx="120" cy="90" r="6" fill="#0f172a"/>
+  <circle cx="72" cy="108" r="4" fill="#1CA9DE"/>
+  <circle cx="168" cy="108" r="4" fill="#1CA9DE"/>
+  <path d="M72 108 L120 90 L168 108" stroke="#1CA9DE" stroke-width="2" stroke-linecap="round"/>
+</svg>

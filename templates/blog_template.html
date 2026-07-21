@@ -29,11 +29,21 @@
     font-family: 'Satoshi', sans-serif;
 }
 
+/* Article body — spacing/layout only (theme & typeface unchanged) */
+#article-content {
+    max-width: 42rem;
+}
+#article-content > *:first-child {
+    margin-top: 0 !important;
+}
 #article-content table {
     width: 100%;
     border-collapse: collapse;
-    margin: 2.5rem 0;
+    margin: 2rem 0 2.5rem;
     font-size: 0.9375rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 #article-content th {
     text-align: left;
@@ -52,9 +62,24 @@
     border-bottom: none;
 }
 #article-content img {
-  margin: 2.5rem auto!important;
-  
-  max-width: 100%;
+    margin: 2rem auto 2.5rem !important;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+#article-content pre {
+    max-width: 100%;
+}
+@media (min-width: 640px) {
+    #article-content {
+        max-width: 44rem;
+    }
+    #article-content table {
+        margin: 2.5rem 0 3rem;
+    }
+    #article-content img {
+        margin: 2.5rem auto 3rem !important;
+    }
 }
 </style>
 
@@ -63,26 +88,26 @@
 
 <main id="article-page-root" class="pt-24 sm:pt-28 lg:pt-40">
     <article>
-        <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-10 pb-20 lg:pb-28">
-            <div class="lg:grid lg:grid-cols-[1fr_260px] lg:gap-20 lg:items-start">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pb-24 lg:pb-32">
+            <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-16 xl:gap-24 lg:items-start">
 
-                <!-- Main column -->
-                <div class="max-w-3xl">
+                <!-- Main column — readable measure -->
+                <div class="max-w-[42rem] xl:max-w-[44rem]">
 
                     <!-- Breadcrumb -->
-                    <a href="/blog" class="text-sm text-slate-500 hover:text-[#1DA9CE] font-medium mb-14 inline-flex items-center gap-1.5 transition-colors">
+                    <a href="/blog" class="text-sm text-slate-500 hover:text-[#1DA9CE] font-medium mb-10 sm:mb-12 lg:mb-14 inline-flex items-center gap-1.5 transition-colors">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         Back to Articles
                     </a>
 
                     <!-- Kicker -->
-                    <p class="text-xs font-semibold uppercase tracking-wider text-[#1DA9CE] mb-5">{{ article.category }}</p>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-[#1DA9CE] mb-4 sm:mb-5">{{ article.category }}</p>
 
                     <!-- Title -->
-                    <h1 class="text-[2rem] sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-8 leading-[1.25] tracking-tight">{{ article.title }}</h1>
+                    <h1 class="text-[1.85rem] sm:text-4xl lg:text-[2.75rem] font-bold text-slate-900 mb-6 sm:mb-8 leading-[1.28] tracking-tight">{{ article.title }}</h1>
 
                     <!-- Meta -->
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-3 mb-10">
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-3 mb-8 sm:mb-10">
                         <img src="{{ article.author_avatar }}" alt="{{ article.author }}" class="w-10 h-10 rounded-full object-cover">
                         <div class="flex flex-col leading-snug">
                             <span class="text-sm font-semibold text-slate-900">{{ article.author }}</span>
@@ -95,10 +120,10 @@
                     </div>
 
                     <!-- Mobile: TOC + share utility bar -->
-                    <div class="flex items-center justify-between gap-6 mb-12 pb-8 border-b border-slate-200 lg:hidden">
+                    <div class="flex items-center justify-between gap-6 mb-10 sm:mb-12 pb-6 sm:pb-8 border-b border-slate-200 lg:hidden">
                         <details class="toc-mobile flex-1">
                             <summary class="text-xs font-semibold uppercase tracking-wider text-slate-500 cursor-pointer select-none hover:text-[#1DA9CE] transition-colors">In this article</summary>
-                            <nav class="toc-list mt-5 space-y-3"></nav>
+                            <nav class="toc-list mt-5 space-y-3.5"></nav>
                         </details>
                         <div class="flex items-center gap-5 shrink-0">
                             <button onclick="toggleBookmark(this)" data-bookmark-btn aria-label="Save article" class="text-slate-500 hover:text-[#1DA9CE] transition-colors">
@@ -111,29 +136,30 @@
                     </div>
 
                     <!-- Featured Image -->
-                    <img src="{{ article.thumbnail }}" alt="{{ article.title }}" class="w-full rounded-xl mb-14 sm:mb-16 border border-slate-200">
+                    <img src="{{ article.thumbnail }}" alt="{{ article.title }}" class="w-full rounded-xl mb-12 sm:mb-14 lg:mb-16 border border-slate-200">
 
-                    <!-- Content -->
-                    <div id="article-content" class="prose prose-slate max-w-none
+                    <!-- Content — spacing only; theme/fonts/colors unchanged -->
+                    <div id="article-content" class="prose prose-slate max-w-none article-body
                                 prose-headings:font-body prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-slate-900 prose-headings:scroll-mt-32
-                                prose-h2:text-xl prose-h2:mt-20 prose-h2:mb-7 prose-h2:leading-snug prose-h2:border-l-2 prose-h2:border-[#1DA9CE] prose-h2:pl-5
-                                prose-h3:text-lg prose-h3:mt-14 prose-h3:mb-6 prose-h3:text-slate-800
-                                prose-p:text-[17px] prose-p:leading-[2] prose-p:text-slate-700 prose-p:mb-8
+                                prose-h2:text-[1.25rem] sm:prose-h2:text-xl prose-h2:mt-12 sm:prose-h2:mt-16 lg:prose-h2:mt-20 prose-h2:mb-5 sm:prose-h2:mb-6 prose-h2:leading-snug prose-h2:border-l-2 prose-h2:border-[#1DA9CE] prose-h2:pl-4 sm:prose-h2:pl-5
+                                prose-h3:text-base sm:prose-h3:text-lg prose-h3:mt-10 sm:prose-h3:mt-12 prose-h3:mb-4 sm:prose-h3:mb-5 prose-h3:text-slate-800
+                                prose-p:text-[16px] sm:prose-p:text-[17px] prose-p:leading-[1.85] sm:prose-p:leading-[1.9] prose-p:text-slate-700 prose-p:mb-6 sm:prose-p:mb-7
                                 prose-a:text-[#1DA9CE] prose-a:no-underline hover:prose-a:underline prose-a:font-medium prose-a:underline-offset-2
                                 prose-strong:text-slate-900 prose-strong:font-semibold
-                                prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8 prose-ul:space-y-4
-                                prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-8 prose-ol:space-y-4
-                                prose-li:text-[17px] prose-li:leading-[2] prose-li:text-slate-700 prose-li:pl-2
-                                prose-blockquote:border-l-4 prose-blockquote:border-[#1DA9CE] prose-blockquote:pl-7 prose-blockquote:italic prose-blockquote:text-slate-600 prose-blockquote:my-14 prose-blockquote:leading-relaxed prose-blockquote:text-lg prose-blockquote:bg-slate-50 prose-blockquote:py-6 prose-blockquote:pr-7 prose-blockquote:rounded-r-lg
+                                prose-ul:list-disc prose-ul:pl-5 sm:prose-ul:pl-6 prose-ul:mb-6 sm:prose-ul:mb-8 prose-ul:space-y-3 sm:prose-ul:space-y-3.5
+                                prose-ol:list-decimal prose-ol:pl-5 sm:prose-ol:pl-6 prose-ol:mb-6 sm:prose-ol:mb-8 prose-ol:space-y-3 sm:prose-ol:space-y-3.5
+                                prose-li:text-[16px] sm:prose-li:text-[17px] prose-li:leading-[1.85] prose-li:text-slate-700 prose-li:pl-1 sm:prose-li:pl-2
+                                prose-blockquote:border-l-4 prose-blockquote:border-[#1DA9CE] prose-blockquote:pl-5 sm:prose-blockquote:pl-7 prose-blockquote:italic prose-blockquote:text-slate-600 prose-blockquote:my-10 sm:prose-blockquote:my-12 prose-blockquote:leading-relaxed prose-blockquote:text-base sm:prose-blockquote:text-lg prose-blockquote:bg-slate-50 prose-blockquote:py-5 sm:prose-blockquote:py-6 prose-blockquote:pr-5 sm:prose-blockquote:pr-7 prose-blockquote:rounded-r-lg
                                 prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:text-slate-800 prose-code:font-medium
-                                prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:p-7 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-12
-                                prose-hr:my-14 prose-hr:border-slate-200">
+                                prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:p-5 sm:prose-pre:p-6 lg:prose-pre:p-7 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-8 sm:prose-pre:my-10
+                                prose-hr:my-10 sm:prose-hr:my-12 prose-hr:border-slate-200
+                                prose-table:my-8 sm:prose-table:my-10">
                         {{ article.content | safe }}
                     </div>
 
                     <!-- Tags -->
                     {% if article.tags %}
-                    <div class="flex flex-wrap gap-2.5 mt-14">
+                    <div class="flex flex-wrap gap-2.5 mt-12 sm:mt-14 lg:mt-16">
                         {% for tag in article.tags %}
                         <a href="/blog?tag={{ tag }}" class="px-3.5 py-2 text-xs font-medium text-slate-600 bg-slate-100 hover:bg-[#1DA9CE] hover:text-white rounded-full transition-colors">#{{ tag }}</a>
                         {% endfor %}
@@ -141,7 +167,7 @@
                     {% endif %}
 
                     <!-- Share -->
-                    <div class="mt-20 pt-10 border-t border-slate-200 flex items-center justify-between flex-wrap gap-5">
+                    <div class="mt-14 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-slate-200 flex items-center justify-between flex-wrap gap-5">
                         <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Share this article</p>
                         <div class="flex items-center gap-6">
                             <a href="https://wa.me/?text={{ article.title | urlencode }}%20{{ request.url | urlencode }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp" class="text-slate-500 hover:text-[#25D366] transition-colors">

@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block meta %}
+  <title>Careers — Rehnova Digitals</title>
+  <meta name="description" content="Careers at Rehnova Digitals. We're not actively hiring right now — join our talent pool for future engineering, AI, and product roles.">
+{% endblock %}
+
+{% block content %}
+<section id="careers-page" class="relative py-16 sm:py-20 lg:py-28 bg-slate-50 overflow-hidden">
+    <div class="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[#1DA9CE]/5 to-transparent pointer-events-none"></div>
+
+    <svg class="absolute top-0 left-0 w-full h-auto text-[#1DA9CE]/[0.03]" viewBox="0 0 1440 320" fill="currentColor" preserveAspectRatio="none">
+        <path d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+
+    <div style="margin-top:80px" class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Hero -->
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[12px] sm:text-[13px] font-semibold font-body tracking-wide mb-5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                Not hiring right now
+            </span>
+            <h1 class="font-body text-[30px] sm:text-[36px] lg:text-[44px] xl:text-[48px] font-bold text-slate-800 leading-[1.15] tracking-[-0.02em] mb-4">
+                Careers at <span class="text-[#1DA9CE]">Rehnova Digitals</span>
+            </h1>
+            <p class="font-body text-[15px] sm:text-[16px] lg:text-[17px] text-slate-600 leading-relaxed max-w-2xl mx-auto">
+                We’re not actively hiring at the moment — but exceptional builders are always welcome.
+                Join our talent pool and we’ll reach out when a role fits.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-16 xl:gap-24 lg:items-start">
+            <!-- Left: culture + open roles -->
+            <div class="mb-12 lg:mb-0 lg:py-2 lg:sticky lg:top-28 space-y-8">
+                <div>
+                    <p class="font-body text-[14px] uppercase tracking-widest text-slate-400 font-semibold mb-3">How we work</p>
+                    <p class="font-body text-[15px] sm:text-[16px] text-slate-600 leading-[1.7] mb-4">
+                        Rehnova Digitals builds AI-native operations platforms, custom web apps, and autonomous agents
+                        for clients worldwide. When we open roles, we look for people who ship clean systems,
+                        own outcomes, and communicate clearly.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3 font-body text-[14px] sm:text-[15px] text-slate-600">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1DA9CE] flex-shrink-0"></span>
+                            Engineering-grade code, production standards, full ownership of work
+                        </li>
+                        <li class="flex gap-3 font-body text-[14px] sm:text-[15px] text-slate-600">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1DA9CE] flex-shrink-0"></span>
+                            Remote-friendly, async-first collaboration
+                        </li>
+                        <li class="flex gap-3 font-body text-[14px] sm:text-[15px] text-slate-600">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1DA9CE] flex-shrink-0"></span>
+                            Direct impact on real client products — not throwaway tickets
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-slate-200 p-6 sm:p-7 shadow-sm">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <h2 class="font-body text-[17px] sm:text-[18px] font-bold text-slate-800">Open roles</h2>
+                        <span class="text-[12px] font-semibold font-body uppercase tracking-wide text-slate-400">0 openings</span>
+                    </div>
+                    <p class="font-body text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">
+                        No open positions at the moment. Submit your details below and we’ll keep you on file for
+                        future engineering, AI, product, and design openings.
+                    </p>
+                    <p class="mt-4 font-body text-[13px] text-slate-500">
+                        Prefer email?
+                        <a href="mailto:careers@rehnova.digital" class="text-[#1DA9CE] font-medium hover:underline">careers@rehnova.digital</a>
+                        or
+                        <a href="mailto:info@rehnova.digital" class="text-[#1DA9CE] font-medium hover:underline">info@rehnova.digital</a>
+                    </p>
+                </div>
+
+                <div class="pt-2 border-t border-slate-200">
+                    <p class="font-body text-[13px] text-slate-500">
+                        Want product updates instead?
+                        <a href="/blog" class="text-[#1DA9CE] font-semibold hover:underline">Read the blog</a>
+                        or use the newsletter form in the footer.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: talent pool form -->
+            <div class="bg-white border border-slate-200 p-6 sm:p-8 lg:p-10 shadow-sm">
+                <h2 class="font-body text-[20px] sm:text-[22px] font-bold text-slate-800 mb-1">Join the talent pool</h2>
+                <p class="font-body text-[14px] text-slate-500 mb-6">
+                    We keep applications on file and reach out when a fit opens.
+                </p>
+
+                <div id="formError" class="hidden mb-4 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-[14px] font-medium font-body"></div>
+                <div id="formSuccess" class="hidden mb-4 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-[14px] font-medium font-body">
+                    Thanks — you’re on our talent list. We’ll be in touch if a matching role opens.
+                </div>
+
+                <form id="careersForm" novalidate class="space-y-5">
+                    <input type="hidden" name="contactReason" value="career">
+
+                    <div class="grid grid-cols-2 gap-3 sm:gap-x-5">
+                        <div>
+                            <input id="firstName" name="firstName" type="text" required
+                                   class="w-full h-12 px-3 sm:px-4 bg-white border border-slate-200 focus:outline-none focus:border-[#1DA9CE] focus:bg-slate-50 text-[15px] font-body placeholder:text-slate-400 transition-colors"
+                                   placeholder="First name *">
+                        </div>
+                        <div>
+                            <input id="lastName" name="lastName" type="text" required
+                                   class="w-full h-12 px-3 sm:px-4 bg-white border border-slate-200 focus:outline-none focus:border-[#1DA9CE] focus:bg-slate-50 text-[15px] font-body placeholder:text-slate-400 transition-colors"
+                                   placeholder="Last name *">
+                        </div>
+                    </div>
+
+                    <div>
+                        <input id="email" name="email" type="email" required
+                               class="w-full h-12 px-4 bg-white border border-slate-200 focus:outline-none focus:border-[#1DA9CE] focus:bg-slate-50 text-[15px] font-body placeholder:text-slate-400 transition-colors"
+                               placeholder="Email address *">
+                    </div>
+
+                    <div>
+                        <label for="position" class="block font-body text-[13px] font-medium text-slate-700 mb-2">
+                            Area of interest *
+                        </label>
+                        <select id="position" name="position" required
+                                class="w-full h-12 px-4 bg-white border border-slate-200 focus:outline-none focus:border-[#1DA9CE] focus:bg-slate-50 text-[15px] font-body text-slate-400 focus:text-slate-700 transition-colors appearance-none cursor-pointer">
+                            <option value="" disabled selected>Select an area</option>
+                            <option value="Backend Engineering">Backend Engineering</option>
+                            <option value="Full-stack Engineering">Full-stack Engineering</option>
+                            <option value="AI / Agents">AI / Agents</option>
+                            <option value="Frontend / Product UI">Frontend / Product UI</option>
+                            <option value="Design">Design</option>
+                            <option value="Operations / Delivery">Operations / Delivery</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <input id="portfolio" name="portfolio" type="url"
+                               class="w-full h-12 px-4 bg-white border border-slate-200 focus:outline-none focus:border-[#1DA9CE] focus:bg-slate-50 text-[15px] font-body placeholder:text-slate-400 transition-colors"
+                               placeholder="Portfolio or LinkedIn URL (optional)">
+                    </div>
+
+                    <div>
+                        <textarea id="message" name="message" rows="5" required
+                                  class="w-full px-4 py-3 bg-white border border-slate-200 focus:outline-none focus:border-[#1DA9CE] focus:bg-slate-50 text-[15px] font-body placeholder:text-slate-400 resize-none transition-colors"
+                                  placeholder="Tell us about yourself, stack, and what you’ve shipped *"></textarea>
+                    </div>
+
+                    <button type="submit"
+                            class="w-full mt-1 h-12 bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[15px] font-semibold transition-colors duration-200 font-body disabled:bg-slate-300 disabled:cursor-not-allowed">
+                        Submit for future openings
+                    </button>
+
+                    <p class="text-[12px] text-slate-500 font-body text-center">
+                        No open roles right now. Applications are stored securely for future hiring.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#1DA9CE]/[0.04] rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('careersForm');
+    const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const positionSelect = document.getElementById('position');
+
+    positionSelect.addEventListener('change', function () {
+        this.classList.remove('text-slate-400');
+        this.classList.add('text-slate-700');
+    });
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        formError.classList.add('hidden');
+        formSuccess.classList.add('hidden');
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        if (!data.firstName || !data.lastName || !data.email || !data.position || !data.message) {
+            return showError('Please fill in all required fields.');
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+            return showError('Please enter a valid email address.');
+        }
+
+        // Fold optional portfolio into message so Contacts sheet schema stays unchanged
+        if (data.portfolio && data.portfolio.trim()) {
+            data.message = (data.message || '').trim() + '\n\nPortfolio/LinkedIn: ' + data.portfolio.trim();
+        }
+        delete data.portfolio;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const payload = await res.json().catch(function () { return {}; });
+            if (!res.ok || !payload.success) {
+                throw new Error(payload.error || 'Failed');
+            }
+
+            form.reset();
+            positionSelect.classList.add('text-slate-400');
+            positionSelect.classList.remove('text-slate-700');
+            formSuccess.classList.remove('hidden');
+            form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (err) {
+            showError('Failed to submit. Email us at info@rehnova.digital');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit for future openings';
+        }
+    });
+
+    function showError(msg) {
+        formError.textContent = msg;
+        formError.classList.remove('hidden');
+    }
+});
+</script>
+{% endblock %}

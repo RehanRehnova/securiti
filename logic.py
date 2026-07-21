@@ -186,3 +186,113 @@ def append_to_sheet(data):
     except Exception as e:
         print(f"Unexpected error in append_to_sheet: {e}")
         return False
+
+
+def _ensure_sheet_exists(service, sheet_title):
+    """Create a worksheet tab if it does not already exist."""
+    try:
+        meta = service.spreadsheets().get(spreadsheetId=SPREADSHEET_ID).execute()
+        titles = [s['properties']['title'] for s in meta.get('sheets', [])]
+        if sheet_title in titles:
+            return True
+        service.spreadsheets().batchUpdate(
+            spreadsheetId=SPREADSHEET_ID,
+            body={
+                'requests': [{
+                    'addSheet': {
+                        'properties': {'title': sheet_title}
+                    }
+                }]
+            }
+        ).execute()
+        print(f"Created sheet tab: {sheet_title}")
+        return True
+    except HttpError as e:
+        print(f"Failed to ensure sheet '{sheet_title}': {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error ensuring sheet '{sheet_title}': {e}")
+        return False
+
+
+def validate_newsletter_data(data):
+    if not data:
+        return False, 'No data received'
+    email = (data.get('email') or '').strip()
+    if not email:
+        return False, 'Email is required'
+    if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', email, re.IGNORECASE):
+        return False, 'Invalid email address'
+    return True, None
+
+
+def append_newsletter_to_sheet(email, source='footer'):
+    """Append a newsletter subscription to the 'newsletters' sheet tab."""
+    try:
+        service = get_sheets_service()
+        sheet_name = 'newsletters'
+        HEADERS = ['Timestamp', 'Email', 'Source']
+        email = (email or '').strip().lower()
+        source = (source or 'footer').strip() or 'footer'
+
+        if not _ensure_sheet_exists(service, sheet_name):
+            return False
+
+        # Optional light dedupe: skip if email already present
+        try:
+            existing = service.spreadsheets().values().get(
+                spreadsheetId=SPREADSHEET_ID,
+                range=f'{sheet_name}!B:B'
+            ).execute()
+            emails = [
+                (row[0] or '').strip().lower()
+                for row in existing.get('values', [])[1:]
+                if row
+            ]
+            if email in emails:
+                print(f"Newsletter: email already subscribed ({email})")
+                return True
+        except HttpError as e:
+            print(f"Newsletter dedupe read skipped: {e}")
+
+        try:
+            result = service.spreadsheets().values().get(
+                spreadsheetId=SPREADSHEET_ID,
+                range=f'{sheet_name}!A1:C1'
+            ).execute()
+            existing_headers = result.get('values', [])
+        except HttpError:
+            existing_headers = []
+
+        if not existing_headers or existing_headers[0] != HEADERS:
+            print(f"Creating headers in '{sheet_name}' sheet...")
+            service.spreadsheets().values().update(
+                spreadsheetId=SPREADSHEET_ID,
+                range=f'{sheet_name}!A1',
+                valueInputOption='RAW',
+                body={'values': [HEADERS]}
+            ).execute()
+
+        row = [
+            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            email,
+            source
+        ]
+        result = service.spreadsheets().values().append(
+            spreadsheetId=SPREADSHEET_ID,
+            range=f'{sheet_name}!A:C',
+            valueInputOption='RAW',
+            insertDataOption='INSERT_ROWS',
+            body={'values': [row]}
+        ).execute()
+
+        updated = result.get('updates', {}).get('updatedRows', 0)
+        print(f"Sheet '{sheet_name}' updated: {updated} row added")
+        return True
+
+    except HttpError as e:
+        print(f"Sheets API error (newsletter): {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error in append_newsletter_to_sheet: {e}")
+        return False

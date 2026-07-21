@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- activity monitor — transparent bg -->
+  <rect x="40" y="56" width="160" height="110" rx="14" fill="#1CA9DE" fill-opacity="0.12" stroke="#0f172a" stroke-width="3"/>
+  <path d="M56 128 L84 128 L98 92 L118 148 L136 108 L152 128 L184 128"
+        stroke="#1CA9DE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="118" cy="148" r="5" fill="#0f172a"/>
+  <path d="M100 184 H140 M110 166 V184 M130 166 V184" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="168" cy="80" r="8" fill="#1CA9DE"/>
+</svg>
