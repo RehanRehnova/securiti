@@ -4,7 +4,7 @@ slug: site-visit-no-show-cost
 date: 2026-07-20
 category: Research & Data
 excerpt: Average no-show rate is 23% across service industries. Without reminders, it's 35%. With SMS auto-reminders, it drops to 8% — a 73% reduction. For a real estate or solar team doing 30 visits/month, that's $10,800/month lost. Here is the data.
-thumbnail: /images/option3_chart1_noshow_rate.png
+thumbnail: https://media.securiti.ai/wp-content/uploads/2025/12/07232450/Thumbnail-What-Is-Data-Curation_.png
 author: Rehan Bhatti
 author_role: Founder and CEO, Rehnova Digitals
 author_avatar: https://res.cloudinary.com/dhcayqpqr/image/upload/v1783611674/IMG_20260708_185742_599_gkzqwf.png
