@@ -1,4 +1,36 @@
+# Secrets & local env (never commit)
 .env
-venv
+.env.*
+!.env.example
 credentials.json
-content
+**/credentials.json
+*-credentials.json
+service-account*.json
+*service_account*.json
+google-credentials.json
+client_secret*.json
+*.pem
+*.p12
+*.key
+secrets/
+.secrets/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local content drafts (repo uses content/posts on remote already — keep tracked content; ignore only if needed)
+# content was previously ignored; remote blog posts live under content/posts — do not blanket-ignore if you ship posts via git
