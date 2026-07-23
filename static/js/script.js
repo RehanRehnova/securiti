@@ -124,22 +124,63 @@ const header = document.getElementById('siteHeader'); let lastScrollY = window.s
 function updateHeader() { const currentY = window.scrollY; if (currentY > 50) { header.classList.add('is-scrolled'); } else { header.classList.remove('is-scrolled'); } if (currentY > lastScrollY && currentY > 100) { header.classList.add('is-hidden'); } else if (currentY < lastScrollY) { header.classList.remove('is-hidden'); } if (currentY < 10) { header.classList.remove('is-hidden'); } lastScrollY = currentY; ticking = false; }
 window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; } }); updateHeader();
 
-// Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, idx) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, idx * 50);
-            observer.unobserve(entry.target);
+// Subtle professional reveal on scroll
+(function initReveals() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Auto-tag major section blocks if not already marked
+    const autoTargets = document.querySelectorAll(
+        'main section > .max-w-7xl, main section > .max-w-6xl, main section > .max-w-5xl, ' +
+        'main section > .max-w-4xl, main section > div.max-w-7xl, ' +
+        '#solutions > div, #why > div, #process-full > div, ' +
+        '.clients-section > div, ' +
+        'section.py-16 > div, section.py-20 > div, section.bg-white > div.max-w-7xl'
+    );
+    autoTargets.forEach((el) => {
+        if (!el.classList.contains('reveal') && !el.closest('.reveal')) {
+            el.classList.add('reveal');
         }
     });
-}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 8) * 60}ms`;
-    observer.observe(el);
-});
+    // Tag section heads / feature cards lightly
+    document.querySelectorAll(
+        'section h2, section .grid > div, section article, ' +
+        '#featureHighlighter .group, #solutions .group'
+    ).forEach((el, i) => {
+        if (el.closest('header') || el.closest('nav') || el.closest('footer')) return;
+        if (el.classList.contains('reveal')) return;
+        // Only direct-ish content blocks, skip nested noise
+        if (el.tagName === 'H2' || el.parentElement?.classList?.contains('grid') || el.classList.contains('group')) {
+            el.classList.add('reveal');
+            const d = (i % 4) + 1;
+            if (d <= 4) el.classList.add('reveal-d' + Math.min(d, 4));
+        }
+    });
+
+    const nodes = document.querySelectorAll('.reveal');
+    if (!nodes.length) return;
+
+    if (reduce) {
+        nodes.forEach((el) => el.classList.add('visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+
+    nodes.forEach((el, i) => {
+        // Soft stagger only within same viewport batch
+        if (!el.style.transitionDelay) {
+            el.style.transitionDelay = ((i % 5) * 35) + 'ms';
+        }
+        observer.observe(el);
+    });
+})();
 
 // Region cards hover for map markers
 document.querySelectorAll('.region-card').forEach(card => {
@@ -169,21 +210,193 @@ document.querySelectorAll('.faq-trigger').forEach(btn => {
 
 
 
-// Testimonials
+// Clients / operators board
+(function initOwnersBoard() {
+    const board = document.querySelector('[data-owners-board]');
+    if (!board) return;
 
+    const owners = [
+        {
+            name: 'Ahmed Al-Rashid',
+            role: 'Owner, Gulf Formation Advisors',
+            company: 'Gulf Formation Advisors',
+            location: 'Dubai · Business setup',
+            badge: 'GF',
+            badgeColor: '#0e7490',
+            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop',
+            quote: '“Passport copies used to live on WhatsApp. Now clients upload to one portal, see live visa status, and we stopped being a human chatbot.”',
+            stat: '−60%',
+            statLabel: 'Support messages',
+            tag: 'Document portal · n8n · WhatsApp API'
+        },
+        {
+            name: 'Omar Khalid',
+            role: 'Managing Partner, Marina Property',
+            company: 'Marina Property Group',
+            location: 'Dubai · Real estate',
+            badge: 'MP',
+            badgeColor: '#1e3a5f',
+            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop',
+            quote: '“Leads used to die in WhatsApp groups. Response time went from two hours to three minutes. Agents stop fighting over the same lead.”',
+            stat: '3 min',
+            statLabel: 'Lead response',
+            tag: 'Custom CRM · webhooks · round-robin'
+        },
+        {
+            name: 'Hassan Raza',
+            role: 'Founder, Studio North',
+            company: 'Studio North',
+            location: 'Lahore · Design agency',
+            badge: 'SN',
+            badgeColor: '#7c3aed',
+            image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop',
+            quote: '“Clients thought we were unprofessional before design even started. Onboarding dropped from three days to eight hours — one portal, not six tools.”',
+            stat: '8 hrs',
+            statLabel: 'Onboarding time',
+            tag: 'Client portal · Stripe · Figma API'
+        },
+        {
+            name: 'Fatima Noor',
+            role: 'Principal, Greenfield Academy',
+            company: 'Greenfield Academy',
+            location: 'Pakistan · Education',
+            badge: 'GA',
+            badgeColor: '#047857',
+            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop',
+            quote: '“I used to run the school from Excel and WhatsApp. ScholarMS gives live attendance, fees, and reports on my phone — staff got their weekends back.”',
+            stat: '15h / wk',
+            statLabel: 'Admin time saved',
+            tag: 'ScholarMS · fees · parent portal'
+        }
+    ];
 
-const testimonials = [{ name: "Sarah Chen", role: "CTO, TechFlow", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=400&auto=format&fit=crop", quote: "Rehnova rebuilt our booking platform in Next.js. Page load went from 4.2s to 1.1s, and conversions increased 22% in the first month. Their code quality is the best we've seen.", metric: "4.2s → 1.1s", label: "Load time", project: "SaaS Platform • 6 weeks" }, { name: "Marcus Johnson", role: "Operations Director, BuildCorp", image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=400&auto=format&fit=crop", quote: "The AI agent handles 70% of our support tickets now. Integration with WhatsApp and CRM was flawless. Weekly demos kept us aligned.", metric: "70%", label: "Tickets automated", project: "AI Support • 4 weeks" }, { name: "Elena Rodriguez", role: "Founder, EduTech", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop", quote: "We needed ScholarMS customized for multi-campus. They delivered on time, trained staff, and handed over full source code. Zero vendor lock-in.", metric: "100%", label: "IP transferred", project: "Education Platform • 8 weeks" }];
-let current = 0; const content = document.getElementById('testimonial-content'); const dots = document.getElementById('testimonial-dots');
-function render() {
-    const t = testimonials[current]; content.style.opacity = '0';
-    setTimeout(() => { content.innerHTML = `            <div class="quote-icon">                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M7.17 6A4.17 0 003 10.17V18h7v-7.17A4.17 4.17 0 005.83 6H7.17zm10 0A4.17 4.17 0 0013 10.17V18h7v-7.17A4.17 4.17 0 0015.83 6h1.34z"/></svg>            </div>            <blockquote class="testimonial-quote">"${t.quote}"</blockquote>            <div class="testimonial-footer">                <div class="author-info">                    <img src="${t.image}" alt="${t.name}" class="author-img">                    <div>                        <div class="author-name">${t.name}</div>                        <div class="author-role">${t.role}</div>                    </div>                </div>                <div class="metric-group">                    <div class="metric-block">                        <div class="metric-value">${t.metric}</div>                        <div class="metric-label">${t.label}</div>                    </div>                    <div class="metric-divider"></div>                    <div class="project-tag">${t.project}</div>                </div>            </div>        `; content.style.opacity = '1'; }, 200);
-    dots.innerHTML = testimonials.map((_, i) => `<button onclick="goTo(${i})" class="dot ${i === current ? 'active' : ''}" aria-label="Go to testimonial ${i + 1}"></button>`).join('');
-}
-function goTo(i) { current = i; render(); }
-function next() { current = (current + 1) % testimonials.length; render(); }
-function prev() { current = (current - 1 + testimonials.length) % testimonials.length; render(); }
-document.getElementById('next-btn').onclick = next; document.getElementById('prev-btn').onclick = prev;
-render(); setInterval(next, 7000);
+    const tabs = Array.from(board.querySelectorAll('.owner-tab'));
+    const panel = board.querySelector('#owner-panel');
+    const progress = board.querySelector('#owner-progress');
+    const els = {
+        badge: board.querySelector('#owner-badge'),
+        company: board.querySelector('#owner-company'),
+        location: board.querySelector('#owner-location'),
+        stat: board.querySelector('#owner-stat'),
+        statLabel: board.querySelector('#owner-stat-label'),
+        quote: board.querySelector('#owner-quote'),
+        avatar: board.querySelector('#owner-avatar'),
+        name: board.querySelector('#owner-name'),
+        role: board.querySelector('#owner-role'),
+        tag: board.querySelector('#owner-tag')
+    };
+
+    let current = 0;
+    let timer = null;
+    let raf = null;
+    let startedAt = 0;
+    const DURATION = 7000;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function paint(index) {
+        const o = owners[index];
+        if (!o || !panel) return;
+
+        const apply = () => {
+            els.badge.textContent = o.badge;
+            els.badge.style.background = o.badgeColor;
+            els.company.textContent = o.company;
+            els.location.textContent = o.location;
+            els.stat.textContent = o.stat;
+            els.statLabel.textContent = o.statLabel;
+            els.quote.textContent = o.quote;
+            els.avatar.src = o.image;
+            els.avatar.alt = o.name;
+            els.name.textContent = o.name;
+            els.role.textContent = o.role;
+            els.tag.textContent = o.tag;
+            panel.setAttribute('aria-labelledby', 'owner-tab-' + index);
+
+            tabs.forEach((tab, i) => {
+                const active = i === index;
+                tab.classList.toggle('is-active', active);
+                tab.setAttribute('aria-selected', active ? 'true' : 'false');
+            });
+        };
+
+        if (reduceMotion) {
+            apply();
+            return;
+        }
+
+        panel.classList.add('is-fading');
+        window.setTimeout(() => {
+            apply();
+            panel.classList.remove('is-fading');
+        }, 180);
+    }
+
+    function stopAuto() {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+        if (raf) {
+            cancelAnimationFrame(raf);
+            raf = null;
+        }
+        if (progress) progress.style.width = '0%';
+    }
+
+    function tickProgress() {
+        if (!progress) return;
+        const elapsed = Date.now() - startedAt;
+        const pct = Math.min(100, (elapsed / DURATION) * 100);
+        progress.style.width = pct + '%';
+        if (pct < 100) {
+            raf = requestAnimationFrame(tickProgress);
+        }
+    }
+
+    function scheduleNext() {
+        stopAuto();
+        if (reduceMotion) return;
+        startedAt = Date.now();
+        raf = requestAnimationFrame(tickProgress);
+        timer = window.setTimeout(() => {
+            current = (current + 1) % owners.length;
+            paint(current);
+            scheduleNext();
+        }, DURATION);
+    }
+
+    function goTo(index) {
+        if (index === current && timer) return;
+        current = index;
+        paint(current);
+        scheduleNext();
+    }
+
+    tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+            const i = Number(tab.getAttribute('data-owner'));
+            if (!Number.isNaN(i)) goTo(i);
+        });
+        tab.addEventListener('keydown', (e) => {
+            if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+            e.preventDefault();
+            const dir = e.key === 'ArrowDown' ? 1 : -1;
+            const next = (current + dir + owners.length) % owners.length;
+            goTo(next);
+            tabs[next].focus();
+        });
+    });
+
+    board.addEventListener('mouseenter', stopAuto);
+    board.addEventListener('mouseleave', scheduleNext);
+    board.addEventListener('focusin', stopAuto);
+    board.addEventListener('focusout', (e) => {
+        if (!board.contains(e.relatedTarget)) scheduleNext();
+    });
+
+    paint(0);
+    scheduleNext();
+})();
 
 
 
