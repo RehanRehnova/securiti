@@ -330,7 +330,7 @@
             </p>
 
             <div class="rh-hero__trust">
-              <p class="rh-hero__trust-label">Trusted Integrations &amp; Technologies</p>
+              <p class="rh-hero__trust-label text-center">Trusted Integrations &amp; Technologies</p>
               <div class="logo-slider rh-hero__logos">
                 <div class="logo-track animate-marquee">
                   <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe" class="rh-hero__logo">
@@ -627,20 +627,18 @@
         text-align: left;
       }
       .rh-hero__tagline {
-        margin: 0 0 1.25rem;
-        max-width: 36rem;
+        margin: 0 auto 1.25rem;
+        max-width: 40rem;
         font-size: clamp(0.875rem, 1.5vw, 1.05rem);
         line-height: 1.5;
         color: rgba(255, 255, 255, 0.78);
         letter-spacing: 0.01em;
         font-family: 'Satoshi', system-ui, sans-serif;
-        text-align: left;
+        text-align: center;
       }
       @media (min-width: 1024px) {
         .rh-hero__tagline {
-          margin: 0 auto 1.35rem;
-          max-width: 40rem;
-          text-align: center;
+          margin-bottom: 1.35rem;
         }
       }
       .rh-hero__tagline-arrow {
@@ -664,13 +662,12 @@
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.45);
         font-family: 'Satoshi', system-ui, sans-serif;
-        text-align: left;
+        text-align: center;
         line-height: 1.3;
       }
       @media (min-width: 1024px) {
         .rh-hero__trust-label {
           margin-bottom: 1rem;
-          text-align: center;
           letter-spacing: 0.16em;
         }
       }
@@ -721,22 +718,23 @@
             rgba(5, 7, 11, 0.75) 35%,
             rgba(5, 7, 11, 0.92) 100%);
         }
-        /* Phones: everything left-aligned, tight shared left edge */
+        /* Phones: main copy left; tagline + trust label stay centered */
         .rh-hero__inner,
         .rh-hero__copy,
         .rh-hero__title,
-        .rh-hero__lead,
-        .rh-hero__tagline,
-        .rh-hero__trust-label,
-        .rh-hero__footer {
+        .rh-hero__lead {
           text-align: left !important;
         }
         .rh-hero__copy {
           max-width: 100%;
         }
+        .rh-hero__tagline,
+        .rh-hero__trust-label {
+          text-align: center !important;
+        }
         .rh-hero__tagline {
-          margin-left: 0;
-          margin-right: 0;
+          margin-left: auto;
+          margin-right: auto;
           max-width: 100%;
         }
         .rh-hero__actions {
