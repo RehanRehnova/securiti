@@ -257,38 +257,86 @@ a {
     transform: translateY(-100%);
 }
 
+/* Full-width header bar (never a floating rounded card) */
+#headerBar.header-banner,
+#headerBar {
+    width: 100%;
+    max-width: none;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    left: 0;
+    right: 0;
+}
+
+/* ---- At top: transparent bar (all pages) ---- */
+#siteHeader.at-top #headerBar,
+#siteHeader.over-hero #headerBar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Home + at top: white nav items */
+#siteHeader.over-hero .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+#siteHeader.over-hero .nav-link:hover {
+    color: #fff !important;
+}
+#siteHeader.over-hero #menuBtn,
+#siteHeader.over-hero #menuIcon {
+    color: #fff !important;
+    background: transparent;
+}
+
+/* Other pages + at top: slate-600 links, natural logo (no invert) */
+#siteHeader.at-top:not(.over-hero) .nav-link {
+    color: rgb(71 85 105) !important; /* slate-600 */
+}
+#siteHeader.at-top:not(.over-hero) .nav-link:hover {
+    color: #0f172a !important;
+}
+#siteHeader.at-top:not(.over-hero) #menuIcon {
+    color: rgb(71 85 105) !important;
+}
+#siteHeader.at-top:not(.over-hero) #logoImg {
+    filter: none !important;
+}
+
+/* ---- Scrolled: solid full-width banner + slate links ---- */
 #siteHeader.is-scrolled #headerBar {
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom-color: rgb(226 232 240 / 0.7);
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgb(226 232 240 / 0.85);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+}
+
+#siteHeader.is-scrolled .nav-link {
+    color: rgb(71 85 105) !important;
+}
+#siteHeader.is-scrolled .nav-link:hover {
+    color: #0f172a !important;
+}
+#siteHeader.is-scrolled #menuBtn {
+    border-color: rgb(226 232 240);
+    background-color: transparent;
+    color: #475569;
+}
+#siteHeader.is-scrolled #menuIcon {
+    color: rgb(71 85 105) !important;
+}
+#siteHeader.is-scrolled #logoImg {
+    filter: none !important;
 }
 
 #siteHeader.is-scrolled #logoText {
     color: #0f172a;
 }
-
 #siteHeader.is-scrolled #logoSub {
     color: rgb(100 116 139);
-}
-
-#siteHeader.is-scrolled .nav-link {
-    color: rgb(71 85 105);
-}
-
-#siteHeader.is-scrolled .nav-link:hover {
-    color: #0f172a;
-}
-
-#siteHeader.is-scrolled #menuBtn {
-    border-color: rgb(226 232 240);
-    background-color: rgba(255, 255, 255, 0.7);
-    color: #475569;
-}
-
-#siteHeader.is-scrolled #menuBtn:hover {
-    background-color: white;
 }
 
 .map-marker span.relative {

@@ -119,9 +119,21 @@ drawer?.addEventListener('touchend', (e) => {
     if (touchEndX - touchStartX > 50) closeDrawer();
 }, { passive: true });
 
-// Header scroll behavior
+// Header hide-on-scroll only (is-scrolled / colors handled in header banner IIFE below)
 const header = document.getElementById('siteHeader'); let lastScrollY = window.scrollY; let ticking = false;
-function updateHeader() { const currentY = window.scrollY; if (currentY > 50) { header.classList.add('is-scrolled'); } else { header.classList.remove('is-scrolled'); } if (currentY > lastScrollY && currentY > 100) { header.classList.add('is-hidden'); } else if (currentY < lastScrollY) { header.classList.remove('is-hidden'); } if (currentY < 10) { header.classList.remove('is-hidden'); } lastScrollY = currentY; ticking = false; }
+function updateHeader() {
+    if (!header) return;
+    const currentY = window.scrollY;
+    // do NOT toggle is-scrolled here — conflicts with home/other page nav colors
+    if (currentY > lastScrollY && currentY > 100) {
+        header.classList.add('is-hidden');
+    } else if (currentY < lastScrollY) {
+        header.classList.remove('is-hidden');
+    }
+    if (currentY < 10) header.classList.remove('is-hidden');
+    lastScrollY = currentY;
+    ticking = false;
+}
 window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateHeader); ticking = true; } }); updateHeader();
 
 // Subtle professional reveal on scroll
@@ -551,25 +563,82 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(document.getElementById('featureHighlighter'));
 });
 
-// Hamburger fns
+// Header behavior:
+// - At top (all pages): transparent bar
+// - Index (hero video) at top: white links + white logo filter
+// - Other pages at top: slate-600 links + natural logo color
+// - Scrolled (all pages): full-width solid banner + slate links + natural logo
 (() => {
     const header = document.getElementById('siteHeader');
     const bar = document.getElementById('headerBar');
-    const logo = document.getElementById('logo');
+    const logoImg = document.getElementById('logoImg');
     const cta = document.getElementById('headerCta');
     const headerContact = document.getElementById('headerContact');
-    const navLinks = document.querySelectorAll('desktopNav.nav-link');
+    const navLinks = document.querySelectorAll('#desktopNav .nav-link');
     const menuIcon = document.getElementById('menuIcon');
+    if (!header || !bar) return;
+
+    // Homepage = dark video hero present
+    const isHome = !!document.getElementById('heroBg');
+    header.classList.toggle('has-dark-hero', isHome);
+    header.classList.toggle('is-home', isHome);
+
+    const BAR_BASE =
+        'header-banner w-full border-b transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)]';
+    const NAV_BASE =
+        'nav-link transition-colors text-[15px] font-medium py-6 font-body';
+    const NAV_BTN_BASE =
+        'nav-link transition-colors text-[15px] font-medium flex items-center gap-1 py-6';
+    const CTA_BASE =
+        'inline-flex h-9 px-4 lg:px-5 items-center justify-center text-[14px] lg:text-[15px] font-semibold rounded-lg transition-colors';
+    const CONTACT_BASE =
+        'inline-flex h-9 px-4 lg:px-5 items-center justify-center bg-transparent border text-[14px] lg:text-[15px] font-medium rounded-lg transition-colors';
 
     let lastY = 0;
     let hidden = false;
 
+    /** whiteLinks: only home + at top */
+    const setNavColors = (whiteLinks) => {
+        navLinks.forEach((a) => {
+            const isBtn = a.tagName === 'BUTTON';
+            const base = isBtn ? NAV_BTN_BASE : NAV_BASE;
+            if (whiteLinks) {
+                a.className = base + ' text-white hover:text-white';
+            } else {
+                a.className = base + ' text-slate-600 hover:text-slate-900';
+            }
+        });
+        if (headerContact) {
+            headerContact.className =
+                CONTACT_BASE +
+                (whiteLinks
+                    ? ' border-white/40 hover:border-white text-white'
+                    : ' border-slate-300 hover:border-slate-400 text-slate-600');
+        }
+        if (cta) {
+            cta.className =
+                CTA_BASE +
+                (whiteLinks
+                    ? ' bg-white text-slate-900 hover:bg-white/90'
+                    : ' bg-[#1DA9CE] hover:bg-[#1888A8] text-white');
+        }
+        if (menuIcon) {
+            menuIcon.classList.toggle('text-white', whiteLinks);
+            menuIcon.classList.toggle('text-slate-600', !whiteLinks);
+        }
+        // Logo: invert only on home at top (white on dark video). Else keep brand color.
+        if (logoImg) {
+            logoImg.style.filter = whiteLinks ? 'brightness(0) invert(1)' : 'none';
+        }
+    };
+
     const update = () => {
         const y = window.scrollY;
         const down = y > lastY && y > 80;
-        const top = y < 20;
+        const atTop = y < 40;
+        // ONLY homepage at top gets white links
+        const whiteLinks = isHome && atTop;
 
-        // Hide/show on scroll
         if (down && !hidden) {
             header.style.transform = 'translateY(-100%)';
             hidden = true;
@@ -577,62 +646,60 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.transform = 'translateY(0)';
             hidden = false;
         }
-
-        if (top) {
-            logoImg.style.filter = 'brightness(0) invert(1)';
-            bar.className = 'border-b border-transparent bg-transparent transition-all duration-500 ';
-            logo.className = 'text- font-[550] tracking-tight text-white transition-colors duration-300';
-            cta.className = 'ml-2 inline-flex h-9 px-4 rounded-lg items-center bg-white text-black text-[13px] font-medium hover:bg-[#1888A8] transition-colors duration-200';
-            headerContact.className = 'inline-flex h-9 px-4 lg:px-5 items-center justify-center bg-transparent border border-slate-300 hover:border-slate-600 text-white  text-[14px] lg:text-[15px] font-medium rounded-lg transition-colors';
-
-            navLinks.forEach(a => {
-                a.className = 'text-[14px] text-white/70 hover:text-white transition-colors duration-200';
-            });
-
-            menuIcon.classList.add('text-white');
-            menuIcon.classList.remove('text-slate-600');
-
-        } else {
-            logoImg.style.filter = 'none';
-           bar.className = 'm-2 rounded-md border border-slate-200 bg-white/10 sm:h-[60px] lg:h-[65px] backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-500';
-            logo.className = 'text- font-[550] tracking-tight text-slate-900 transition-colors duration-300';
-
-            cta.className = 'ml-2 inline-flex h-9 px-4 items-center rounded-lg bg-[#1DA9CE] text-white text-[13px] font-medium hover:bg-[#1888A8] transition-colors duration-200';
-
-            navLinks.forEach(a => {
-                a.className = 'text-[14px] text-slate-600 hover:text-[#1DA9CE] transition-colors duration-200';
-            });
-
-            headerContact.className = 'inline-flex h-9 px-4 lg:px-5 items-center justify-center bg-transparent border border-slate-300 hover:border-slate-600 text-slate-600  text-[14px] lg:text-[15px] font-medium rounded-lg transition-colors';
-
-            menuIcon.classList.remove('text-white');
-            menuIcon.classList.add('text-slate-600');
+        if (y < 10) {
+            header.style.transform = 'translateY(0)';
+            hidden = false;
         }
+
+        header.classList.toggle('at-top', atTop);
+        header.classList.toggle('over-hero', whiteLinks);
+        header.classList.toggle('is-scrolled', !atTop);
+
+        if (atTop) {
+            // Transparent bar on ALL pages when at top
+            bar.className = BAR_BASE + ' border-transparent bg-transparent';
+        } else {
+            // Full-width solid banner after scroll
+            bar.className =
+                BAR_BASE +
+                ' border-slate-200/80 bg-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(15,23,42,0.04)]';
+        }
+
+        setNavColors(whiteLinks);
         lastY = y;
     };
 
     let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => { update(); ticking = false; });
-            ticking = true;
-        }
-    }, { passive: true });
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    update();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        },
+        { passive: true }
+    );
+    update();
 
-    // Hamburger
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     let open = false;
 
-    menuBtn.onclick = () => {
-        open = !open;
-        mobileMenu.style.maxHeight = open ? mobileMenu.scrollHeight + 'px' : '0';
-        menuIcon.innerHTML = open
-            ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M6 18L18 6M6 6l12 12"/>'
-            : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 7h16M4 12h16M4 17h16"/>';
-    };
-
-    update();
+    if (menuBtn && mobileMenu) {
+        menuBtn.onclick = () => {
+            open = !open;
+            mobileMenu.style.maxHeight = open ? mobileMenu.scrollHeight + 'px' : '0';
+            if (menuIcon) {
+                menuIcon.innerHTML = open
+                    ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M6 18L18 6M6 6l12 12"/>'
+                    : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 7h16M4 12h16M4 17h16"/>';
+            }
+        };
+    }
 })();
 
 //Process section fading 

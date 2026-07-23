@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rehnova Digitals — Engineering-grade Web Apps & AI Agents</title>
+  <title>Rehnova Digitals â€” Engineering-grade Web Apps & AI Agents</title>
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
   <meta name="description"
     content="Boutique digital solutions agency building custom web applications, AI chatbots, autonomous agents, and ScholarMS. Security-first, production-grade code, full IP ownership, transparent delivery.">
@@ -45,7 +45,7 @@
   </style>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=7">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=9">
 </head>
 
 <body class="bg-[#F8FAFC] text-slate-800 antialiased">
@@ -266,160 +266,394 @@
     </div>
   </div>
   <main>
-    <!-- Hero -->
+    <!-- Hero — renovated layout; same content + video -->
+    <section class="rh-hero" aria-label="Hero">
+      <div class="rh-hero__shell">
+        <!-- Full-bleed video layer -->
+        <div class="rh-hero__media" aria-hidden="true">
+          <video
+            id="heroBg"
+            class="rh-hero__video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster=""
+          >
+            <source
+              src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1783280459/video0_blackbg_final_fo7igs.mp4"
+              type="video/mp4">
+          </video>
+          <div class="rh-hero__scrim rh-hero__scrim--left"></div>
+          <div class="rh-hero__scrim rh-hero__scrim--bottom"></div>
+          <div class="rh-hero__scrim rh-hero__scrim--vignette"></div>
+          <div class="rh-hero__glow"></div>
+        </div>
 
-    <section class="relative isolate min-h-screen bg-black overflow-hidden m-1.5 rounded-[10px]">
-      <div
-        class="relative z-10 w-full max-w-[1200px] mx-auto px-0 sm:px-0 lg:px-0 py-12 sm:py-16 lg:py-20 min-h-screen flex flex-col justify-between">
+        <div class="rh-hero__inner">
+          <!-- Copy + CTAs -->
+          <div class="rh-hero__copy">
+            <p class="rh-hero__kicker">
+              <span class="rh-hero__kicker-dot" aria-hidden="true"></span>
+              Engineering-grade software &amp; AI
+            </p>
 
-        <!-- TOP AREA -->
-        <div class="relative flex flex-col lg:flex-row lg:items-center lg:gap-12 pt-8 sm:pt-12">
-
-          <!-- Content -->
-          <div class="w-full lg:w-[52%] mx-4 sm:mx-4 z-50 lg:mx-0 text-left lg:pr-8">
-            <h1
-              class="lg:mt-10 mt-3  !text-[50px] lg:!text-[76px] font-[800] text-left text-white leading-[0.95] tracking-[-0.02em]">
-              Your AI-Native <br> Operations Platform
+            <h1 class="rh-hero__title">
+              Your AI-Native<br>
+              <span class="rh-hero__title-accent">Operations Platform</span>
             </h1>
 
-            <p class="mt-6 pr-10 lg:pr-5 text-[15px] lg:text-[20px] leading-[1.6] text-white/70 max-w-[520px]">
+            <p class="rh-hero__lead">
               Intelligent web apps, autonomous agents, and unified systems that turn complexity into seamless
               performance.
             </p>
 
-            <div class="flex flex-wrap mt-8 items-center gap-3 md:gap-4">
-              <!-- Book Demo - stays exactly the same -->
-              <a href="/get-started"
-                class="w-auto inline-flex items-center justify-center bg-[#1da9ce] hover:bg-[#1888A8] text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+            <div class="rh-hero__actions">
+              <a href="/get-started" class="rh-hero__btn rh-hero__btn--primary">
                 Book Demo
+                <svg class="rh-hero__btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </a>
-
-              <!-- Contact - transparent bg, same sizing behavior -->
-              <a href="/blog"
-                class="w-auto inline-flex items-center justify-center bg-transparent border border-gray-300 hover:border-gray-500 text-white hover:text-white font-medium px-6 py-3 rounded-lg transition-colors">
+              <a href="/blog" class="rh-hero__btn rh-hero__btn--ghost">
                 Case Studies
               </a>
             </div>
           </div>
 
-          <!-- Video with Right-Side Cutout -->
-          <div
-            class="w-full md:w-[50%] lg:w-[68%] md:mt-8 mt-8 md:absolute md:right-0  md:top-1/2 md:-translate-y-1/2 lg:mt-8 lg:absolute lg:right-0  lg:top-1/2 lg:-translate-y-1/2">
-            <div
-              class="w-full scale-125 origin-left lg:ml-[100px]  lg:scale-100 lg:w-[calc(100%+32px)] -z-10 ml-auto rounded-l-3xl lg:rounded-l-3xl lg:rounded-r-none overflow-hidden shadow-2xl relative">
-              <video autoplay muted loop playsinline class="w-full -z-10 h-auto object-cover">
-                <source
-                  src="https://res.cloudinary.com/dhcayqpqr/video/upload/v1783280459/video0_blackbg_final_fo7igs.mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-        </div>
-
-        <!-- BOTTOM CONTENT -->
-        <div class="text-left lg:text-center mx-3 z-10 lg:mx-10 pb-4 sm:pb-8 mt-[80px] lg:mt-[100px]">
-          <div class="mb-6">
-            <p
-              class="text-[13px] lg:text-[18px] leading-tight text-white/80 max-w-md text-center lg:mx-auto tracking-[0.03em]">
-              → Unified systems. Autonomous agents. One digital suite to run it all.
-            </p>
-          </div>
-
-          <div class="pt-6 border-t border-white/10">
-            <p class="text-white/60 text-sm uppercase tracking-widest mb-6 text-center">
-              Trusted Integrations & Technologies
+          <!-- Bottom strip: tagline + tech marquee (same items) -->
+          <div class="rh-hero__footer">
+            <p class="rh-hero__tagline">
+              <span class="rh-hero__tagline-arrow" aria-hidden="true">→</span>
+              Unified systems. Autonomous agents. One digital suite to run it all.
             </p>
 
-            <!-- Logo Slider -->
-            <div class="logo-slider relative overflow-hidden py-4">
-              <div class="logo-track flex items-center gap-12 sm:gap-16 animate-marquee whitespace-nowrap">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/salesforce.svg"
-                  alt="Salesforce" class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/slack.svg" alt="Slack"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/hubspot.svg" alt="HubSpot"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/django.svg" alt="Django"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/fastapi.svg" alt="FastAPI"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/postgresql.svg"
-                  alt="PostgreSQL" class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/redis.svg" alt="Redis"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/openai.svg" alt="OpenAI"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/amazonwebservices.svg"
-                  alt="AWS" class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/googlecloud.svg"
-                  alt="Google Cloud" class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/microsoftazure.svg"
-                  alt="Azure" class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/vercel.svg" alt="Vercel"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nextdotjs.svg"
-                  alt="Next.js" class="h-6 sm:h-7 w-auto opacity-60">
-                <!-- Duplicates for Marquee Effect -->
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify"
-                  class="h-6 sm:h-7 w-auto opacity-60">
-                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python"
-                  class="h-6 sm:h-7 w-auto opacity-60">
+            <div class="rh-hero__trust">
+              <p class="rh-hero__trust-label">Trusted Integrations &amp; Technologies</p>
+              <div class="logo-slider rh-hero__logos">
+                <div class="logo-track animate-marquee">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="Stripe" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="Shopify" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/salesforce.svg" alt="Salesforce" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/slack.svg" alt="Slack" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/hubspot.svg" alt="HubSpot" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="Python" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/django.svg" alt="Django" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/fastapi.svg" alt="FastAPI" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/postgresql.svg" alt="PostgreSQL" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/redis.svg" alt="Redis" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/openai.svg" alt="OpenAI" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/amazonwebservices.svg" alt="AWS" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/googlecloud.svg" alt="Google Cloud" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/microsoftazure.svg" alt="Azure" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/vercel.svg" alt="Vercel" class="rh-hero__logo">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nextdotjs.svg" alt="Next.js" class="rh-hero__logo">
+                  <!-- duplicates for seamless loop -->
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/stripe.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/shopify.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/salesforce.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/slack.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/hubspot.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/python.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/django.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/fastapi.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/postgresql.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/redis.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/openai.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/amazonwebservices.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/googlecloud.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/microsoftazure.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/vercel.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                  <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/nextdotjs.svg" alt="" class="rh-hero__logo" aria-hidden="true">
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
     <style>
-      /* White filter for logos */
-      .logo-track img {
+      /* ── Renovated hero ── */
+      .rh-hero {
+        position: relative;
+        isolation: isolate;
+        margin: 6px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #05070b;
+        min-height: min(100vh, 920px);
+        min-height: 100svh;
+      }
+      .rh-hero__shell {
+        position: relative;
+        min-height: inherit;
+        display: flex;
+        flex-direction: column;
+      }
+      .rh-hero__media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .rh-hero__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 68% center;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+        transform: scale(1.04);
+      }
+      .rh-hero__video.ready,
+      #heroBg.ready {
+        opacity: 0.92;
+      }
+      .rh-hero__scrim--left {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(105deg,
+            rgba(5, 7, 11, 0.97) 0%,
+            rgba(5, 7, 11, 0.88) 28%,
+            rgba(5, 7, 11, 0.45) 52%,
+            rgba(5, 7, 11, 0.15) 72%,
+            transparent 100%);
+        pointer-events: none;
+      }
+      .rh-hero__scrim--bottom {
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 48%;
+        background: linear-gradient(to top, rgba(5, 7, 11, 0.95) 0%, rgba(5, 7, 11, 0.55) 45%, transparent 100%);
+        pointer-events: none;
+      }
+      .rh-hero__scrim--vignette {
+        position: absolute;
+        inset: 0;
+        box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.55);
+        pointer-events: none;
+      }
+      .rh-hero__glow {
+        position: absolute;
+        width: 55%;
+        height: 70%;
+        top: 10%;
+        left: -8%;
+        background: radial-gradient(ellipse at center, rgba(29, 169, 206, 0.16), transparent 68%);
+        pointer-events: none;
+        filter: blur(8px);
+      }
+      .rh-hero__inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6.5rem 1.25rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: inherit;
+        box-sizing: border-box;
+      }
+      @media (min-width: 640px) {
+        .rh-hero__inner { padding: 7rem 1.75rem 2rem; }
+      }
+      @media (min-width: 1024px) {
+        .rh-hero__inner { padding: 8rem 2rem 2.25rem; }
+        .rh-hero__video { object-position: 75% center; }
+      }
+      .rh-hero__copy {
+        max-width: 620px;
+        padding-top: 0.5rem;
+      }
+      .rh-hero__kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin: 0 0 1.15rem;
+        padding: 0.4rem 0.85rem 0.4rem 0.55rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-family: 'Satoshi', system-ui, sans-serif;
+      }
+      .rh-hero__kicker-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #1da9ce;
+        box-shadow: 0 0 0 4px rgba(29, 169, 206, 0.2), 0 0 12px rgba(29, 169, 206, 0.55);
+        animation: rh-pulse 2.4s ease-in-out infinite;
+      }
+      @keyframes rh-pulse {
+        0%, 100% { box-shadow: 0 0 0 3px rgba(29, 169, 206, 0.18), 0 0 10px rgba(29, 169, 206, 0.4); }
+        50% { box-shadow: 0 0 0 6px rgba(29, 169, 206, 0.08), 0 0 18px rgba(29, 169, 206, 0.65); }
+      }
+      .rh-hero__title {
+        margin: 0;
+        font-family: 'Satoshi', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.65rem, 6.5vw, 4.65rem);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        color: #fff;
+        text-wrap: balance;
+      }
+      .rh-hero__title-accent {
+        background: linear-gradient(120deg, #ffffff 0%, #e8f7fb 35%, #1da9ce 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+      .rh-hero__lead {
+        margin: 1.35rem 0 0;
+        max-width: 32rem;
+        font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.68);
+        font-family: 'Satoshi', system-ui, sans-serif;
+      }
+      .rh-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.85rem;
+      }
+      .rh-hero__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        min-height: 48px;
+        padding: 0.75rem 1.35rem;
+        border-radius: 10px;
+        font-family: 'Satoshi', system-ui, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .rh-hero__btn--primary {
+        background: #1da9ce;
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(29, 169, 206, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      }
+      .rh-hero__btn--primary:hover {
+        background: #1888a8;
+        transform: translateY(-1px);
+        box-shadow: 0 14px 36px rgba(29, 169, 206, 0.35);
+      }
+      .rh-hero__btn--ghost {
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .rh-hero__btn--ghost:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .rh-hero__btn-icon {
+        transition: transform 0.2s ease;
+      }
+      .rh-hero__btn--primary:hover .rh-hero__btn-icon {
+        transform: translateX(3px);
+      }
+      .rh-hero__footer {
+        margin-top: auto;
+        padding-top: 3.5rem;
+      }
+      .rh-hero__tagline {
+        margin: 0 0 1.5rem;
+        text-align: center;
+        font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+        line-height: 1.45;
+        color: rgba(255, 255, 255, 0.78);
+        letter-spacing: 0.02em;
+        font-family: 'Satoshi', system-ui, sans-serif;
+      }
+      .rh-hero__tagline-arrow {
+        color: #1da9ce;
+        margin-right: 0.35rem;
+        font-weight: 600;
+      }
+      .rh-hero__trust {
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .rh-hero__trust-label {
+        margin: 0 0 1rem;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        font-family: 'Satoshi', system-ui, sans-serif;
+      }
+      .rh-hero__logos.logo-slider {
+        position: relative;
+        overflow: hidden;
+        padding: 0.5rem 0 0.25rem;
+        mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+      }
+      .rh-hero .logo-track {
+        display: flex;
+        align-items: center;
+        gap: 2.75rem;
+        width: max-content;
+        animation: rh-marquee 42s linear infinite;
+      }
+      @media (min-width: 640px) {
+        .rh-hero .logo-track { gap: 3.5rem; }
+      }
+      .rh-hero__logo {
+        height: 1.45rem;
+        width: auto;
+        opacity: 0.55;
         filter: brightness(0) invert(1);
         transition: opacity 0.2s ease;
+        flex-shrink: 0;
       }
-
-      /* Infinite scroll animation */
-      .logo-slider {
-        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      @media (min-width: 640px) {
+        .rh-hero__logo { height: 1.65rem; }
       }
-
-      .logo-track {
-        animation: scroll 70s linear infinite;
-        width: max-content;
+      .rh-hero__logo:hover { opacity: 0.9; }
+      @keyframes rh-marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
       }
-
-      @keyframes scroll {
-        from {
-          transform: translateX(0);
+      @media (prefers-reduced-motion: reduce) {
+        .rh-hero .logo-track { animation: none; }
+        .rh-hero__kicker-dot { animation: none; }
+        .rh-hero__video { transform: none; }
+      }
+      @media (max-width: 640px) {
+        .rh-hero { margin: 4px; border-radius: 10px; min-height: 100svh; }
+        .rh-hero__video { object-position: 80% center; }
+        .rh-hero__scrim--left {
+          background: linear-gradient(180deg,
+            rgba(5, 7, 11, 0.55) 0%,
+            rgba(5, 7, 11, 0.75) 35%,
+            rgba(5, 7, 11, 0.92) 100%);
         }
-
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
-      @keyframes marquee {
-        from {
-          transform: translateX(0);
-        }
-
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
-      .animate-marquee {
-        animation: marquee 30s linear infinite;
       }
     </style>
     <!-- Stats Bar -->
@@ -499,7 +733,7 @@
     </section>
 
             <style>
-      /* Feature illustrations — clean SVGs, no photo backgrounds */
+      /* Feature illustrations â€” clean SVGs, no photo backgrounds */
       .feature-visual {
         isolation: isolate;
       }
@@ -749,7 +983,7 @@
                 <h3 class="font-body text-[22px] font-semibold text-slate-600">RAG Pipelines</h3>
                 <div class="service-details">
                   <p class="font-body text-[14px] leading-[1.6] text-slate-600 mb-3"> Retrieve accurate information from
-                    your documents and data with vector search + LLMs — no hallucinations, fully enterprise secure</p>
+                    your documents and data with vector search + LLMs â€” no hallucinations, fully enterprise secure</p>
                   <div class="flex flex-wrap gap-1.5"> <span
                       class="tech-tag px-2.5 py-1 rounded-md bg-slate-100 text-[11px] font-medium text-slate-700">Pinecone</span>
                     <span
@@ -907,7 +1141,7 @@
                 <h3 class="font-body text-[22px] font-semibold text-slate-600">Custom ERP Systems</h3>
                 <div class="service-details">
                   <p class="font-body text-[14px] leading-[1.6] text-slate-600 mb-3"> Unified inventory, finance,
-                    operations, and workflow management built specifically for your business processes — not rigid
+                    operations, and workflow management built specifically for your business processes â€” not rigid
                     templates.</p>
                   <div class="flex flex-wrap gap-1.5"><span
                       class="tech-tag px-2.5 py-1 rounded-md bg-slate-100 text-[11px] font-medium text-slate-700">Python</span>
@@ -938,7 +1172,7 @@
                 <h3 class="font-body text-[22px] font-semibold text-slate-600">CRM Platforms</h3>
                 <div class="service-details">
                   <p class="font-body text-[14px] leading-[1.6] text-slate-600 mb-3"> Tailored sales pipelines, customer
-                    management, and automation built specifically for your sales process — without per-seat pricing or
+                    management, and automation built specifically for your sales process â€” without per-seat pricing or
                     rigid templates.</p>
                   <div class="flex flex-wrap gap-1.5"> <span
                       class="tech-tag px-2.5 py-1 rounded-md bg-slate-100 text-[11px] font-medium text-slate-700">Python</span>
@@ -1092,14 +1326,14 @@
               <div class="max-w-3xl">
                 <div id="pf-num"
                   class="text-[12px] md:text-xs tracking-[0.25em] text-white/70 mb-3 font-medium drop-shadow-md transition-all">
-                  01 — DISCOVERY</div>
+                  01 â€” DISCOVERY</div>
                 <!-- BIGGER ON PHONES -->
                 <h3 id="pf-title"
                   class="text-[36px] xs:text-[38px] leading-[1.1] font-semibold md:text-5xl lg:text-[58px] xl:text-[66px] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] transition-all">
                   Map goals, users, requirements</h3>
                 <p id="pf-desc"
                   class="mt-4 text-[18px] leading-[1.5] md:text-xl lg:text-[22px] text-white font-medium drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)] transition-all">
-                  2–3 weeks of workshops. You get a clear scope, architecture, and timeline before we design.</p>
+                  2â€“3 weeks of workshops. You get a clear scope, architecture, and timeline before we design.</p>
               </div>
             </div>
           </div>
@@ -1124,26 +1358,26 @@
               class="text-[32px] sm:text-[40px] lg:text-[44px] font-[600] tracking-tight text-slate-700 leading-[1.1]">
               <span style="color:#1CA9DE">Enterprise Standards</span>, Delivered Quietly </h2>
             <p class="mt-4 text-[17px] leading-relaxed text-slate-600 font-medium"> No drama. Just the six things
-              serious buyers vet for — built in by default. </p>
+              serious buyers vet for â€” built in by default. </p>
             <!-- Feature list -->
             <ul class="mt-8 space-y-4">
               <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600"> <span
-                  class="text-slate-400 mt-1">—</span> <span><strong class="text-slate-900 font-medium">Production-Grade
+                  class="text-slate-400 mt-1">â€”</span> <span><strong class="text-slate-900 font-medium">Production-Grade
                     Code:</strong> PRs, reviews, tests, and docs. Clean architecture from day one.</span> </li>
               <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600"> <span
-                  class="text-slate-400 mt-1">—</span> <span><strong class="text-slate-900 font-medium">Security
+                  class="text-slate-400 mt-1">â€”</span> <span><strong class="text-slate-900 font-medium">Security
                     First:</strong> OWASP practices, encryption, least-privilege access.</span> </li>
               <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600"> <span
-                  class="text-slate-400 mt-1">—</span> <span><strong class="text-slate-900 font-medium">You Own
+                  class="text-slate-400 mt-1">â€”</span> <span><strong class="text-slate-900 font-medium">You Own
                     Everything:</strong> NDA first. Full IP and repo transfer on final payment.</span> </li>
               <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600"> <span
-                  class="text-slate-400 mt-1">—</span> <span><strong class="text-slate-900 font-medium">Transparent
+                  class="text-slate-400 mt-1">â€”</span> <span><strong class="text-slate-900 font-medium">Transparent
                     Delivery:</strong> Weekly demos, shared board, direct Slack access.</span> </li>
               <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600"> <span
-                  class="text-slate-400 mt-1">—</span> <span><strong class="text-slate-900 font-medium">Performance by
+                  class="text-slate-400 mt-1">â€”</span> <span><strong class="text-slate-900 font-medium">Performance by
                     Design:</strong> Core Web Vitals, &lt;2s loads, edge-ready.</span> </li>
               <li class="flex gap-3 text-[15px] leading-[1.6] text-slate-600"> <span
-                  class="text-slate-400 mt-1">—</span> <span><strong class="text-slate-900 font-medium">Post-Launch
+                  class="text-slate-400 mt-1">â€”</span> <span><strong class="text-slate-900 font-medium">Post-Launch
                     Partnership:</strong> Monitoring, SLAs, and monthly improvements.</span> </li>
             </ul>
             <!-- Callout box -->
@@ -1189,7 +1423,7 @@
         </div>
 
         <div class="tech-marquee" data-tech-marquee>
-          <!-- Row 1 — product / app layer -->
+          <!-- Row 1 â€” product / app layer -->
           <div class="tech-marquee__row">
             <div class="tech-marquee__viewport">
               <div class="tech-marquee__track tech-marquee__track--ltr">
@@ -1225,7 +1459,7 @@
             </div>
           </div>
 
-          <!-- Row 2 — cloud / AI / tooling -->
+          <!-- Row 2 â€” cloud / AI / tooling -->
           <div class="tech-marquee__row tech-marquee__row--gap">
             <div class="tech-marquee__viewport">
               <div class="tech-marquee__track tech-marquee__track--rtl">
@@ -1273,7 +1507,7 @@
             Built for <span class="text-[#1CA9DE]">owners</span> who run real businesses
           </h2>
           <p class="clients-sub">
-            Metrics from delivered systems — business setup, real estate, agencies, and schools.
+            Metrics from delivered systems â€” business setup, real estate, agencies, and schools.
           </p>
         </div>
 
@@ -1308,15 +1542,15 @@
               <img class="owner-tab__img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" alt="" width="44" height="44" loading="lazy">
               <span class="owner-tab__meta">
                 <span class="owner-tab__name">Ahmed Al-Rashid</span>
-                <span class="owner-tab__role">Owner · Gulf Formation Advisors</span>
+                <span class="owner-tab__role">Owner Â· Gulf Formation Advisors</span>
               </span>
-              <span class="owner-tab__metric">−60%</span>
+              <span class="owner-tab__metric">âˆ’60%</span>
             </button>
             <button type="button" class="owner-tab" role="tab" aria-selected="false" data-owner="1" id="owner-tab-1">
               <img class="owner-tab__img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop" alt="" width="44" height="44" loading="lazy">
               <span class="owner-tab__meta">
                 <span class="owner-tab__name">Omar Khalid</span>
-                <span class="owner-tab__role">Managing Partner · Marina Property</span>
+                <span class="owner-tab__role">Managing Partner Â· Marina Property</span>
               </span>
               <span class="owner-tab__metric">3 min</span>
             </button>
@@ -1324,7 +1558,7 @@
               <img class="owner-tab__img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" alt="" width="44" height="44" loading="lazy">
               <span class="owner-tab__meta">
                 <span class="owner-tab__name">Hassan Raza</span>
-                <span class="owner-tab__role">Founder · Studio North</span>
+                <span class="owner-tab__role">Founder Â· Studio North</span>
               </span>
               <span class="owner-tab__metric">8 hrs</span>
             </button>
@@ -1332,7 +1566,7 @@
               <img class="owner-tab__img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" alt="" width="44" height="44" loading="lazy">
               <span class="owner-tab__meta">
                 <span class="owner-tab__name">Fatima Noor</span>
-                <span class="owner-tab__role">Principal · Greenfield Academy</span>
+                <span class="owner-tab__role">Principal Â· Greenfield Academy</span>
               </span>
               <span class="owner-tab__metric">15h / wk</span>
             </button>
@@ -1344,16 +1578,16 @@
                 <span class="owner-panel__badge" id="owner-badge">GF</span>
                 <div>
                   <div class="owner-panel__company-name" id="owner-company">Gulf Formation Advisors</div>
-                  <div class="owner-panel__location" id="owner-location">Dubai · Business setup</div>
+                  <div class="owner-panel__location" id="owner-location">Dubai Â· Business setup</div>
                 </div>
               </div>
               <div class="owner-panel__stat">
-                <div class="owner-panel__stat-value" id="owner-stat">−60%</div>
+                <div class="owner-panel__stat-value" id="owner-stat">âˆ’60%</div>
                 <div class="owner-panel__stat-label" id="owner-stat-label">Support messages</div>
               </div>
             </div>
             <blockquote class="owner-panel__quote" id="owner-quote">
-              “Passport copies used to live on WhatsApp. Now clients upload to one portal, see live visa status, and we stopped being a human chatbot.”
+              â€œPassport copies used to live on WhatsApp. Now clients upload to one portal, see live visa status, and we stopped being a human chatbot.â€
             </blockquote>
             <div class="owner-panel__foot">
               <div class="owner-panel__person">
@@ -1364,7 +1598,7 @@
                 </div>
               </div>
               <div class="owner-panel__tags">
-                <span class="owner-panel__tag" id="owner-tag">Document portal · n8n · WhatsApp API</span>
+                <span class="owner-panel__tag" id="owner-tag">Document portal Â· n8n Â· WhatsApp API</span>
               </div>
             </div>
             <div class="owner-panel__progress" aria-hidden="true"><span id="owner-progress"></span></div>
@@ -1397,7 +1631,7 @@
       <div class="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 text-center"> <!-- Bold Line -->
         <h2
           class="font-body text-[28px] sm:text-[36px] lg:text-[48px] font-bold leading-[1.1] tracking-[-0.03em] text-slate-700 mb-6 sm:mb-8">
-          Ready to build what’s next? </h2>
+          Ready to build whatâ€™s next? </h2>
         <!-- Button Group - Always in row -->
         <div class="flex flex-row items-center justify-center gap-3 sm:gap-4"> <!-- Get Started - Filled --> <a
             href="/get-started"
@@ -1467,7 +1701,7 @@
     </div>
     <div class="border-t border-white/[0.06]">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-slate-500"> <span>©
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[13px] text-slate-500"> <span>Â©
             2025 Rehnova Digitals. All rights reserved.</span>
           <div class="flex items-center gap-x-5"> <a href="/privacy" class="hover:text-[#1DA9CE] transition">Privacy</a>
             <a href="/terms" class="hover:text-[#1DA9CE] transition">Terms</a> <a href="/sitemap"
@@ -1497,8 +1731,8 @@
       }
       submitBtn.disabled = true;
       var prevLabel = submitBtn.textContent;
-      submitBtn.textContent = '…';
-      statusEl.textContent = 'Subscribing…';
+      submitBtn.textContent = 'â€¦';
+      statusEl.textContent = 'Subscribingâ€¦';
       statusEl.className = 'text-[11px] text-slate-400 min-h-[1rem]';
       try {
         var res = await fetch('/api/newsletter', {
