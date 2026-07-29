@@ -452,115 +452,436 @@ pills.forEach(pill => {
 });
 
 
-// Features section 
+// Features section (Stats Bar / Feature Highlighter)
 
 document.addEventListener('DOMContentLoaded', () => {
-    const features = [
+    const section = document.getElementById('featureHighlighter');
+    const wordEl = document.getElementById('rotatingWord');
+    const descEl = document.getElementById('rotatingDesc');
+    const indicatorsContainer = document.getElementById('indicators');
+    if (!section || !wordEl || !descEl) return;
+
+    const hubFeatures = [
         {
             word: 'Dedicated Architecture',
             desc: 'Senior engineers design your system for 10x scale from day one. No refactoring bills six months later.',
-            img: '/static/images/features/architecture.svg',
-            alt: 'Architecture'
+            subCards: [
+                { label: 'Modular Core', icon: 'fa-cubes' },
+                { label: '10x Scale Engine', icon: 'fa-bolt-lightning' },
+                { label: 'Clean System Specs', icon: 'fa-diagram-project' }
+            ]
         },
         {
             word: 'Enterprise Security',
-            desc: 'SOC 2 Type II controls, encryption at rest and in transit, and zero-trust policies baked in from commit one.',
-            img: '/static/images/features/security.svg',
-            alt: 'Security'
+            desc: 'SOC 2 Type II controls, encryption at rest & in transit, and zero-trust policies baked in from commit one.',
+            subCards: [
+                { label: 'SOC 2 Ready', icon: 'fa-shield-cat' },
+                { label: 'Zero Trust Auth', icon: 'fa-key' },
+                { label: 'E2E Encryption', icon: 'fa-lock' }
+            ]
         },
         {
             word: 'Complete Documentation',
             desc: 'Runbooks, API docs, and architecture diagrams your team can actually use. No tribal knowledge dependencies.',
-            img: '/static/images/features/docs.svg',
-            alt: 'Documentation'
+            subCards: [
+                { label: 'Live API Specs', icon: 'fa-code' },
+                { label: 'Dev Runbooks', icon: 'fa-book' },
+                { label: 'System Schemas', icon: 'fa-sitemap' }
+            ]
         },
         {
-            word: '24/7 Monitoring',
+            word: '24/7 Active Monitoring',
             desc: 'Auto-scaling, alerting, and incident response built into your stack. Sleep well knowing we watch the graphs.',
-            img: '/static/images/features/monitoring.svg',
-            alt: 'Monitoring'
+            subCards: [
+                { label: 'Realtime Alerting', icon: 'fa-bell' },
+                { label: 'Auto-Healing', icon: 'fa-heart-pulse' },
+                { label: '99.99% Uptime', icon: 'fa-server' }
+            ]
+        },
+        {
+            word: 'Zero Vendor Lock-in',
+            desc: 'Clean modular codebase using standard open frameworks with 100% source ownership and portable hosting.',
+            subCards: [
+                { label: '100% Ownership', icon: 'fa-file-code' },
+                { label: 'Portable Stack', icon: 'fa-cloud' },
+                { label: 'Open Standards', icon: 'fa-code-branch' }
+            ]
+        },
+        {
+            word: 'Automated CI/CD',
+            desc: 'One-click deployment pipelines, automated integration testing, and instant rollback safety.',
+            subCards: [
+                { label: '1-Click Deploy', icon: 'fa-rocket' },
+                { label: 'Auto Unit Tests', icon: 'fa-vial-circle-check' },
+                { label: 'Zero Downtime', icon: 'fa-arrows-spin' }
+            ]
+        },
+        {
+            word: 'High-Concurrency Scale',
+            desc: 'Sub-second API response times, async background queues, and optimized multi-region caching.',
+            subCards: [
+                { label: 'Sub-50ms API', icon: 'fa-gauge-high' },
+                { label: 'Async Queues', icon: 'fa-list-check' },
+                { label: 'Global Edge Cache', icon: 'fa-globe' }
+            ]
+        },
+        {
+            word: 'Proactive Support & SLAs',
+            desc: 'Dedicated developer channel, rapid incident resolution, and continuous long-term platform maintenance.',
+            subCards: [
+                { label: 'Slack Hotline', icon: 'fa-comments' },
+                { label: '<15min SLA', icon: 'fa-clock' },
+                { label: 'Dedicated Lead', icon: 'fa-user-gear' }
+            ]
         }
     ];
 
-    const wordEl = document.getElementById('rotatingWord');
-    const descEl = document.getElementById('rotatingDesc');
-    const imgEl = document.getElementById('featureImage');
-    if (!wordEl || !descEl || !imgEl) return;
+    const CENTER = { x: 300, y: 300 };
+    const FOCUS_CENTER = { x: 300, y: 300 };
+
+    const nodes = [
+        { x: 300, y: 90 },   // 0: Top
+        { x: 448, y: 152 },  // 1: Top-Right
+        { x: 510, y: 300 },  // 2: Right
+        { x: 448, y: 448 },  // 3: Bottom-Right
+        { x: 300, y: 510 },  // 4: Bottom
+        { x: 152, y: 448 },  // 5: Bottom-Left
+        { x: 90,  y: 300 },  // 6: Left
+        { x: 152, y: 152 }   // 7: Top-Left
+    ];
+
     let currentIndex = 0;
-    let intervalId = null;
+    let isStageShifted = false;
+    let rotationInterval = null;
+
+    // Smooth Fade-in / Fade-out animation for feature title & description
+    function fadeUpdateText(wordText, descText) {
+        wordEl.style.opacity = '0';
+        descEl.style.opacity = '0';
+
+        setTimeout(() => {
+            wordEl.textContent = wordText;
+            descEl.textContent = descText;
+            wordEl.style.opacity = '1';
+            descEl.style.opacity = '1';
+        }, 220);
+    }
 
     function createIndicators() {
-        const container = document.getElementById('indicators');
-        container.innerHTML = '';
-        features.forEach((_, index) => {
+        if (!indicatorsContainer) return;
+        indicatorsContainer.innerHTML = '';
+        hubFeatures.forEach((_, index) => {
             const dot = document.createElement('button');
-            dot.className = `indicator-dot h-1.5 rounded-full transition-all duration-300 ${index === 0 ? 'w-10 bg-slate-900' : 'w-1.5 bg-slate-300'}`;
+            dot.className = `indicator-dot h-2 rounded-full transition-all duration-300 ${index === 0 ? 'w-8 bg-[#1CA9DE]' : 'w-2 bg-slate-300'}`;
             dot.setAttribute('data-index', index);
+            dot.setAttribute('aria-label', `Go to feature ${index + 1}`);
             dot.addEventListener('click', () => {
-                clearInterval(intervalId);
-                currentIndex = index;
-                updateFeature(currentIndex);
-                startRotation();
+                selectFeature(index, true);
             });
-            container.appendChild(dot);
+            indicatorsContainer.appendChild(dot);
         });
     }
 
-    function updateFeature(index) {
-        if (!wordEl || !descEl || !imgEl) return;
+    function animateDotToRadialNode(nodeId, onLanded) {
+        const dot = document.getElementById('tdot-' + nodeId);
+        if (!dot) {
+            if (onLanded) onLanded();
+            return;
+        }
+        const target = nodes[nodeId];
+        const DURATION = 580;
+        const start = performance.now();
 
-        wordEl.style.opacity = '0';
-        descEl.style.opacity = '0';
-        imgEl.classList.remove('is-in');
-        imgEl.classList.add('is-out');
+        dot.setAttribute('cx', CENTER.x);
+        dot.setAttribute('cy', CENTER.y);
+        dot.setAttribute('opacity', '1');
 
-        setTimeout(() => {
-            wordEl.textContent = features[index].word;
-            descEl.textContent = features[index].desc;
-            imgEl.src = features[index].img;
-            imgEl.alt = features[index].alt;
+        function tick(now) {
+            const p = Math.min((now - start) / DURATION, 1);
+            const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
 
-            wordEl.style.opacity = '1';
-            descEl.style.opacity = '1';
-            imgEl.classList.remove('is-out');
-            void imgEl.offsetWidth;
-            imgEl.classList.add('is-in');
+            dot.setAttribute('cx', CENTER.x + (target.x - CENTER.x) * e);
+            dot.setAttribute('cy', CENTER.y + (target.y - CENTER.y) * e);
+            dot.setAttribute('r', 5 + Math.sin(p * Math.PI) * 2.5);
+            dot.setAttribute('opacity', p < 0.1 ? (p / 0.1) : p > 0.88 ? ((1 - p) / 0.12) : 1);
 
-            document.querySelectorAll('.indicator-dot').forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.add('w-10', 'bg-slate-900');
-                    dot.classList.remove('w-1.5', 'bg-slate-300');
-                } else {
-                    dot.classList.remove('w-10', 'bg-slate-900');
-                    dot.classList.add('w-1.5', 'bg-slate-300');
-                }
-            });
-        }, 280);
+            if (p < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                dot.setAttribute('opacity', '0');
+                if (onLanded) onLanded();
+            }
+        }
+        requestAnimationFrame(tick);
     }
 
-    function startRotation() {
-        if (intervalId) clearInterval(intervalId);
-        intervalId = setInterval(() => {
-            currentIndex = (currentIndex + 1) % features.length;
-            updateFeature(currentIndex);
+    function triggerNodeRipple(nodeId) {
+        const ripple = document.getElementById('nripple-' + nodeId);
+        if (!ripple) return;
+        const start = performance.now();
+        const DURATION = 700;
+
+        ripple.setAttribute('r', '38');
+        ripple.setAttribute('opacity', '0.9');
+
+        function tick(now) {
+            const p = Math.min((now - start) / DURATION, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            const r = 38 + e * 36;
+            const opacity = (1 - e) * 0.9;
+
+            ripple.setAttribute('r', r);
+            ripple.setAttribute('opacity', opacity);
+
+            if (p < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                ripple.setAttribute('opacity', '0');
+                ripple.setAttribute('r', '38');
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+
+    function resetStage(onResetDone) {
+        const logoGroup = document.getElementById('logoGroup');
+        const bgRingGroup = document.getElementById('bgRingGroup');
+        const topToCenterLine = document.getElementById('topToCenterLine');
+
+        // Hide sub-branches & top line sequentially reset
+        for (let idx = 0; idx < 3; idx++) {
+            const subCard = document.getElementById('sub-node-' + idx);
+            const subPath = document.getElementById('subPath-' + idx);
+            if (subCard) {
+                subCard.style.opacity = '0';
+                subCard.style.transform = 'scale(0.5)';
+            }
+            if (subPath) {
+                subPath.style.opacity = '0';
+            }
+        }
+        if (topToCenterLine) topToCenterLine.setAttribute('opacity', '0');
+
+        // Restore background radial elements
+        if (bgRingGroup) bgRingGroup.style.opacity = '1';
+
+        // Return Logo to center
+        if (logoGroup) logoGroup.classList.remove('to-top');
+
+        // Return all nodes to radial home positions
+        nodes.forEach((home, id) => {
+            const group = document.getElementById('node-' + id);
+            const circle = document.getElementById('nc-' + id);
+            if (!group || !circle) return;
+
+            group.style.transform = 'none';
+            group.classList.remove('is-active', 'is-blurred');
+            circle.setAttribute('fill', 'url(#nodeDefault)');
+            circle.setAttribute('stroke', 'rgba(226,232,240,0.8)');
+            circle.setAttribute('stroke-width', '1');
+
+            const icon = group.querySelector('.node-fa-icon');
+            if (icon) {
+                icon.classList.remove('text-[#1CA9DE]', 'scale-125');
+                icon.classList.add('text-slate-500');
+            }
+        });
+
+        isStageShifted = false;
+        setTimeout(() => {
+            if (onResetDone) onResetDone();
+        }, 650);
+    }
+
+    function activateNodeFocus(activeId) {
+        const logoGroup = document.getElementById('logoGroup');
+        const bgRingGroup = document.getElementById('bgRingGroup');
+        const topToCenterLine = document.getElementById('topToCenterLine');
+
+        // 1. Fade out background SVG radial rings and radial lines completely
+        if (bgRingGroup) bgRingGroup.style.opacity = '0';
+
+        // 2. Move Logo to top
+        if (logoGroup) logoGroup.classList.add('to-top');
+
+        // 3. Move active card to EXACT DEAD CENTER (300, 300) and vanish others
+        nodes.forEach((home, id) => {
+            const group = document.getElementById('node-' + id);
+            const circle = document.getElementById('nc-' + id);
+            if (!group || !circle) return;
+
+            if (id === activeId) {
+                const dx = FOCUS_CENTER.x - home.x;
+                const dy = FOCUS_CENTER.y - home.y;
+                group.style.transform = `translate(${dx}px, ${dy}px) scale(1.2)`;
+                group.classList.add('is-active');
+                group.classList.remove('is-blurred');
+                circle.setAttribute('fill', 'url(#nodeActive)');
+                circle.setAttribute('stroke', '#1CA9DE');
+                circle.setAttribute('stroke-width', '2.5');
+
+                const icon = group.querySelector('.node-fa-icon');
+                if (icon) {
+                    icon.classList.remove('text-slate-500');
+                    icon.classList.add('text-[#1CA9DE]', 'scale-125');
+                }
+            } else {
+                group.style.transform = 'none';
+                group.classList.remove('is-active');
+                group.classList.add('is-blurred');
+                circle.setAttribute('fill', 'url(#nodeDefault)');
+                circle.setAttribute('stroke', 'rgba(226,232,240,0.8)');
+                circle.setAttribute('stroke-width', '1');
+
+                const icon = group.querySelector('.node-fa-icon');
+                if (icon) {
+                    icon.classList.remove('text-[#1CA9DE]', 'scale-125');
+                    icon.classList.add('text-slate-500');
+                }
+            }
+        });
+
+        // 4. Populate sub-branch cards for active feature
+        const feature = hubFeatures[activeId];
+        if (feature && feature.subCards) {
+            feature.subCards.forEach((sub, idx) => {
+                const subIcon = document.getElementById('sub-icon-' + idx);
+                const subText = document.getElementById('sub-text-' + idx);
+                if (subIcon) subIcon.className = `fa-solid ${sub.icon} text-[15px] sm:text-[17px] text-[#1CA9DE]`;
+                if (subText) subText.textContent = sub.label;
+            });
+        }
+
+        // Top line reveals & center ripple
+        setTimeout(() => {
+            if (topToCenterLine) topToCenterLine.setAttribute('opacity', '0.85');
+            triggerNodeRipple(activeId);
+        }, 360);
+
+        // Sub-branches 0, 1, 2 bloom out ONE BY ONE smoothly with 110ms stagger delay!
+        [0, 1, 2].forEach((idx) => {
+            setTimeout(() => {
+                const subCard = document.getElementById('sub-node-' + idx);
+                const subPath = document.getElementById('subPath-' + idx);
+                if (subPath) subPath.style.opacity = '0.85';
+                if (subCard) {
+                    subCard.style.opacity = '1';
+                    subCard.style.transform = 'scale(1)';
+                }
+            }, 420 + idx * 110);
+        });
+
+        isStageShifted = true;
+    }
+
+    function selectFeature(index, manualClick = false) {
+        if (index === currentIndex && isStageShifted && !manualClick) return;
+
+        function runNext() {
+            currentIndex = index;
+
+            // Update Indicators
+            const dots = indicatorsContainer.querySelectorAll('.indicator-dot');
+            dots.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.classList.add('w-8', 'bg-[#1CA9DE]');
+                    dot.classList.remove('w-2', 'bg-slate-300');
+                } else {
+                    dot.classList.remove('w-8', 'bg-[#1CA9DE]');
+                    dot.classList.add('w-2', 'bg-slate-300');
+                }
+            });
+
+            // Step 1: Traveling Dot from center to radial card
+            animateDotToRadialNode(currentIndex, () => {
+                // Step 2: Stage Shift (Logo to top, Card to center, Sub-branches bloom, Text fades in)
+                activateNodeFocus(currentIndex);
+                fadeUpdateText(hubFeatures[currentIndex].word, hubFeatures[currentIndex].desc);
+            });
+        }
+
+        if (isStageShifted) {
+            resetStage(runNext);
+        } else {
+            runNext();
+        }
+
+        if (manualClick) {
+            resetAutoRotation();
+        }
+    }
+
+    function startAutoRotation() {
+        if (rotationInterval) clearInterval(rotationInterval);
+        rotationInterval = setInterval(() => {
+            const nextIndex = (currentIndex + 1) % hubFeatures.length;
+            selectFeature(nextIndex);
         }, 4200);
+    }
+
+    function resetAutoRotation() {
+        if (rotationInterval) clearInterval(rotationInterval);
+        startAutoRotation();
+    }
+
+    // Attach click handlers to all SVG hub node groups
+    nodes.forEach((_, idx) => {
+        const group = document.getElementById('node-' + idx);
+        if (group) {
+            group.style.cursor = 'pointer';
+            group.setAttribute('data-index', idx);
+            group.addEventListener('click', () => {
+                selectFeature(idx, true);
+            });
+        }
+    });
+
+    function triggerArrivalSequence(onComplete) {
+        const hubContainer = document.getElementById('hubContainer');
+
+        // 1. Reveal container with smooth fade & scale-up
+        if (hubContainer) hubContainer.classList.add('is-entered');
+
+        // 2. Pulse central ripple on arrival
+        triggerNodeRipple(0);
+
+        // 3. Staggered node entrance animation (clockwise cascade from center)
+        nodes.forEach((_, idx) => {
+            const group = document.getElementById('node-' + idx);
+            if (group) {
+                group.style.opacity = '0';
+                group.style.transform = 'scale(0.35)';
+                setTimeout(() => {
+                    group.style.opacity = '1';
+                    group.style.transform = 'none';
+                }, 100 + idx * 45);
+            }
+        });
+
+        // 4. After orbital bloom finishes (650ms), start feature focus sequence!
+        setTimeout(() => {
+            if (onComplete) onComplete();
+        }, 680);
     }
 
     // Initialize
     createIndicators();
-    updateFeature(0);
 
-    // Start rotation when section is visible
-    const observer = new IntersectionObserver((entries) => {
+    // IntersectionObserver — Trigger grand arrival animation on viewport entrance
+    let hasTriggeredInViewport = false;
+    const viewportObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                startRotation();
-                observer.disconnect(); // Run only once
+            if (entry.isIntersecting && !hasTriggeredInViewport) {
+                hasTriggeredInViewport = true;
+                triggerArrivalSequence(() => {
+                    selectFeature(0);
+                    startAutoRotation();
+                });
             }
         });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.15 });
 
-    observer.observe(document.getElementById('featureHighlighter'));
+    viewportObserver.observe(section);
 });
 
 // Header behavior:
