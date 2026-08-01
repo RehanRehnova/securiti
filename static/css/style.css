@@ -430,20 +430,33 @@ a {
     
 }
 
+.category-pill {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 .category-pill:not(.active):hover {
     border-color: #1CA9DE;
     background: #E6F7FD;
 }
 
 .service-card {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.service-card * {
+    cursor: pointer !important;
 }
 
 .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -8px rgba(15, 23, 42, 0.12);
-    border-color: rgba(15, 23, 42, 0.12);
+    transform: none !important;
+    box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+    border-color: rgba(28, 169, 206, 0.4);
 }
 
 .service-img-wrap {
@@ -619,14 +632,14 @@ a {
     position: absolute;
     inset: -1.5rem;
     background: rgba(28, 169, 222, 0.1);
-    border-radius: 3rem;
+    border-radius: 1.5rem;
     filter: blur(48px);
 }
 
 .visual-card {
     position: relative;
     overflow: hidden;
-    border-radius: 28px;
+    border-radius: 12px;
     box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
     border: 1px solid rgba(28, 169, 222, 0.2);
 }
@@ -655,7 +668,7 @@ a {
 .dashboard-card {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(24px);
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     border: 1px solid #fff;
@@ -1127,7 +1140,7 @@ a {
     position: relative;
     background: #fff;
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 1.5rem 1.5rem 1.35rem;
     box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
     display: flex;
@@ -1280,7 +1293,7 @@ a {
     bottom: 0;
     height: 2px;
     background: #f1f5f9;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 10px 10px;
     overflow: hidden;
 }
 

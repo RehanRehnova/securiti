@@ -260,6 +260,96 @@ def test_sheets():
             'error_type': type(e).__name__
         }), 500
 
+# === Industry Routes ===
+INDUSTRIES_DATA = {
+    'healthcare': {
+        'slug': 'healthcare',
+        'title': 'Healthcare & Life Sciences',
+        'subtitle': 'HIPAA-compliant web applications, clinical data pipelines, and AI operational systems.',
+        'badge': 'HIPAA Ready & Clinical Operations',
+        'hero_desc': 'We engineer secure, audit-ready digital solutions for medical practices, biotech startups, and clinical research organizations. From telemetry data pipelines to patient-facing web platforms.',
+        'capabilities': [
+            {'title': 'HIPAA & Telemetry Data Pipelines', 'desc': 'Automated, encrypted ingestion of EHR and device data with complete audit logging and zero-trust controls.'},
+            {'title': 'Patient & Provider Portals', 'desc': 'High-performance web apps built with Next.js/SSR for friction-free booking, records access, and telehealth.'},
+            {'title': 'Clinical Operations Agents', 'desc': 'Autonomous AI agents for lab report classification, patient triage automation, and claim auditing.'}
+        ],
+        'compliance': ['HIPAA Security Rule', 'SOC2 Type II Controls', 'GDPR Health Data Compliance'],
+        'stat': '99.99%',
+        'stat_label': 'Uptime & Zero-Trust Audit Reliability'
+    },
+    'edtech': {
+        'slug': 'edtech',
+        'title': 'EdTech & Academic Operations',
+        'subtitle': 'Unified LMS platforms, automated grading pipelines, and institutional management systems.',
+        'badge': 'Institutional Software & LMS',
+        'hero_desc': 'Empowering universities, online academies, and training providers with resilient digital infrastructure. Seamlessly scaling from classroom management to enterprise-wide student portals.',
+        'capabilities': [
+            {'title': 'Unified LMS & Student Dashboards', 'desc': 'Custom learning management systems featuring real-time course tracking, interactive assignments, and video streaming.'},
+            {'title': 'Automated Grading & Attendance', 'desc': 'Custom background pipelines and AI evaluation engines that reduce administrative overhead for faculty.'},
+            {'title': 'Institutional Analytics', 'desc': 'Comprehensive data warehouses providing institutional leadership with instant retention and performance metrics.'}
+        ],
+        'compliance': ['FERPA Compliant Data Handling', 'COPPA Standards', 'ISO 27001 Security'],
+        'stat': '10x',
+        'stat_label': 'Concurrent Student Load Capacity'
+    },
+    'professional-services': {
+        'slug': 'professional-services',
+        'title': 'Professional & B2B Services',
+        'subtitle': 'Client portals, automated proposal engines, and unified CRM workflow systems.',
+        'badge': 'B2B Workflows & Client Portals',
+        'hero_desc': 'Accelerating growth for legal, accounting, consulting, and digital agency firms through intelligent web applications and integrated operational backbones.',
+        'capabilities': [
+            {'title': 'Custom Client Portals', 'desc': 'Secure, branded workspaces for document exchange, contract signing, project status, and automated billing.'},
+            {'title': 'Proposal & Billing Automation', 'desc': 'Automated invoice generation, Stripe/Shopify API integrations, and instant contract dispatch.'},
+            {'title': 'Unified CRM & Lead Pipelines', 'desc': 'End-to-end integration connecting lead capture forms directly to backend databases and internal Slack/Teams ops.'}
+        ],
+        'compliance': ['SOC2 Compliant Architecture', 'Encrypted Document Vaults', 'PCI-DSS Payment Pipelines'],
+        'stat': '75%',
+        'stat_label': 'Reduction in Administrative Latency'
+    },
+    'fintech': {
+        'slug': 'fintech',
+        'title': 'FinTech & Financial Operations',
+        'subtitle': 'Audit-ready compliance dashboards, transaction intelligence, and payment orchestration.',
+        'badge': 'Transaction Intelligence & Security',
+        'hero_desc': 'Building bulletproof financial platforms and internal audit tools for modern financial teams, wealth managers, and payment processors.',
+        'capabilities': [
+            {'title': 'Payment Gateway & Ledger Engines', 'desc': 'High-throughput payment orchestration, automated reconciliation, and ledger tracking.'},
+            {'title': 'Fraud & Anomaly Detection Agents', 'desc': 'Real-time AI monitoring agents identifying suspicious transactional behaviors before settlement.'},
+            {'title': 'Compliance & Audit Reporting', 'desc': 'Automated generation of financial compliance reports, tax summaries, and institutional export feeds.'}
+        ],
+        'compliance': ['PCI-DSS Level 1 Standards', 'KYC / AML Regulatory Workflows', '256-bit AES Encryption'],
+        'stat': '0.001s',
+        'stat_label': 'Transaction Processing Latency'
+    },
+    'ecommerce': {
+        'slug': 'ecommerce',
+        'title': 'E-Commerce & Digital Commerce',
+        'subtitle': 'High-concurrency store engines, automated inventory sync, and dynamic checkout systems.',
+        'badge': 'High-Scale Commerce Infrastructure',
+        'hero_desc': 'Engineering ultra-fast headless storefronts, custom backend inventory management, and multi-channel fulfillment pipelines for scaling e-commerce brands.',
+        'capabilities': [
+            {'title': 'Headless Storefront Web Apps', 'desc': 'Sub-second page load times with custom React/Next.js storefronts integrated with Shopify and Stripe.'},
+            {'title': 'Omnichannel Inventory Sync', 'desc': 'Real-time inventory synchronization across multiple warehouses, storefronts, and marketplaces.'},
+            {'title': 'AI Recommendation & Conversion Engines', 'desc': 'Personalized product discovery agents that boost average order value and checkout completion rates.'}
+        ],
+        'compliance': ['PCI-DSS Compliant Checkout', 'GDPR / CCPA Customer Data Rules', 'Global CDN Edge Caching'],
+        'stat': '300ms',
+        'stat_label': 'Average Page Load Time globally'
+    }
+}
+
+@app.route('/industries')
+def industries_index():
+    return render_template('index.html')
+
+@app.route('/industries/<slug>')
+def industry_detail(slug):
+    industry = INDUSTRIES_DATA.get(slug)
+    if not industry:
+        abort(404)
+    return render_template('industry_detail.html', industry=industry, all_industries=INDUSTRIES_DATA)
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
