@@ -135,11 +135,11 @@
             </div>
           </div>
         </nav>
-        <div class="hidden md:flex items-center gap-3"> <a href="/get-in-touch" id="headerContact"
-            class="inline-flex h-9 px-4 lg:px-5 items-center justify-center bg-transparent border border-slate-300 hover:border-slate-400 text-slate-600 text-[14px] lg:text-[15px] font-medium rounded-lg transition-colors">
-            Contact </a> <a href="/get-started" id="headerCta"
-            class="inline-flex h-9 px-4 lg:px-5 items-center justify-center bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[14px] lg:text-[15px] font-semibold rounded-lg transition-colors">
-            Get Started </a> </div>
+        <div class="hidden md:flex items-center gap-4"> <a href="/get-in-touch" id="headerContact"
+            class="inline-flex h-9 px-4 lg:px-5 items-center justify-center border border-slate-300 hover:border-slate-400 text-slate-700 text-[14px] lg:text-[15px] font-medium rounded-lg transition-colors">
+            Contact Us </a> <a href="/booking" id="headerBooking"
+            class="inline-flex h-9 px-4 lg:px-5 items-center justify-center bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[14px] lg:text-[15px] font-semibold rounded-lg transition-colors shadow-sm">
+            Book a Call </a> </div>
         <button id="menuBtn"
           class="md:hidden w-12 h-20 flex items-center justify-center rounded-xl hover:bg-white/10 active:bg-white/15 transition-colors"
           style="background: transparent;"> <svg id="menuIcon" class="w-7 h-10 text-slate-600" fill="none"
@@ -165,11 +165,6 @@
           viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
         </svg> </button> </div>
-    <div class="flex items-center gap-3 px-5 sm:px-6 pt-5 pb-3 shrink-0"> <a href="/get-started"
-        class="drawer-link flex items-center justify-center h-12 sm:h-11 rounded-lg bg-[#1DA9CE] text-white text-[15px] sm:text-[14px] font-semibold flex-1"
-        style="min-height:44px">Get started</a> <a href="/get-in-touch"
-        class="drawer-link flex items-center justify-center h-12 sm:h-11 rounded-lg bg-white border border-slate-300 text-slate-800 text-[15px] sm:text-[14px] font-semibold flex-1"
-        style="min-height:44px">Contact us</a> </div>
     <nav class="flex-1 overflow-y-auto px-4 sm:px-5 py-4" x-data="{ openProducts: false, openCompany: false }">
       <div class="space-y-1.5">
         <div> <button @click="openProducts =!openProducts"
@@ -226,9 +221,17 @@
         </div>
       </div>
     </nav>
-    <div class="p-5 sm:p-6 border-t border-slate-100 safe-area-inset-bottom">
-      <div class="text-center"> <a href="mailto:info@rehnova.digital"
-          class="text-[14px] sm:text-[13px] text-slate-600 hover:text-slate-900">info@rehnova.digital</a> </div>
+    <div class="p-5 sm:p-6 border-t border-slate-100 shrink-0 flex flex-col items-center gap-3.5 safe-area-inset-bottom">
+      <a href="/get-in-touch" class="drawer-link text-slate-600 hover:text-slate-900 text-[14px] font-medium transition-colors text-center hover:underline">
+        Contact Us
+      </a>
+      <a href="/booking"
+        class="drawer-link flex items-center justify-center h-12 rounded-lg bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[15px] font-semibold text-center w-full transition-colors shadow-sm"
+        style="min-height:48px">
+        Book a Call
+      </a>
+      <div class="text-center pt-1"> <a href="mailto:contact@rehnova.digital"
+          class="text-[13px] text-slate-400 hover:text-slate-600">contact@rehnova.digital</a> </div>
     </div>
   </div>
   <main> {% block content %}{% endblock %} </main>
@@ -265,8 +268,8 @@
         <div class="lg:col-span-3 lg:col-start-10">
           <h3 class="font-heading text-left text-[17px] text-white mb-5">Contact</h3>
           <div class="space-y-4 text-[14px] sm:text-[15px]">
-            <div> <a href="mailto:info@rehnova.digital"
-                class="text-slate-200 hover:text-[#1DA9CE] transition font-medium">info@rehnova.digital</a> </div>
+            <div> <a href="mailto:contact@rehnova.digital"
+                class="text-slate-200 hover:text-[#1DA9CE] transition font-medium">contact@rehnova.digital</a> </div>
             <div class="text-slate-400"> Islamabad, Pakistan <div
                 class="text-[12px] sm:text-[13px] text-slate-500 mt-1">Serving clients worldwide</div>
             </div>

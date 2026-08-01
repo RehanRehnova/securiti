@@ -296,3 +296,80 @@ def append_newsletter_to_sheet(email, source='footer'):
     except Exception as e:
         print(f"Unexpected error in append_newsletter_to_sheet: {e}")
         return False
+
+def validate_booking_data(data):
+    if not data:
+        return False, 'No booking data received'
+    required = ['name', 'email', 'date', 'time', 'timezone']
+    missing = [f for f in required if not data.get(f)]
+    if missing:
+        return False, f'Missing required booking fields: {", ".join(missing)}'
+    if not re.match(r'^[^\s@]+@[^\s@]+\.[^\s@]+$', str(data.get('email', '')), re.IGNORECASE):
+        return False, 'Invalid email address'
+    return True, None
+
+def build_booking_email(data, admin_email):
+    subject = f"New Booking Request: {data.get('name')} ({data.get('date')} {data.get('time')})"
+    body = f"""New Strategy Call Booking Received:
+
+Name: {data.get('name')}
+Email: {data.get('email')}
+Duration: {data.get('duration', '30 min')}
+Date: {data.get('date')}
+Time: {data.get('time')} ({data.get('timezone', 'UTC')})
+Topic/Notes: {data.get('notes', 'None provided')}
+
+Submitted at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+"""
+    msg = Message(subject=subject, recipients=[admin_email])
+    msg.body = body
+    return msg
+
+def append_booking_to_sheet(data):
+    if not SPREADSHEET_ID:
+        print("SPREADSHEET_ID missing; skipping sheets write")
+        return True
+    try:
+        service = get_sheets_service()
+        sheet_name = 'Bookings'
+        HEADERS = ['Timestamp', 'Name', 'Email', 'Duration', 'Date', 'Time', 'Timezone', 'Notes']
+        
+        try:
+            result = service.spreadsheets().values().get(
+                spreadsheetId=SPREADSHEET_ID,
+                range=f'{sheet_name}!A1:H1'
+            ).execute()
+            existing_headers = result.get('values', [])
+        except HttpError:
+            existing_headers = []
+
+        if not existing_headers:
+            service.spreadsheets().values().update(
+                spreadsheetId=SPREADSHEET_ID,
+                range=f'{sheet_name}!A1',
+                valueInputOption='RAW',
+                body={'values': [HEADERS]}
+            ).execute()
+
+        row = [
+            datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            data.get('name', ''),
+            data.get('email', ''),
+            data.get('duration', '30 min'),
+            data.get('date', ''),
+            data.get('time', ''),
+            data.get('timezone', ''),
+            data.get('notes', '')
+        ]
+
+        service.spreadsheets().values().append(
+            spreadsheetId=SPREADSHEET_ID,
+            range=f'{sheet_name}!A:H',
+            valueInputOption='RAW',
+            insertDataOption='INSERT_ROWS',
+            body={'values': [row]}
+        ).execute()
+        return True
+    except Exception as e:
+        print(f"Booking sheets error: {e}")
+        return False

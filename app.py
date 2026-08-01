@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, jsonify, abort 
+from flask import Flask, render_template, request, jsonify, abort, Response 
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -15,6 +15,9 @@ from logic import (
     build_contact_email,
     validate_contact_data,
     validate_newsletter_data,
+    validate_booking_data,
+    build_booking_email,
+    append_booking_to_sheet,
     get_sheets_service,
 )
 from data.articles import get_all_articles, get_article_by_slug, get_categories, get_related_articles
@@ -95,6 +98,72 @@ def about_us():
 @app.route('/careers')
 def careers():
     return render_template('careers.html')
+
+
+@app.route('/booking')
+def booking():
+    return render_template('booking.html')
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+@app.route('/sitemap')
+def sitemap():
+    return render_template('sitemap.html')
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://rehnova.digital/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://rehnova.digital/booking</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://rehnova.digital/get-started</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://rehnova.digital/get-in-touch</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rehnova.digital/about-us</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://rehnova.digital/careers</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://rehnova.digital/blog</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rehnova.digital/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://rehnova.digital/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>"""
+    return Response(xml_content, mimetype='application/xml')
+
+
+@app.route('/api/booking', methods=['POST'])
+def handle_booking():
+    try:
+        data = request.get_json() or {}
+        print("RECEIVED BOOKING DATA:", data)
+
+        is_valid, error = validate_booking_data(data)
+        if not is_valid:
+            return jsonify({'success': False, 'error': error}), 400
+
+        try:
+            msg = build_booking_email(data, RECIPIENT_EMAIL)
+            mail.send(msg)
+        except Exception as mail_error:
+            print(f"Warning: Mail send error in /api/booking: {mail_error}")
+
+        try:
+            sheet_success = append_booking_to_sheet(data)
+            if not sheet_success:
+                print("Warning: Failed to write booking to Google Sheet")
+        except Exception as sheet_error:
+            print(f"Sheets booking error: {sheet_error}")
+
+        return jsonify({'success': True}), 200
+
+    except Exception as e:
+        print(f"Error in /api/booking: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': 'Server error handling your booking request. Please try again.'
+        }), 500
 
 
 @app.route('/api/newsletter', methods=['POST'])

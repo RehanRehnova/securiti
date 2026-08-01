@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Sitemap — Rehnova Digitals{% endblock %}
+
+{% block content %}
+<main class="bg-white min-h-screen py-12 sm:py-20 font-body">
+    <div class="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <header class="border-b border-slate-200 pb-6 mb-10">
+            <p class="text-[12px] font-semibold uppercase tracking-wider text-[#1DA9CE] mb-2">Directory & Index</p>
+            <h1 class="font-heading text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                Sitemap
+            </h1>
+            <p class="text-xs text-slate-500 mt-2">
+                Navigation directory of Rehnova Digitals web pages and endpoints.
+            </p>
+        </header>
+
+        <!-- Document Content -->
+        <div class="space-y-10 text-[14px]">
+            
+            <section class="space-y-3">
+                <h2 class="font-heading text-base font-bold text-slate-900 border-b border-slate-100 pb-2">Main Pages</h2>
+                <ul class="space-y-2 text-slate-600 text-xs sm:text-sm">
+                    <li><a href="/" class="hover:text-[#1DA9CE] transition font-medium">Home Page (/)</a></li>
+                    <li><a href="/about-us" class="hover:text-[#1DA9CE] transition font-medium">About Us (/about-us)</a></li>
+                    <li><a href="/careers" class="hover:text-[#1DA9CE] transition font-medium">Careers (/careers)</a></li>
+                    <li><a href="/blog" class="hover:text-[#1DA9CE] transition font-medium">Engineering Blog (/blog)</a></li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="font-heading text-base font-bold text-slate-900 border-b border-slate-100 pb-2">Intake & Scheduling</h2>
+                <ul class="space-y-2 text-slate-600 text-xs sm:text-sm">
+                    <li><a href="/booking" class="hover:text-[#1DA9CE] transition font-medium">Book a Call (/booking)</a></li>
+                    <li><a href="/get-started" class="hover:text-[#1DA9CE] transition font-medium">Start a Project (/get-started)</a></li>
+                    <li><a href="/get-in-touch" class="hover:text-[#1DA9CE] transition font-medium">Contact Us (/get-in-touch)</a></li>
+                </ul>
+            </section>
+
+            <section class="space-y-3">
+                <h2 class="font-heading text-base font-bold text-slate-900 border-b border-slate-100 pb-2">Legal & Indexes</h2>
+                <ul class="space-y-2 text-slate-600 text-xs sm:text-sm">
+                    <li><a href="/privacy" class="hover:text-[#1DA9CE] transition font-medium">Privacy Policy (/privacy)</a></li>
+                    <li><a href="/terms" class="hover:text-[#1DA9CE] transition font-medium">Terms of Service (/terms)</a></li>
+                    <li><a href="/sitemap.xml" target="_blank" class="text-[#1DA9CE] hover:underline font-semibold">XML Sitemap (/sitemap.xml)</a></li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+</main>
+{% endblock %}
