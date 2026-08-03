@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, jsonify, abort, Response 
+from flask import Flask, render_template, request, jsonify, abort, Response, send_from_directory
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -259,6 +259,38 @@ def test_sheets():
             'error': str(e),
             'error_type': type(e).__name__
         }), 500
+
+# === File & PDF Download Routes ===
+FILES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'files')
+
+@app.route('/files/<path:filename>')
+def serve_file(filename):
+    """Serve or download files directly from the files directory."""
+    file_path = os.path.join(FILES_DIR, filename)
+    if not os.path.isfile(file_path):
+        abort(404)
+    # Allows control via ?download=true or ?download=false
+    download = request.args.get('download', 'true').lower()
+    as_attachment = (download in ['true', '1', 'yes'])
+    return send_from_directory(FILES_DIR, filename, as_attachment=as_attachment)
+
+@app.route('/download/<path:filename>')
+def download_file(filename):
+    """Force-download route for files in the files directory."""
+    file_path = os.path.join(FILES_DIR, filename)
+    if not os.path.isfile(file_path):
+        abort(404)
+    return send_from_directory(FILES_DIR, filename, as_attachment=True)
+
+@app.route('/download-audit-helpbook')
+@app.route('/audit-helpbook')
+def download_audit_helpbook():
+    """Direct route for downloading the Rehnova Digitals Audit Helpbook PDF."""
+    pdf_name = 'rehnova-digitals-audit-helpbook.pdf'
+    file_path = os.path.join(FILES_DIR, pdf_name)
+    if not os.path.isfile(file_path):
+        abort(404)
+    return send_from_directory(FILES_DIR, pdf_name, as_attachment=True)
 
 # === Industry Routes ===
 INDUSTRIES_DATA = {
