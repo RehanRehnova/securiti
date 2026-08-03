@@ -4,94 +4,100 @@
 
 {% block content %}
 <main class="bg-white min-h-screen pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 font-body">
-    <div class="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
-        
-        <!-- Header / Breadcrumb -->
-        <div class="mb-10">
-            <a href="/#industries" class="inline-flex items-center gap-1.5 text-[13px] text-[#1DA9CE] hover:underline font-medium mb-4">
-                &larr; Back to Industries
-            </a>
-            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-[12px] font-semibold uppercase tracking-wider rounded-md mb-4 ml-3">
-                {{ industry.badge }}
-            </span>
-            <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1]">
-                {{ industry.title }}
-            </h1>
-            <p class="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed max-w-3xl">
-                {{ industry.hero_desc }}
-            </p>
-        </div>
+  <div class="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
 
-        <!-- Metric Stat Banner -->
-        <div class="bg-slate-900 rounded-xl p-6 sm:p-8 text-white mb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
-            <div>
-                <span class="block text-3xl sm:text-4xl font-extrabold text-[#1DA9CE] font-heading">
-                    {{ industry.stat }}
-                </span>
-                <span class="text-sm text-slate-300 font-medium mt-1 block">
-                    {{ industry.stat_label }}
-                </span>
-            </div>
-            <a href="/booking" class="inline-flex h-11 px-6 items-center justify-center bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[14px] font-semibold rounded-md transition-colors whitespace-nowrap">
-                Book a Strategy Call
-            </a>
-        </div>
-
-        <!-- Engineering Capabilities Grid -->
-        <section class="mb-14">
-            <h2 class="font-heading text-2xl font-bold text-slate-900 mb-6">
-                Engineering Capabilities & Solutions
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {% for cap in industry.capabilities %}
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-2xs hover:shadow-xs transition-shadow">
-                    <h3 class="font-heading text-base font-bold text-slate-900 mb-2">
-                        {{ cap.title }}
-                    </h3>
-                    <p class="text-[14px] leading-relaxed text-slate-600">
-                        {{ cap.desc }}
-                    </p>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <!-- Compliance & Security Standards -->
-        <section class="mb-14 border-t border-slate-100 pt-10">
-            <h2 class="font-heading text-xl font-bold text-slate-900 mb-4">
-                Compliance & Security Architecture
-            </h2>
-            <p class="text-[14px] text-slate-600 mb-6">
-                All software delivered for {{ industry.title }} complies with rigorous industry-specific regulatory standards:
-            </p>
-            <div class="flex flex-wrap gap-3">
-                {% for std in industry.compliance %}
-                <span class="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-md">
-                    <svg class="w-4 h-4 text-[#1DA9CE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    {{ std }}
-                </span>
-                {% endfor %}
-            </div>
-        </section>
-
-        <!-- Explore Other Industries -->
-        <section class="border-t border-slate-100 pt-10">
-            <h3 class="font-heading text-lg font-bold text-slate-900 mb-4">
-                Explore Other Industries
-            </h3>
-            <div class="flex flex-wrap gap-3">
-                {% for slug, item in all_industries.items() %}
-                    {% if slug != industry.slug %}
-                    <a href="/industries/{{ slug }}" class="px-4 py-2 bg-white border border-slate-200 hover:border-[#1DA9CE] text-slate-700 hover:text-[#1DA9CE] text-xs sm:text-sm font-medium rounded-md transition-colors">
-                        {{ item.title }} &rarr;
-                    </a>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </section>
-
+    <!-- Header / Breadcrumb -->
+    <div class="mb-10">
+      <a href="/#industries"
+        class="inline-flex items-center gap-1.5 text-[13px] text-[#1DA9CE] hover:underline font-medium mb-4">
+        &larr; Back to Industries
+      </a>
+      <span
+        class="inline-block px-3 py-1 bg-slate-100 text-slate-700 text-[12px] font-semibold uppercase tracking-wider rounded-md mb-4 ml-3">
+        {{ industry.badge }}
+      </span>
+      <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1]">
+        {{ industry.title }}
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 mt-4 leading-relaxed max-w-3xl">
+        {{ industry.hero_desc }}
+      </p>
     </div>
+
+    <!-- Metric Stat Banner -->
+    <div
+      class="bg-slate-900 rounded-xl p-6 sm:p-8 text-white mb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
+      <div>
+        <span class="block text-3xl sm:text-4xl font-extrabold text-[#1DA9CE] font-heading">
+          {{ industry.stat }}
+        </span>
+        <span class="text-sm text-slate-300 font-medium mt-1 block">
+          {{ industry.stat_label }}
+        </span>
+      </div>
+      <a href="/booking"
+        class="inline-flex h-11 px-6 items-center justify-center bg-[#1DA9CE] hover:bg-[#1888A8] text-white text-[14px] font-semibold rounded-md transition-colors whitespace-nowrap">
+        Book a Strategy Call
+      </a>
+    </div>
+
+    <!-- Engineering Capabilities Grid -->
+    <section class="mb-14">
+      <h2 class="font-heading text-2xl font-bold text-slate-900 mb-6">
+        Engineering Capabilities & Solutions
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for cap in industry.capabilities %}
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-2xs hover:shadow-xs transition-shadow">
+          <h3 class="font-heading text-base font-bold text-slate-900 mb-2">
+            {{ cap.title }}
+          </h3>
+          <p class="text-[14px] leading-relaxed text-slate-600">
+            {{ cap.desc }}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Compliance & Security Standards -->
+    <section class="mb-14 border-t border-slate-100 pt-10">
+      <h2 class="font-heading text-xl font-bold text-slate-900 mb-4">
+        Compliance & Security Architecture
+      </h2>
+      <p class="text-[14px] text-slate-600 mb-6">
+        All software delivered for {{ industry.title }} complies with rigorous industry-specific regulatory standards:
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {% for std in industry.compliance %}
+        <span
+          class="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-md">
+          <svg class="w-4 h-4 text-[#1DA9CE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          {{ std }}
+        </span>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Explore Other Industries -->
+    <section class="border-t border-slate-100 pt-10">
+      <h3 class="font-heading text-lg font-bold text-slate-900 mb-4">
+        Explore Other Industries
+      </h3>
+      <div class="flex flex-wrap gap-3">
+        {% for slug, item in all_industries.items() %}
+        {% if slug != industry.slug %}
+        <a href="/industries/{{ slug }}"
+          class="px-4 py-2 bg-white border border-slate-200 hover:border-[#1DA9CE] text-slate-700 hover:text-[#1DA9CE] text-xs sm:text-sm font-medium rounded-md transition-colors">
+          {{ item.title }} &rarr;
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+  </div>
 </main>
 {% endblock %}

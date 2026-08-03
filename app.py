@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, jsonify, abort, Response, send_from_directory
+from flask import Flask, render_template, request, jsonify, abort, Response, send_from_directory, redirect
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -265,14 +265,16 @@ FILES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'files')
 
 @app.route('/files/<path:filename>')
 def serve_file(filename):
-    """Serve or download files directly from the files directory."""
+    """Serve or download files directly from the files directory securely."""
     file_path = os.path.join(FILES_DIR, filename)
     if not os.path.isfile(file_path):
         abort(404)
-    # Allows control via ?download=true or ?download=false
-    download = request.args.get('download', 'true').lower()
-    as_attachment = (download in ['true', '1', 'yes'])
-    return send_from_directory(FILES_DIR, filename, as_attachment=as_attachment)
+    mode = request.args.get('view', '').lower()
+    as_attachment = False if mode in ['1', 'true', 'yes', 'inline'] else True
+    response = send_from_directory(FILES_DIR, filename, as_attachment=as_attachment)
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Accept-Ranges'] = 'bytes'
+    return response
 
 @app.route('/download/<path:filename>')
 def download_file(filename):
@@ -280,7 +282,10 @@ def download_file(filename):
     file_path = os.path.join(FILES_DIR, filename)
     if not os.path.isfile(file_path):
         abort(404)
-    return send_from_directory(FILES_DIR, filename, as_attachment=True)
+    response = send_from_directory(FILES_DIR, filename, as_attachment=True)
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Accept-Ranges'] = 'bytes'
+    return response
 
 @app.route('/download-audit-helpbook')
 @app.route('/audit-helpbook')
@@ -290,7 +295,10 @@ def download_audit_helpbook():
     file_path = os.path.join(FILES_DIR, pdf_name)
     if not os.path.isfile(file_path):
         abort(404)
-    return send_from_directory(FILES_DIR, pdf_name, as_attachment=True)
+    response = send_from_directory(FILES_DIR, pdf_name, as_attachment=True)
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Accept-Ranges'] = 'bytes'
+    return response
 
 # === Industry Routes ===
 INDUSTRIES_DATA = {
@@ -372,15 +380,9 @@ INDUSTRIES_DATA = {
 }
 
 @app.route('/industries')
-def industries_index():
-    return render_template('index.html')
-
 @app.route('/industries/<slug>')
-def industry_detail(slug):
-    industry = INDUSTRIES_DATA.get(slug)
-    if not industry:
-        abort(404)
-    return render_template('industry_detail.html', industry=industry, all_industries=INDUSTRIES_DATA)
+def industry_detail(slug=None):
+    return redirect('/#segments')
 
 @app.errorhandler(404)
 def page_not_found(e):

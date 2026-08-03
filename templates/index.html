@@ -1377,217 +1377,331 @@
                 </svg>
               </a>
             </div>
-            <p class="text-[13px] sm:text-[14px] text-slate-500 mt-4">No sales deck. Book a call or get Quote.</p>
+            <p class="text-[13px] sm:text-[14px] text-slate-500 mt-4">No sales deck. <a href="/booking" class="underline hover:text-[#1CA9DE]">Book a call</a> or <a href="/files/rehnova-digitals-audit-helpbook.pdf" download="rehnova-digitals-audit-helpbook.pdf" class="underline hover:text-[#1CA9DE]">Download Free B2B Audit Helpbook</a>.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Segments We Support -->
-    <section id="segments" class="py-10 sm:py-16 lg:py-24 bg-slate-50 text-slate-900 relative font-body"
+    <section id="segments" class="py-16 sm:py-24 lg:py-32 bg-slate-50/70 text-slate-900 relative font-body border-y border-slate-200/60"
       x-data="{ activeSegment: 'healthcare' }">
-      <div class="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Header -->
-        <div class="max-w-3xl mx-auto text-center mb-6 sm:mb-10 lg:mb-14 px-2">
+        <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
           <h2
-            class="text-[26px] sm:text-[38px] lg:text-[46px] font-bold leading-[1.15] tracking-[-0.03em] text-slate-900 font-body">
+            class="text-[28px] sm:text-[40px] lg:text-[48px] font-bold leading-[1.15] tracking-[-0.03em] text-slate-900 font-body">
             Segments We <span class="text-[#1DA9CE]">Support</span>
           </h2>
-          <p class="mt-2.5 text-[14px] sm:text-[16px] text-slate-600 leading-relaxed max-w-2xl mx-auto font-body">
-            Customized software architectures, telemetry engines, and AI automation built specifically for your
-            sector's operational requirements.
+          <p class="mt-3.5 text-[15px] sm:text-[17px] text-slate-600 leading-relaxed max-w-2xl mx-auto font-body font-light">
+            Custom software platforms, automated workflows, and intelligent AI solutions built for your industry's specific needs.
           </p>
         </div>
 
-        <!-- Top Row: Slidable Selector Cards on Phones, Grid on Desktop -->
+        <!-- Font Awesome Light-Themed Selector Buttons (4 Core Segments) -->
         <div
-          class="flex gap-2.5 overflow-x-auto scrollbar-hide snap-x snap-mandatory p-1 pb-3 md:grid md:grid-cols-5 md:overflow-visible md:p-0 md:pb-0 mb-6 lg:mb-10">
+          class="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory p-1 pb-4 md:grid md:grid-cols-4 md:overflow-visible md:p-0 mb-12 lg:mb-16">
 
-          <!-- Healthcare Card -->
+          <!-- Healthcare Button -->
           <button @click="activeSegment = 'healthcare'"
-            :class="activeSegment === 'healthcare' ? 'bg-white border-2 border-[#1DA9CE] text-slate-900 shadow-xs' : 'bg-white/90 border border-slate-200/80 text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-900 shadow-2xs'"
-            class="flex-none w-[165px] sm:w-[200px] md:w-auto snap-start p-3 sm:p-4 rounded-xl transition-all duration-200 text-left flex flex-col gap-2 cursor-pointer font-body select-none">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-colors"
-              :class="activeSegment === 'healthcare' ? 'bg-[#1DA9CE]/10 text-[#1DA9CE]' : 'bg-slate-100 text-slate-500'">
-              <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
+            :class="activeSegment === 'healthcare' ? 'bg-white border-slate-300 text-slate-900 shadow-sm ring-1 ring-slate-200' : 'bg-white/70 border-transparent text-slate-500 hover:bg-white hover:text-slate-900 hover:border-slate-200/60 shadow-2xs'"
+            class="flex-none w-[170px] sm:w-[200px] md:w-auto snap-start p-3.5 sm:p-4 rounded-2xl transition-all duration-200 text-left flex items-start gap-3 cursor-pointer font-body select-none border">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors shrink-0 mt-0.5"
+              :class="activeSegment === 'healthcare' ? 'bg-rose-50 text-rose-600' : 'bg-slate-100/80 text-slate-400'">
+              <i class="fa-solid fa-heart-pulse text-base"></i>
             </div>
             <div>
-              <div class="text-[13px] sm:text-[14px] font-semibold leading-snug">Healthcare</div>
-              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5">Life Sciences & Health Tech</div>
+              <div class="text-[13px] sm:text-[14px] font-bold leading-snug tracking-tight">Healthcare</div>
+              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5 font-normal">Health & Medical</div>
             </div>
           </button>
 
-          <!-- EdTech Card -->
-          <button @click="activeSegment = 'edtech'"
-            :class="activeSegment === 'edtech' ? 'bg-white border-2 border-[#1DA9CE] text-slate-900 shadow-xs' : 'bg-white/90 border border-slate-200/80 text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-900 shadow-2xs'"
-            class="flex-none w-[165px] sm:w-[200px] md:w-auto snap-start p-3 sm:p-4 rounded-xl transition-all duration-200 text-left flex flex-col gap-2 cursor-pointer font-body select-none">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-colors"
-              :class="activeSegment === 'edtech' ? 'bg-[#1DA9CE]/10 text-[#1DA9CE]' : 'bg-slate-100 text-slate-500'">
-              <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              </svg>
-            </div>
-            <div>
-              <div class="text-[13px] sm:text-[14px] font-semibold leading-snug">EdTech</div>
-              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5">Academia & E-Learning</div>
-            </div>
-          </button>
-
-          <!-- Professional Services Card -->
-          <button @click="activeSegment = 'professional-services'"
-            :class="activeSegment === 'professional-services' ? 'bg-white border-2 border-[#1DA9CE] text-slate-900 shadow-xs' : 'bg-white/90 border border-slate-200/80 text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-900 shadow-2xs'"
-            class="flex-none w-[165px] sm:w-[200px] md:w-auto snap-start p-3 sm:p-4 rounded-xl transition-all duration-200 text-left flex flex-col gap-2 cursor-pointer font-body select-none">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-colors"
-              :class="activeSegment === 'professional-services' ? 'bg-[#1DA9CE]/10 text-[#1DA9CE]' : 'bg-slate-100 text-slate-500'">
-              <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <div class="text-[13px] sm:text-[14px] font-semibold leading-snug">Professional Services</div>
-              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5">B2B & Enterprise Portals</div>
-            </div>
-          </button>
-
-          <!-- FinTech Card -->
-          <button @click="activeSegment = 'fintech'"
-            :class="activeSegment === 'fintech' ? 'bg-white border-2 border-[#1DA9CE] text-slate-900 shadow-xs' : 'bg-white/90 border border-slate-200/80 text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-900 shadow-2xs'"
-            class="flex-none w-[165px] sm:w-[200px] md:w-auto snap-start p-3 sm:p-4 rounded-xl transition-all duration-200 text-left flex flex-col gap-2 cursor-pointer font-body select-none">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-colors"
-              :class="activeSegment === 'fintech' ? 'bg-[#1DA9CE]/10 text-[#1DA9CE]' : 'bg-slate-100 text-slate-500'">
-              <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <div>
-              <div class="text-[13px] sm:text-[14px] font-semibold leading-snug">FinTech</div>
-              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5">Banking & Financial Ops</div>
-            </div>
-          </button>
-
-          <!-- E-Commerce Card -->
+          <!-- E-Commerce Button -->
           <button @click="activeSegment = 'ecommerce'"
-            :class="activeSegment === 'ecommerce' ? 'bg-white border-2 border-[#1DA9CE] text-slate-900 shadow-xs' : 'bg-white/90 border border-slate-200/80 text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-900 shadow-2xs'"
-            class="flex-none w-[165px] sm:w-[200px] md:w-auto snap-start p-3 sm:p-4 rounded-xl transition-all duration-200 text-left flex flex-col gap-2 cursor-pointer font-body select-none">
-            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-colors"
-              :class="activeSegment === 'ecommerce' ? 'bg-[#1DA9CE]/10 text-[#1DA9CE]' : 'bg-slate-100 text-slate-500'">
-              <svg class="w-4.5 h-4.5 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
+            :class="activeSegment === 'ecommerce' ? 'bg-white border-slate-300 text-slate-900 shadow-sm ring-1 ring-slate-200' : 'bg-white/70 border-transparent text-slate-500 hover:bg-white hover:text-slate-900 hover:border-slate-200/60 shadow-2xs'"
+            class="flex-none w-[170px] sm:w-[200px] md:w-auto snap-start p-3.5 sm:p-4 rounded-2xl transition-all duration-200 text-left flex items-start gap-3 cursor-pointer font-body select-none border">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors shrink-0 mt-0.5"
+              :class="activeSegment === 'ecommerce' ? 'bg-amber-50 text-amber-600' : 'bg-slate-100/80 text-slate-400'">
+              <i class="fa-solid fa-cart-shopping text-base"></i>
             </div>
             <div>
-              <div class="text-[13px] sm:text-[14px] font-semibold leading-snug">E-Commerce</div>
-              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5">Retail & Omnichannel</div>
+              <div class="text-[13px] sm:text-[14px] font-bold leading-snug tracking-tight">E-Commerce</div>
+              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5 font-normal">Online Stores & Retail</div>
+            </div>
+          </button>
+
+          <!-- EdTech Button -->
+          <button @click="activeSegment = 'edtech'"
+            :class="activeSegment === 'edtech' ? 'bg-white border-slate-300 text-slate-900 shadow-sm ring-1 ring-slate-200' : 'bg-white/70 border-transparent text-slate-500 hover:bg-white hover:text-slate-900 hover:border-slate-200/60 shadow-2xs'"
+            class="flex-none w-[170px] sm:w-[200px] md:w-auto snap-start p-3.5 sm:p-4 rounded-2xl transition-all duration-200 text-left flex items-start gap-3 cursor-pointer font-body select-none border">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors shrink-0 mt-0.5"
+              :class="activeSegment === 'edtech' ? 'bg-indigo-50 text-indigo-600' : 'bg-slate-100/80 text-slate-400'">
+              <i class="fa-solid fa-graduation-cap text-base"></i>
+            </div>
+            <div>
+              <div class="text-[13px] sm:text-[14px] font-bold leading-snug tracking-tight">EdTech</div>
+              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5 font-normal">Education & Learning</div>
+            </div>
+          </button>
+
+          <!-- B2B Services Button -->
+          <button @click="activeSegment = 'professional-services'"
+            :class="activeSegment === 'professional-services' ? 'bg-white border-slate-300 text-slate-900 shadow-sm ring-1 ring-slate-200' : 'bg-white/70 border-transparent text-slate-500 hover:bg-white hover:text-slate-900 hover:border-slate-200/60 shadow-2xs'"
+            class="flex-none w-[170px] sm:w-[200px] md:w-auto snap-start p-3.5 sm:p-4 rounded-2xl transition-all duration-200 text-left flex items-start gap-3 cursor-pointer font-body select-none border">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center transition-colors shrink-0 mt-0.5"
+              :class="activeSegment === 'professional-services' ? 'bg-sky-50 text-[#1DA9CE]' : 'bg-slate-100/80 text-slate-400'">
+              <i class="fa-solid fa-briefcase text-base"></i>
+            </div>
+            <div>
+              <div class="text-[13px] sm:text-[14px] font-bold leading-snug tracking-tight">B2B Services</div>
+              <div class="text-[11px] sm:text-[12px] text-slate-500 mt-0.5 font-normal">Agencies & Businesses</div>
             </div>
           </button>
 
         </div>
 
-        <!-- Minimal Stage Display (Pure Redirector Cards) -->
-        <div class="bg-white rounded-xl p-4 sm:p-6 lg:p-8 shadow-xs relative overflow-hidden font-body">
+        <!-- Glassmorphic 3-Card Showcase -->
+        <div class="w-full font-body">
 
-          <!-- Healthcare Redirector -->
-          <div x-show="activeSegment === 'healthcare'" x-transition:enter="transition ease-out duration-250"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
-            <div class="lg:col-span-5 relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop"
-                alt="Healthcare Technology"
-                class="w-full h-[180px] sm:h-[220px] lg:h-[260px] object-cover rounded-lg" />
+          <!-- Healthcare Stage -->
+          <div x-show="activeSegment === 'healthcare'"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-3"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            
+            <!-- Card 1 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-rose-100/90 via-orange-100/60 to-pink-100/40 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(244,63,94,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-rose-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-user-doctor text-3xl sm:text-4xl text-slate-800 group-hover:text-rose-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">90% Faster Patient Intake</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Custom patient portals allow patients to complete digital registration online before arriving, eliminating waiting room delays.
+                </p>
+              </div>
             </div>
-            <div class="lg:col-span-7 space-y-2 sm:space-y-3 pt-1 lg:pt-0">
-              <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-snug font-body">Patient
-                Portals & Telemetry Systems</h3>
-              <p class="text-slate-600 text-[14px] sm:text-[15px] leading-relaxed font-body">
-                Encrypted, BAA-backed electronic health platforms, real-time medical device telemetry pipelines, and
-                patient management systems engineered for compliance.
-              </p>
+
+            <!-- Card 2 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-sky-200/90 via-cyan-100 to-indigo-100/50 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(14,165,233,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-sky-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-file-medical text-3xl sm:text-4xl text-slate-800 group-hover:text-sky-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Instant AI Document Processing</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Autonomous AI document agents read, summarize, and extract key data from medical records and lab reports in seconds.
+                </p>
+              </div>
             </div>
+
+            <!-- Card 3 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-purple-200/80 via-indigo-100 to-sky-100/50 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(168,85,247,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-purple-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-calendar-check text-3xl sm:text-4xl text-slate-800 group-hover:text-purple-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Automated Patient Reminders</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Automated booking and follow-up engines send SMS and email reminders to drastically lower no-show rates.
+                </p>
+              </div>
+            </div>
+
           </div>
 
-          <!-- EdTech Redirector -->
-          <div x-show="activeSegment === 'edtech'" x-transition:enter="transition ease-out duration-250"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
-            <div class="lg:col-span-5 relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop"
-                alt="EdTech Learning Platform"
-                class="w-full h-[180px] sm:h-[220px] lg:h-[260px] object-cover rounded-lg" />
+          <!-- E-Commerce Stage -->
+          <div x-show="activeSegment === 'ecommerce'"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-3"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            
+            <!-- Card 1 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-amber-200/90 via-orange-100 to-yellow-100/60 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(245,158,11,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-amber-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-arrow-trend-up text-3xl sm:text-4xl text-slate-800 group-hover:text-amber-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Higher Mobile Sales Conversions</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  High-speed custom web storefronts deliver lightning-fast page loads and sub-second checkout, directly driving higher store revenue.
+                </p>
+              </div>
             </div>
-            <div class="lg:col-span-7 space-y-2 sm:space-y-3 pt-1 lg:pt-0">
-              <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-snug font-body">Scalable
-                LMS & AI Grading Engines</h3>
-              <p class="text-slate-600 text-[14px] sm:text-[15px] leading-relaxed font-body">
-                Custom learning management portals, FERPA-compliant student records, and automated AI assignment
-                grading built for university and enterprise scale.
-              </p>
+
+            <!-- Card 2 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-orange-200/90 via-amber-100 to-rose-100/60 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(249,115,22,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-orange-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-comments text-3xl sm:text-4xl text-slate-800 group-hover:text-orange-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">24/7 AI Sales & Customer Support</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Smart AI chat agents answer shopper product questions 24/7, recommend items, and handle order tracking inquiries automatically.
+                </p>
+              </div>
             </div>
+
+            <!-- Card 3 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-yellow-200/80 via-amber-100 to-rose-100/60 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(234,179,8,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-yellow-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-arrows-rotate text-3xl sm:text-4xl text-slate-800 group-hover:text-amber-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Zero Over-Selling & Stock Errors</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Custom inventory API integrations sync product stock across Shopify, Amazon, and warehouses in real time.
+                </p>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Professional Services Redirector -->
-          <div x-show="activeSegment === 'professional-services'" x-transition:enter="transition ease-out duration-250"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
-            <div class="lg:col-span-5 relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
-                alt="Professional B2B Services"
-                class="w-full h-[180px] sm:h-[220px] lg:h-[260px] object-cover rounded-lg" />
+          <!-- EdTech Stage -->
+          <div x-show="activeSegment === 'edtech'"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-3"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            
+            <!-- Card 1 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-indigo-200/90 via-sky-100 to-purple-100/60 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(99,102,241,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-indigo-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-display text-3xl sm:text-4xl text-slate-800 group-hover:text-indigo-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Seamless Student Learning Portals</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Intuitive web portals give students instant 24/7 access to video courses, study materials, and interactive assignments on any device.
+                </p>
+              </div>
             </div>
-            <div class="lg:col-span-7 space-y-2 sm:space-y-3 pt-1 lg:pt-0">
-              <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-snug font-body">Client
-                Portals & Contract Engines</h3>
-              <p class="text-slate-600 text-[14px] sm:text-[15px] leading-relaxed font-body">
-                White-labeled client portals, secure document vaults, automated retainer billing, and AI contract
-                intelligence tailored for consulting and law firms.
-              </p>
+
+            <!-- Card 2 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-cyan-200/90 via-blue-100 to-indigo-100/60 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(6,182,212,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-cyan-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-clock text-3xl sm:text-4xl text-slate-800 group-hover:text-cyan-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">80% Reduction in Grading Time</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  AI evaluation tools automatically grade quizzes, assignments, and exercises, giving students instant feedback.
+                </p>
+              </div>
             </div>
+
+            <!-- Card 3 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-teal-200/80 via-emerald-100 to-sky-100/50 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(20,184,166,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-teal-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-user-check text-3xl sm:text-4xl text-slate-800 group-hover:text-teal-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Automated Course Enrollment & Billing</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Automated workflow engines handle student signups, payment collection, and access credentialing hands-free.
+                </p>
+              </div>
+            </div>
+
           </div>
 
-          <!-- FinTech Redirector -->
-          <div x-show="activeSegment === 'fintech'" x-transition:enter="transition ease-out duration-250"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
-            <div class="lg:col-span-5 relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop"
-                alt="FinTech Financial Operations"
-                class="w-full h-[180px] sm:h-[220px] lg:h-[260px] object-cover rounded-lg" />
+          <!-- B2B Services Stage -->
+          <div x-show="activeSegment === 'professional-services'"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-3"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            
+            <!-- Card 1 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-sky-200/90 via-indigo-100 to-cyan-100/70 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(28,169,222,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-sky-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-signature text-3xl sm:text-4xl text-slate-800 group-hover:text-[#1DA9CE] transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Faster Client Project Approvals</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Branded client portals provide a single workspace for clients to review deliverables, sign contracts, and share files.
+                </p>
+              </div>
             </div>
-            <div class="lg:col-span-7 space-y-2 sm:space-y-3 pt-1 lg:pt-0">
-              <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-snug font-body">
-                Audit-Ready Payment Architectures</h3>
-              <p class="text-slate-600 text-[14px] sm:text-[15px] leading-relaxed font-body">
-                Fault-tolerant payment gateways, double-entry financial accounting ledgers, and automated KYC/AML
-                fraud prevention pipelines built for throughput.
-              </p>
-            </div>
-          </div>
 
-          <!-- E-Commerce Redirector -->
-          <div x-show="activeSegment === 'ecommerce'" x-transition:enter="transition ease-out duration-250"
-            x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
-            <div class="lg:col-span-5 relative overflow-hidden rounded-lg">
-              <img src="https://images.unsplash.com/photo-1556742049-0a670f4a4591?q=80&w=1200&auto=format&fit=crop"
-                alt="E-Commerce Digital Storefront"
-                class="w-full h-[180px] sm:h-[220px] lg:h-[260px] object-cover rounded-lg" />
+            <!-- Card 2 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-[#1DA9CE]/25 via-sky-100 to-indigo-100/60 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(28,169,222,0.14)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-[#1DA9CE]/20 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-hand-holding-dollar text-3xl sm:text-4xl text-slate-800 group-hover:text-[#1DA9CE] transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Get Paid On Time Every Month</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  Automated proposal and billing engines collect digital signatures and process recurring retainer invoices effortlessly.
+                </p>
+              </div>
             </div>
-            <div class="lg:col-span-7 space-y-2 sm:space-y-3 pt-1 lg:pt-0">
-              <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-snug font-body">Headless
-                Storefronts & Inventory Sync</h3>
-              <p class="text-slate-600 text-[14px] sm:text-[15px] leading-relaxed font-body">
-                Ultra-fast Next.js headless e-commerce platforms, multi-warehouse inventory orchestrators, and AI
-                product recommendation engines.
-              </p>
+
+            <!-- Card 3 -->
+            <div class="group">
+              <div class="w-full h-64 sm:h-72 rounded-3xl bg-gradient-to-tr from-blue-200/80 via-indigo-100 to-purple-100/50 relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md group-hover:shadow-[0_14px_40px_rgba(59,130,246,0.12)] group-hover:border-white transition-all duration-300">
+                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-blue-200/40 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+                <div class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-xl shadow-[0_8px_25px_rgba(0,0,0,0.06)] flex items-center justify-center text-slate-800 border border-white group-hover:scale-105 group-hover:bg-white group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] transition-all duration-300 relative z-10">
+                  <i class="fa-solid fa-wand-magic-sparkles text-3xl sm:text-4xl text-slate-800 group-hover:text-blue-600 transition-colors duration-300"></i>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">Instant AI Proposal Summaries</h3>
+                <p class="text-slate-600 text-sm sm:text-[15px] leading-relaxed mt-2.5 font-light">
+                  AI assistants summarize complex client briefs and generate tailored proposals in minutes, saving hours of prep time.
+                </p>
+              </div>
             </div>
+
           </div>
 
         </div>
@@ -1622,8 +1736,8 @@
           <img src="https://media.securiti.ai/wp-content/uploads/2022/09/idc-ryan.svg"
             alt="IDC - Ryan O'Leary, Research Director" class="h-7 sm:h-9 w-auto mx-auto opacity-85">
 
-          <a href="{{ url_for('serve_file', filename='rehnova-digitals-audit-helpbook.pdf') }}"
-            download="rehnova-digitals-audit-helpbook.pdf" target="_blank" rel="noopener noreferrer"
+          <a href="/files/rehnova-digitals-audit-helpbook.pdf"
+            download="rehnova-digitals-audit-helpbook.pdf"
             class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white border border-slate-200/90 hover:border-[#1DA9CE]/50 text-slate-700 hover:text-[#1DA9CE] text-[13px] sm:text-[14px] font-medium rounded-md transition-all duration-200 shadow-2xs hover:shadow-xs group">
             <svg class="w-4 h-4 text-[#1DA9CE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
