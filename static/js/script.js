@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { x: 448, y: 448 },  // 3: Bottom-Right
         { x: 300, y: 510 },  // 4: Bottom
         { x: 152, y: 448 },  // 5: Bottom-Left
-        { x: 90,  y: 300 },  // 6: Left
+        { x: 90, y: 300 },  // 6: Left
         { x: 152, y: 152 }   // 7: Top-Left
     ];
 

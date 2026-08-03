@@ -260,17 +260,17 @@ def test_sheets():
             'error_type': type(e).__name__
         }), 500
 
-# === File & PDF Download Routes ===
+# === File & PDF Serving Routes ===
 FILES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'files')
 
 @app.route('/files/<path:filename>')
 def serve_file(filename):
-    """Serve or download files directly from the files directory securely."""
+    """Serve files directly for inline viewing in browser (e.g. PDFs)."""
     file_path = os.path.join(FILES_DIR, filename)
     if not os.path.isfile(file_path):
         abort(404)
-    mode = request.args.get('view', '').lower()
-    as_attachment = False if mode in ['1', 'true', 'yes', 'inline'] else True
+    dl = request.args.get('download', '').lower()
+    as_attachment = True if dl in ['1', 'true', 'yes'] else False
     response = send_from_directory(FILES_DIR, filename, as_attachment=as_attachment)
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Accept-Ranges'] = 'bytes'
@@ -289,13 +289,15 @@ def download_file(filename):
 
 @app.route('/download-audit-helpbook')
 @app.route('/audit-helpbook')
-def download_audit_helpbook():
-    """Direct route for downloading the Rehnova Digitals Audit Helpbook PDF."""
+def serve_audit_helpbook():
+    """Direct route for viewing/opening the Rehnova Digitals Audit Helpbook PDF."""
     pdf_name = 'rehnova-digitals-audit-helpbook.pdf'
     file_path = os.path.join(FILES_DIR, pdf_name)
     if not os.path.isfile(file_path):
         abort(404)
-    response = send_from_directory(FILES_DIR, pdf_name, as_attachment=True)
+    dl = request.args.get('download', '').lower()
+    as_attachment = True if dl in ['1', 'true', 'yes'] else False
+    response = send_from_directory(FILES_DIR, pdf_name, as_attachment=as_attachment)
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Accept-Ranges'] = 'bytes'
     return response
